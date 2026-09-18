@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Service Agreement - Your Shop Manager</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-size: 11pt;
+    line-height: 1.6;
+    color: #2d3748;
+    background: #f7fafc;
+    padding: 20px 10px;
+  }
+  
+  .page {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 60px 50px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  }
+  
+  /* Header Section */
+  .header {
+    text-align: center;
+    border-bottom: 3px solid #4a5568;
+    padding-bottom: 40px;
+    margin-bottom: 50px;
+  }
+  
+  .header-subtitle {
+    font-size: 10pt;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #718096;
+    margin-bottom: 15px;
+    font-weight: 500;
+  }
+  
+  .header-title {
+    font-size: 32pt;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+  }
+  
+  .header-brand {
+    font-size: 14pt;
+    color: #4a5568;
+    font-weight: 600;
+    margin-top: 15px;
+  }
+  
+  /* Parties Section */
+  .parties {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    margin-bottom: 50px;
+    padding: 30px;
+    background: #f7fafc;
+    border-radius: 8px;
+  }
+  
+  .party-block h3 {
+    font-size: 9pt;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #718096;
+    margin-bottom: 15px;
+    font-weight: 600;
+  }
+  
+  .party-block .name {
+    font-size: 13pt;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 8px;
+  }
+  
+  .party-block .detail {
+    font-size: 10.5pt;
+    color: #4a5568;
+    margin-bottom: 5px;
+    line-height: 1.5;
+    word-wrap: break-word;
+  }
+  
+  .party-block .blank-field {
+    display: inline-block;
+    min-width: 150px;
+    border-bottom: 1px solid #cbd5e0;
+    color: #a0aec0;
+  }
+  
+  /* Agreement Date */
+  .agreement-date {
+    margin-bottom: 40px;
+    padding: 20px;
+    background: #edf2f7;
+    border-left: 4px solid #4299e1;
+    border-radius: 4px;
+  }
+  
+  .agreement-date p {
+    font-size: 11pt;
+    color: #2d3748;
+  }
+  
+  .agreement-date .blank-line {
+    display: inline-block;
+    min-width: 150px;
+    border-bottom: 1px solid #4a5568;
+    padding: 0 5px;
+  }
+  
+  /* Section Styling */
+  .section {
+    margin-bottom: 35px;
+  }
+  
+  .section-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e2e8f0;
+  }
+  
+  .section-number {
+    background: #4a5568;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 10pt;
+    margin-right: 15px;
+    flex-shrink: 0;
+  }
+  
+  .section-title {
+    font-size: 13pt;
+    font-weight: 700;
+    color: #2d3748;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .section-content {
+    padding-left: 10px;
+  }
+  
+  /* Lists */
+  ol {
+    padding-left: 30px;
+    margin-bottom: 15px;
+  }
+  
+  li {
+    margin-bottom: 12px;
+    font-size: 10.5pt;
+    line-height: 1.7;
+    color: #4a5568;
+    word-wrap: break-word;
+  }
+  
+  /* Inline blanks */
+  .inline-blank {
+    display: inline-block;
+    min-width: 120px;
+    border-bottom: 1px solid #cbd5e0;
+    margin: 0 5px;
+  }
+  
+  .inline-blank.short {
+    min-width: 80px;
+  }
+  
+  .inline-blank.long {
+    min-width: 200px;
+  }
+  
+  /* Checkboxes */
+  .checkbox-item {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 25px;
+    margin-bottom: 10px;
+  }
+  
+  .checkbox {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #cbd5e0;
+    border-radius: 3px;
+    margin-right: 8px;
+    flex-shrink: 0;
+  }
+  
+  .checkbox-label {
+    font-size: 10.5pt;
+    color: #4a5568;
+  }
+  
+  /* Feature List */
+  .feature-list {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .feature-list li {
+    padding-left: 20px;
+    position: relative;
+  }
+  
+  .feature-list li:before {
+    content: "•";
+    color: #4299e1;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+  }
+  
+  /* Signature Section */
+  .signature-section {
+    margin-top: 70px;
+    padding-top: 50px;
+    border-top: 3px solid #4a5568;
+  }
+  
+  .signature-title {
+    font-size: 13pt;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .signature-subtitle {
+    text-align: center;
+    color: #718096;
+    font-size: 10.5pt;
+    margin-bottom: 40px;
+  }
+  
+  .signatures {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    margin-top: 50px;
+  }
+  
+  .signature-block {
+    margin-bottom: 30px;
+  }
+  
+  .signature-label {
+    font-size: 9pt;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #718096;
+    margin-bottom: 15px;
+    font-weight: 600;
+  }
+  
+  .signature-line {
+    border-bottom: 2px solid #2d3748;
+    height: 50px;
+    margin-bottom: 10px;
+  }
+  
+  .signature-name {
+    font-size: 10.5pt;
+    color: #4a5568;
+    font-weight: 600;
+  }
+  
+  .signature-date {
+    margin-top: 20px;
+    font-size: 10pt;
+    color: #4a5568;
+  }
+  
+  .signature-date .blank-line {
+    display: inline-block;
+    min-width: 120px;
+    border-bottom: 1px solid #cbd5e0;
+    margin-left: 10px;
+  }
+  
+  /* Footer */
+  .footer {
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px solid #e2e8f0;
+    text-align: center;
+    font-size: 9pt;
+    color: #a0aec0;
+  }
+  
+  .footer strong {
+    color: #718096;
+    font-weight: 600;
+  }
+  
+  /* Highlight Box */
+  .highlight-box {
+    background: #fffaf0;
+    border-left: 4px solid #ed8936;
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 4px;
+  }
+  
+  .highlight-box p {
+    font-size: 10.5pt;
+    color: #744210;
+    margin: 0;
+  }
+  
+  /* Print Button */
+  .print-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #4299e1;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-family: inherit;
+    font-size: 11pt;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(66, 153, 225, 0.4);
+    transition: all 0.3s;
+    z-index: 1000;
+  }
+  
+  .print-btn:hover {
+    background: #3182ce;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(66, 153, 225, 0.5);
+  }
+  
+  /* MOBILE RESPONSIVE */
+  @media screen and (max-width: 768px) {
+    body {
+      padding: 10px 5px;
+    }
+    
+    .page {
+      padding: 40px 25px;
+    }
+    
+    .header-title {
+      font-size: 24pt;
+    }
+    
+    .header-subtitle {
+      font-size: 9pt;
+      letter-spacing: 2px;
+    }
+    
+    .header-brand {
+      font-size: 12pt;
+    }
+    
+    .parties {
+      grid-template-columns: 1fr;
+      gap: 30px;
+      padding: 20px;
+    }
+    
+    .party-block .blank-field {
+      min-width: 100px;
+    }
+    
+    .section-title {
+      font-size: 11pt;
+    }
+    
+    .section-number {
+      width: 28px;
+      height: 28px;
+      font-size: 9pt;
+    }
+    
+    .inline-blank {
+      min-width: 80px;
+    }
+    
+    .inline-blank.long {
+      min-width: 150px;
+    }
+    
+    .signatures {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    
+    .checkbox-item {
+      display: flex;
+      margin-right: 0;
+      margin-bottom: 8px;
+    }
+    
+    .print-btn {
+      top: 10px;
+      right: 10px;
+      padding: 12px 20px;
+      font-size: 10pt;
+    }
+    
+    ol {
+      padding-left: 20px;
+    }
+    
+    li {
+      font-size: 10pt;
+    }
+  }
+  
+  /* Print Styles */
+  @media print {
+    body {
+      background: white;
+      padding: 0;
+    }
+    
+    .page {
+      box-shadow: none;
+      padding: 50px 40px;
+      max-width: 100%;
+    }
+    
+    .print-btn {
+      display: none !important;
+    }
+    
+    @page {
+      margin: 1cm;
+      size: A4;
+    }
+  }
+</style>
+</head>
+<body>
+
+<button class="print-btn" onclick="handlePrint()">📄 Download PDF</button>
+
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-subtitle">Software Development</div>
+    <h1 class="header-title">SERVICE AGREEMENT</h1>
+    <div class="header-brand">Your Shop Manager</div>
+  </div>
+
+  <!-- Parties Information -->
+  <div class="parties">
+    <div class="party-block">
+      <h3>Developer</h3>
+      <div class="name">Samiran Das</div>
+      <div class="detail">Your Shop Manager</div>
+      <div class="detail">samirandascontact@gmail.com</div>
+      <div class="detail">WhatsApp: +91 86375 60157</div>
+    </div>
+    
+    <div class="party-block">
+      <h3>Client</h3>
+      <div class="detail">Name: <span class="blank-field"></span></div>
+      <div class="detail">Business: <span class="blank-field"></span></div>
+      <div class="detail">Email: <span class="blank-field"></span></div>
+      <div class="detail">Phone: <span class="blank-field"></span></div>
+    </div>
+  </div>
+
+  <!-- Agreement Date -->
+  <div class="agreement-date">
+    <p>This Agreement is made on <span class="blank-line"></span> between <strong>Samiran Das</strong> ("Developer") and the Client named above ("Client").</p>
+  </div>
+
+  <!-- Section 1: Scope of Work -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">1</div>
+      <div class="section-title">Scope of Work</div>
+    </div>
+    <div class="section-content">
+      <ol>
+        <li>The Developer will provide a customized shop manager web application ("the Software") for the Client's business type: <span class="inline-blank"></span></li>
+        
+        <li><strong>Base Features Included:</strong>
+          <ul class="feature-list">
+            <li>Inventory Management</li>
+            <li>Sales and Billing with Printing</li>
+            <li>Purchase and Supplier Tracking</li>
+            <li>Customer Records & Reports</li>
+            <li>Multi-language Support</li>
+            <li>Manual and 24-hour Auto Backup (Excel/JSON)</li>
+            <li>Mobile Browser Access</li>
+            <li>Data Export</li>
+          </ul>
+        </li>
+        
+        <li><strong>Package Selected:</strong>
+          <div style="margin-top: 10px;">
+            <div class="checkbox-item">
+              <div class="checkbox"></div>
+              <span class="checkbox-label">Base Package</span>
+            </div>
+            <div class="checkbox-item">
+              <div class="checkbox"></div>
+              <span class="checkbox-label">Custom Package</span>
+            </div>
+            <div class="checkbox-item">
+              <div class="checkbox"></div>
+              <span class="checkbox-label">Full Custom Package</span>
+            </div>
+          </div>
+        </li>
+        
+        <li><strong>Custom Features Requested:</strong>
+          <div style="margin-top: 10px;">
+            <div style="margin-bottom: 15px;">• <span class="inline-blank long"></span></div>
+            <div style="margin-bottom: 15px;">• <span class="inline-blank long"></span></div>
+            <div style="margin-bottom: 15px;">• <span class="inline-blank long"></span></div>
+          </div>
+        </li>
+        
+        <li>Languages Required: <span class="inline-blank"></span></li>
+        
+        <li style="color: #e53e3e; font-weight: 600;">Any item NOT listed in sections 1.3 and 1.4 is considered outside this Agreement and will be quoted separately.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- Section 2: Pricing & Payment -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">2</div>
+      <div class="section-title">Pricing & Payment</div>
+    </div>
+    <div class="section-content">
+      <ol>
+        <li><strong>One-time Development Fee:</strong> ₹<span class="inline-blank"></span></li>
+        
+        <li>This fee includes the first <strong>12 months</strong> of hosting, maintenance, and minor bug fixes.</li>
+        
+        <li><strong>Annual Subscription (from Year 2):</strong> ₹<span class="inline-blank"></span> per year, payable in advance.</li>
+        
+        <li><strong>Annual Subscription Covers:</strong>
+          <ul class="feature-list">
+            <li>Supabase Database Hosting</li>
+            <li>Server Maintenance</li>
+            <li>Bug Fixes for Existing Features</li>
+            <li>Backup Storage</li>
+          </ul>
+        </li>
+        
+        <li style="color: #e53e3e;"><strong>Not Covered:</strong> New features or customization changes are quoted separately.</li>
+        
+        <li><strong>Payment Schedule:</strong>
+          <div style="margin-top: 10px; padding-left: 20px;">
+            • 50% Advance: ₹<span class="inline-blank short"></span> (before development begins)<br>
+            • 50% on Delivery: ₹<span class="inline-blank short"></span> (before live handover)
+          </div>
+        </li>
+        
+        <li><strong>Payment Methods:</strong> UPI / Bank Transfer</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- Section 3: Delivery & Revisions -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">3</div>
+      <div class="section-title">Delivery & Revisions</div>
+    </div>
+    <div class="section-content">
+      <ol>
+        <li><strong>Delivery Timeline:</strong> <span class="inline-blank short"></span> business days from advance payment and receipt of all required information.</li>
+        
+        <li>Client receives a live preview link for testing before final handover.</li>
+        
+        <li><strong>Revision Rounds Included:</strong>
+          <div style="margin-top: 10px;">
+            <div class="checkbox-item">
+              <div class="checkbox"></div>
+              <span class="checkbox-label">2 Rounds (Base/Custom)</span>
+            </div>
+            <div class="checkbox-item">
+              <div class="checkbox"></div>
+              <span class="checkbox-label">3 Rounds (Full Custom)</span>
+            </div>
+          </div>
+        </li>
+        
+        <li>Additional changes after included rounds will be quoted separately.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- Section 4: Client Responsibilities -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">4</div>
+      <div class="section-title">Client Responsibilities</div>
+    </div>
+    <div class="section-content">
+      <ol>
+        <li>Provide accurate business details: units of measure, product categories, tax/GST information, language preference, and business-specific data.</li>
+        
+        <li>Respond to clarification requests within <strong>3 business days</strong>. Delays will extend the delivery timeline.</li>
+        
+        <li>Test the Software and report bugs within <strong>7 days</strong> of delivery.</li>
+        
+        <li>Keep login credentials secure. Developer not responsible for data loss from shared credentials.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- Section 5: Data Ownership & Privacy -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">5</div>
+      <div class="section-title">Data Ownership & Privacy</div>
+    </div>
+    <div class="section-content">
+      <ol>
+        <li>All business data (products, sales, customers, suppliers) belongs to the <strong>Client</strong>.</li>
+        
+        <li>Client may export all data anytime in Excel or JSON format.</li>
+        
+        <li>Software code and architecture remain Developer's intellectual property. Client receives non-exclusive, non-transferable license.</li>
+        
+        <li>Developer may reuse non-confidential code for other clients.</li>
+        
+        <li>Developer will not access Client data except for bug fixing, maintenance, or as required by law.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- Section 6: Support & Maintenance -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">6</div>
+      <div class="section-title">Support & Maintenance</div>
+    </div>
+    <div class="section-content">
+      <ol>
+        <li>Free bug fixes for <strong>30 days</strong> after delivery.</li>
+        
+        <li>After 30 days, bug fixes covered by annual subscription.</li>
+        
+        <li>Support via WhatsApp and email with <strong>24-hour response time</strong> on business days.</li>
+        
+        <li style="color: #e53e3e;">New features and customizations are NOT covered and will be quoted separately.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- Section 7: Data Protection & Security -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">7</div>
+      <div class="section-title">Data Protection & Security</div>
+    </div>
+    <div class="section-content">
+      <ol>
+        <li>Software uses <strong>Supabase</strong> (supabase.com) for database and authentication.</li>
+        
+        <li>Security measures include:
+          <ul class="feature-list">
+            <li>Database Row Level Security</li>
+            <li>Encrypted Connections (HTTPS)</li>
+            <li>Automatic Backups</li>
+          </ul>
+        </li>
+        
+        <li>Client acknowledges no system is 100% secure. Developer not liable for unauthorized access beyond reasonable control.</li>
+        
+        <li>Client responsible for periodic data backups using export feature.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- Section 8: Refund Policy -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">8</div>
+      <div class="section-title">Refund Policy</div>
+    </div>
+    <div class="section-content">
+      <ol>
+        <li>Advance payment is <strong style="color: #e53e3e;">non-refundable</strong> once development begins.</li>
+        
+        <li>If Developer cannot deliver, advance refunded in full within 7 business days.</li>
+        
+        <li>Annual subscription is <strong style="color: #e53e3e;">non-refundable</strong> once the year begins.</li>
+        
+        <li>No refund if Client decides not to use Software after delivery.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- Section 9: Limitation of Liability -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">9</div>
+      <div class="section-title">Limitation of Liability</div>
+    </div>
+    <div class="section-content">
+      <ol>
+        <li>Developer's total liability limited to total fees paid by Client.</li>
+        
+        <li>Developer not liable for indirect, consequential, or incidental damages (lost profits, business, or data).</li>
+        
+        <li>Not liable for service interruptions by third-party providers (Supabase, GitHub, ISPs).</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- Section 10: Termination -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">10</div>
+      <div class="section-title">Termination</div>
+    </div>
+    <div class="section-content">
+      <ol>
+        <li>Either party may terminate with <strong>30 days written notice</strong>.</li>
+        
+        <li>Upon termination, Client may export all data.</li>
+        
+        <li>Developer will disable Software within 30 days. Client responsible for data export before termination.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- Section 11: Governing Law -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">11</div>
+      <div class="section-title">Governing Law</div>
+    </div>
+    <div class="section-content">
+      <ol>
+        <li>This Agreement governed by the <strong>laws of India</strong>.</li>
+        
+        <li>Disputes subject to exclusive jurisdiction of courts in <span class="inline-blank"></span>, India.</li>
+        
+        <li>Both parties will attempt amicable resolution through discussion first.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- Signature Section -->
+  <div class="signature-section">
+    <div class="signature-title">ACCEPTANCE & SIGNATURES</div>
+    <div class="signature-subtitle">By signing below, both parties confirm they have read, understood, and agree to all terms.</div>
+    
+    <div class="signatures">
+      <div class="signature-block">
+        <div class="signature-label">Developer</div>
+        <div class="signature-line"></div>
+        <div class="signature-name">Samiran Das</div>
+        <div class="signature-date">Date:<span class="blank-line"></span></div>
+      </div>
+      
+      <div class="signature-block">
+        <div class="signature-label">Client</div>
+        <div class="signature-line"></div>
+        <div class="signature-name">Client Name</div>
+        <div class="signature-date">Date:<span class="blank-line"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <strong>Your Shop Manager</strong><br>
+    samirandascontact@gmail.com · WhatsApp: +91 86375 60157
+  </div>
+
+</div>
+
+<script>
+function handlePrint() {
+  // Check if on mobile
+  if (window.innerWidth <= 768) {
+    // On mobile, show instructions
+    alert('To save as PDF on mobile:\n\n1. Tap the Share button in your browser\n2. Select "Print"\n3. Choose "Save as PDF" as the printer\n\nOr open this page on a desktop computer for easier PDF generation.');
+  } else {
+    // On desktop, trigger print
+    window.print();
+  }
+}
+</script>
+
+</body>
+</html>
