@@ -39,7 +39,37 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.035;b
 .navcta:hover{border-color:rgba(200,255,61,.6)}
 .menu{display:none;background:none;border:0;color:#fff;font-size:26px;z-index:21;padding:6px;line-height:1}
 
-.hero{min-height:calc(100svh - 78px);max-width:var(--max);margin:auto;padding:74px 24px 40px;position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(420px,.9fr);gap:40px;align-items:center;z-index:1}
+/* --- NEW FULL SCREEN HERO --- */
+.hero{min-height:calc(100svh - 78px);max-width:var(--max);margin:auto;padding:0;position:relative;display:flex;align-items:center;z-index:1;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:1;display:flex;justify-content:flex-end;align-items:center}
+.hero-img{width:100%;height:100%;object-fit:cover;object-position:right center;display:block}
+/* Dark green gradient fading from left to right */
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg, #0D1A16 0%, rgba(13,26,22,0.95) 35%, rgba(13,26,22,0.6) 65%, rgba(13,26,22,0.1) 100%);z-index:2}
+
+/* Precise Iframe Positioning */
+.monitor-screen {
+  position: absolute;
+  top: 35.1%; left: 21.8%; width: 34.3%; height: 43.5%;
+  transform: perspective(1000px) rotateY(-10deg) rotateX(5deg);
+  transform-origin: center center;
+  border-radius: 4px; overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.6), inset 0 0 10px rgba(0,0,0,0.8);
+  background: #0a1014; z-index: 3;
+}
+.monitor-screen iframe { width: 100%; height: 100%; border: none; background: #fff; display: block; }
+
+.phone-screen {
+  position: absolute;
+  top: 42.5%; left: 58.8%; width: 6.7%; height: 23.1%;
+  transform: perspective(800px) rotateY(-15deg) rotateX(10deg) rotateZ(-5deg);
+  transform-origin: center center; border-radius: 8px; overflow: hidden;
+  background: #070a0d; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.7), inset 0 0 5px rgba(0,0,0,0.9); z-index: 3;
+}
+.phone-logo { color: var(--acid); font-weight: 900; font-size: 8px; letter-spacing: -0.05em; text-align: center; line-height: 1.1; text-shadow: 0 0 8px rgba(200,255,61,0.8); }
+.phone-logo span { display: block; font-size: 5px; color: #8e9995; letter-spacing: 0.1em; margin-top: 2px; font-weight: 600; }
+
+.hero-content{position:relative;z-index:4;width:100%;max-width:var(--max);margin:auto;padding:74px 24px 40px;display:flex;flex-direction:column;justify-content:center}
 .eyebrow{display:flex;align-items:center;gap:10px;color:var(--acid);font-size:11px;font-weight:900;letter-spacing:.18em;text-transform:uppercase}
 .eyebrow:before{content:"";width:32px;height:1px;background:var(--acid)}
 h1{font-size:clamp(52px,6.4vw,96px);line-height:.86;letter-spacing:-.07em;margin:22px 0 26px;max-width:780px;font-weight:950}
@@ -52,89 +82,6 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
 .btn.secondary:hover{border-color:rgba(200,255,61,.6)}
 .trust{display:flex;gap:18px;flex-wrap:wrap;margin-top:28px;color:#78827e;font-size:11px}
 .trust b{color:#dce4df;font-weight:700}
-
-/* --- NEW HERO VISUAL --- */
-.hero-visual {
-  position: relative;
-  width: 100%;
-  max-width: 800px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1;
-}
-.image-wrapper {
-  position: relative;
-  width: 100%;
-  /* Fade the edges of the image into the background */
-  -webkit-mask-image: radial-gradient(ellipse at center, #000 45%, transparent 75%);
-  mask-image: radial-gradient(ellipse at center, #000 45%, transparent 75%);
-}
-.hero-img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 12px;
-}
-/* The Live Monitor */
-.monitor-screen {
-  position: absolute;
-  top: 20.5%;
-  left: 17.5%;
-  width: 39%;
-  height: 48%;
-  /* Tilt the screen to match the photo */
-  transform: perspective(1000px) rotateY(-10deg) rotateX(5deg);
-  transform-origin: center center;
-  border-radius: 4px;
-  overflow: hidden;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.6), inset 0 0 10px rgba(0,0,0,0.8);
-  background: #0a1014;
-  z-index: 2;
-}
-.monitor-screen iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-  background: #fff;
-  display: block;
-}
-/* The Phone Screen (Static) */
-.phone-screen {
-  position: absolute;
-  top: 42%;
-  left: 59.5%;
-  width: 9.5%;
-  height: 24%;
-  /* Tilt to match the phone in his hand */
-  transform: perspective(800px) rotateY(-15deg) rotateX(10deg) rotateZ(-5deg);
-  transform-origin: center center;
-  border-radius: 8px;
-  overflow: hidden;
-  background: #070a0d;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.7), inset 0 0 5px rgba(0,0,0,0.9);
-  z-index: 2;
-}
-.phone-logo {
-  color: var(--acid);
-  font-weight: 900;
-  font-size: 8px;
-  letter-spacing: -0.05em;
-  text-align: center;
-  line-height: 1.1;
-  text-shadow: 0 0 8px rgba(200,255,61,0.8);
-}
-.phone-logo span {
-  display: block;
-  font-size: 5px;
-  color: #8e9995;
-  letter-spacing: 0.1em;
-  margin-top: 2px;
-  font-weight: 600;
-}
 
 .nipe-strip{max-width:var(--max);margin:auto;padding:20px 24px 80px;position:relative;z-index:1}
 .niche-label{font-size:10px;letter-spacing:.22em;color:#65716c;text-transform:uppercase;text-align:center;margin-bottom:20px}
@@ -235,35 +182,9 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
 .wa-btn{display:flex;align-items:center;justify-content:center;gap:12px;padding:22px 24px;background:var(--acid);color:#081007;font-weight:900;font-size:15px;letter-spacing:.02em;border-radius:4px;border:0;transition:.2s;text-align:center}
 .wa-btn:hover{transform:translateY(-1px);box-shadow:0 12px 40px rgba(200,255,61,.25)}
 .wa-btn svg{width:22px;height:22px;fill:#081007;flex-shrink:0}
-/* Email button — matches WhatsApp button but outlined */
-.mail-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  padding: 20px 24px;
-  background: transparent;
-  color: var(--acid);
-  border: 1.5px solid var(--acid);
-  font-weight: 900;
-  font-size: 14px;
-  letter-spacing: .02em;
-  border-radius: 4px;
-  transition: .2s;
-  text-align: center;
-  text-decoration: none;
-}
-.mail-btn:hover {
-  background: rgba(200,255,61,.08);
-  transform: translateY(-1px);
-  box-shadow: 0 12px 30px rgba(200,255,61,.15);
-}
-.mail-btn svg {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-  color: var(--acid);
-}
+.mail-btn{display:flex;align-items:center;justify-content:center;gap:12px;padding:20px 24px;background:transparent;color:var(--acid);border:1.5px solid var(--acid);font-weight:900;font-size:14px;letter-spacing:.02em;border-radius:4px;transition:.2s;text-align:center;text-decoration:none}
+.mail-btn:hover{background:rgba(200,255,61,.08);transform:translateY(-1px);box-shadow:0 12px 30px rgba(200,255,61,.15)}
+.mail-btn svg{width:20px;height:20px;flex-shrink:0;color:var(--acid)}
 
 .wa-float{position:fixed;right:22px;bottom:22px;width:60px;height:60px;border-radius:50%;background:var(--acid);display:grid;place-items:center;z-index:99;box-shadow:0 12px 40px rgba(200,255,61,.35),0 0 0 0 rgba(200,255,61,.4);transition:.3s;animation:waPulse 2.4s infinite}
 .wa-float:hover{transform:scale(1.08)}
@@ -296,17 +217,13 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
   .navlinks a:last-child{border-bottom:0}
   .navcta{display:none}
   .menu{display:block}
-  .hero{grid-template-columns:1fr;padding:50px 18px 20px;min-height:auto;gap:20px}
+  
+  /* Mobile Hero Adjustments - Hide background image entirely */
+  .hero{display:block;min-height:auto;padding:50px 18px 20px}
+  .hero-bg{display:none} 
+  .hero-content{padding:0}
   .hero h1{font-size:clamp(48px,13vw,72px);margin-bottom:22px}
   .lead{font-size:15px}
-  
-  /* Mobile Hero Visual Adjustments */
-  .monitor-screen, .phone-screen { display: none; }
-  .image-wrapper { 
-    -webkit-mask-image: linear-gradient(to bottom, #000 75%, transparent 100%); 
-    mask-image: linear-gradient(to bottom, #000 75%, transparent 100%); 
-  }
-  .hero-visual { max-width: 100%; margin-top: 20px; }
   
   .section{padding:70px 18px}
   .section-head{grid-template-columns:1fr;gap:16px;margin-bottom:36px}
@@ -346,141 +263,40 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
   .wa-float{animation:none}
 }
 /* --- Spinning Counter (t-reel) --- */
-.t-reel {
-  display: inline-flex;
-  align-items: center;
-  font-variant-numeric: tabular-nums;
-  vertical-align: bottom;
-}
-.t-reel-col {
-  position: relative;
-  overflow: hidden;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 22%, #000 78%, transparent 100%);
-  mask-image: linear-gradient(to bottom, transparent 0%, #000 22%, #000 78%, transparent 100%);
-}
-.t-reel-strip {
-  display: flex;
-  flex-direction: column;
-  will-change: transform, filter;
-}
-.t-reel-digit {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-@media (prefers-reduced-motion: reduce) {
-  .t-reel-strip { transition: none !important; filter: none !important; }
-}
+.t-reel{display:inline-flex;align-items:center;font-variant-numeric:tabular-nums;vertical-align:bottom}
+.t-reel-col{position:relative;overflow:hidden;-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 22%,#000 78%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0%,#000 22%,#000 78%,transparent 100%)}
+.t-reel-strip{display:flex;flex-direction:column;will-change:transform,filter}
+.t-reel-digit{display:flex;align-items:center;justify-content:center}
+@media (prefers-reduced-motion: reduce) {.t-reel-strip{transition:none !important;filter:none !important}}
 /* --- DESKTOP OPTIMIZATION (Large Screens) --- */
 @media (min-width: 1440px) {
-  :root {
-    --max: 1440px; /* Widen the container to fit better on large monitors */
-  }
-
-  /* Hero Section Adjustments */
-  .hero {
-    grid-template-columns: 1.1fr 0.9fr; /* Give text a bit more room */
-    gap: 60px;
-    padding: 100px 24px 60px;
-  }
-
-  .hero h1 {
-    font-size: clamp(80px, 6.5vw, 110px); /* Scale up hero text */
-  }
-
-  .lead {
-    font-size: 20px;
-    max-width: 650px;
-  }
-  
-  /* Scale up the new Hero Visual for large monitors */
-  .hero-visual {
-    max-width: 1000px; /* Makes the image larger on big screens */
-  }
-  
-  .monitor-screen {
-    /* The percentages will scale automatically with the image, 
-       but you can adjust the shadow intensity here if needed */
-    box-shadow: 0 25px 50px rgba(0,0,0,0.7), inset 0 0 15px rgba(0,0,0,0.9);
-  }
- 
-  /* Section Spacing and Typography */
-  .section {
-    padding: 160px 24px; /* More vertical breathing room */
-  }
-
-  .section-head {
-    grid-template-columns: 0.4fr 1.6fr; /* Adjust column ratio */
-    gap: 60px;
-    margin-bottom: 80px;
-  }
-
-  .section h2 {
-    font-size: clamp(70px, 6.5vw, 110px); /* Larger section headings */
-  }
-
-  /* Features Grid */
-  .feature {
-    grid-template-columns: 120px 1fr 1fr;
-    gap: 50px;
-    padding: 40px 0;
-  }
-
-  /* Testimonial */
-  .testi-quote {
-    font-size: clamp(28px, 3vw, 42px);
-  }
-
-  /* Pricing */
-  .price {
-    padding: 50px 40px;
-  }
-  .price .amt {
-    font-size: 60px;
-  }
-
-  /* Demo */
-  .demo-wrap {
-    grid-template-columns: 340px 1fr; /* Wider sidebar for demo */
-    min-height: 750px;
-  }
-  .demo-info {
-    padding: 40px;
-  }
-  .demo-screen iframe {
-    min-height: 750px;
-  }
-
-  /* Contact */
-  .contact {
-    gap: 100px;
-  }
-  .contact h2 {
-    font-size: clamp(80px, 7.5vw, 120px);
-  }
+  :root {--max: 1440px;}
+  .hero-content{padding:100px 24px 60px;}
+  .hero h1{font-size:clamp(80px,6.5vw,110px);}
+  .lead{font-size:20px;max-width:650px;}
+  .section{padding:160px 24px;}
+  .section-head{grid-template-columns:0.4fr 1.6fr;gap:60px;margin-bottom:80px;}
+  .section h2{font-size:clamp(70px,6.5vw,110px);}
+  .feature{grid-template-columns:120px 1fr 1fr;gap:50px;padding:40px 0;}
+  .testi-quote{font-size:clamp(28px,3vw,42px);}
+  .price{padding:50px 40px;}
+  .price .amt{font-size:60px;}
+  .demo-wrap{grid-template-columns:340px 1fr;min-height:750px;}
+  .demo-info{padding:40px;}
+  .demo-screen iframe{min-height:750px;}
+  .contact{gap:100px;}
+  .contact h2{font-size:clamp(80px,7.5vw,120px);}
 }
-
-/* --- ULTRA-WIDE MONITORS (2K/4K) --- */
 @media (min-width: 1920px) {
-  :root {
-    --max: 1600px; /* Widen even more for 4K screens */
-  }
-  .hero h1 {
-    font-size: 120px; 
-  }
-  .section h2 {
-    font-size: 120px;
-  }
+  :root {--max: 1600px;}
+  .hero h1{font-size:120px;}
+  .section h2{font-size:120px;}
 }
 </style>
 </head>
 <body>
 <svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
-  <defs>
-    <filter id="motion-blur">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="0 4" />
-    </filter>
-  </defs>
+  <defs><filter id="motion-blur"><feGaussianBlur in="SourceGraphic" stdDeviation="0 4" /></filter></defs>
 </svg>
 
 <div class="topline"></div>
@@ -510,7 +326,27 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
 <main id="top">
 
 <section class="hero">
-  <div class="reveal">
+  <!-- Full Screen Background -->
+  <div class="hero-bg">
+    <img src="images/shop-owner.png" alt="Shop Owner using ShopSteward" class="hero-img" loading="lazy">
+    <div class="hero-overlay"></div>
+    
+    <!-- The Live Monitor -->
+    <div class="monitor-screen">
+      <iframe src="https://agricultureshopmanager-ship-it.github.io/AI-added-Agri-Web/" title="Live Demo"></iframe>
+    </div>
+    
+    <!-- The Phone Screen -->
+    <div class="phone-screen">
+      <div class="phone-logo">
+        Shop<br>Steward
+        <span>LIVE</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Text Content -->
+  <div class="hero-content reveal">
     <div class="eyebrow">CUSTOM SOFTWARE FOR REAL SHOPS</div>
     <h1>Your Shop.<span>Your Rules.</span>Your Steward.</h1>
     <p class="lead">Custom-built inventory, billing and reports — running on your phone, in your language, priced for your business. Trusted like a steward, who never forgets a bill or loses a customer's dues.</p>
@@ -519,30 +355,10 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
       <a class="btn secondary" href="#contact">TALK TO ME →</a>
     </div>
     <div class="trust">
-  <span>◉ <b>30+ shops</b> already using</span>
-  <span>◉ <b>Works on any device</b></span>
-  <span>◉ <b>Multi-language</b></span>
-  <span>◉ <b>AI built-in</b></span>
-</div>
-  </div>
-
-  <div class="hero-visual reveal">
-    <div class="image-wrapper">
-      <!-- The Static Image -->
-      <img src="images/shop-owner.png" alt="Shop Owner using ShopSteward" class="hero-img" loading="lazy">
-      
-      <!-- The Live Monitor -->
-      <div class="monitor-screen">
-        <iframe src="https://agricultureshopmanager-ship-it.github.io/AI-added-Agri-Web/" title="Live Demo"></iframe>
-      </div>
-      
-      <!-- The Phone Screen -->
-      <div class="phone-screen">
-        <div class="phone-logo">
-          Shop<br>Steward
-          <span>LIVE</span>
-        </div>
-      </div>
+      <span>◉ <b>30+ shops</b> already using</span>
+      <span>◉ <b>Works on any device</b></span>
+      <span>◉ <b>Multi-language</b></span>
+      <span>◉ <b>AI built-in</b></span>
     </div>
   </div>
 </section>
@@ -581,21 +397,9 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
 <section class="section reveal">
   <div class="section-head"><div class="section-no">02 / PROCESS</div><h2>Three steps. <em>No jargon.</em></h2></div>
   <div class="how">
-    <div class="how-step">
-      <div class="num">STEP 01</div>
-      <h3>Tell me about your shop</h3>
-      <p>A 15-minute call. What you sell, what units you use, what language, what reports you need. I listen — you don't fill out forms.</p>
-    </div>
-    <div class="how-step">
-      <div class="num">STEP 02</div>
-      <h3>I build a live demo for you</h3>
-      <p>You get a working link within days. Test it on your own products. Ask for changes. We refine until it fits like it was made for you — because it is.</p>
-    </div>
-    <div class="how-step">
-      <div class="num">STEP 03</div>
-      <h3>You run your shop</h3>
-      <p>Daily auto-backup, printing, reports, and an AI agent that answers your questions. If something breaks, message me directly — not a ticket queue.</p>
-    </div>
+    <div class="how-step"><div class="num">STEP 01</div><h3>Tell me about your shop</h3><p>A 15-minute call. What you sell, what units you use, what language, what reports you need. I listen — you don't fill out forms.</p></div>
+    <div class="how-step"><div class="num">STEP 02</div><h3>I build a live demo for you</h3><p>You get a working link within days. Test it on your own products. Ask for changes. We refine until it fits like it was made for you — because it is.</p></div>
+    <div class="how-step"><div class="num">STEP 03</div><h3>You run your shop</h3><p>Daily auto-backup, printing, reports, and an AI agent that answers your questions. If something breaks, message me directly — not a ticket queue.</p></div>
   </div>
 </section>
 
@@ -603,8 +407,8 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
   <div style="border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:70px 0;text-align:center;">
     <div class="section-no" style="margin-bottom:24px">TRUSTED ACROSS INDIA</div>
     <div style="font-size:clamp(72px,12vw,140px);font-weight:950;letter-spacing:-.07em;line-height:.9;color:var(--acid);margin-bottom:20px;--reel-cell:clamp(65px,11vw,126px);">
-  <span class="spin-target" data-target="37" style="--reel-cell:clamp(65px,11vw,126px);">37</span>
-</div>
+      <span class="spin-target" data-target="37" style="--reel-cell:clamp(65px,11vw,126px);">37</span>
+    </div>
     <div style="font-size:clamp(18px,2.4vw,26px);color:#c9d1cc;font-weight:600;letter-spacing:-.02em;margin-bottom:32px;">shop owners run their business on ShopSteward</div>
     <div class="niche-row" style="justify-content:center;">
       <span class="niche-chip">Agriculture</span>
@@ -616,6 +420,7 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
     </div>
   </div>
 </section>
+
 <section class="section reveal" id="demo">
   <div class="section-head"><div class="section-no">03 / LIVE SYSTEM</div><h2>Don't take my word for it. <em>Open it.</em></h2></div>
   <div class="demo-wrap">
@@ -673,10 +478,7 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
   <div class="section-no">30+ HAPPY OWNERS</div>
     <div>
       <p class="testi-quote">Pehle stock count karke register karne mein pura din nikal jaata tha. Ab ShopSteward ke saath stock har waqt mere table pe rehta hai — kaunsa product low hai, kya order karna hai, profit mein hoon ya ghate mein — sab kuch pata chalta hai. Mujhe motivation milti hai.</p>
-      <div class="testi-author">
-        <b>Gourgopal Das</b>
-        <span>Krishi Bandhu</span>
-      </div>
+      <div class="testi-author"><b>Gourgopal Das</b><span>Krishi Bandhu</span></div>
     </div>
   </div>
 </section>
@@ -691,14 +493,7 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
       <div class="amt">₹<span class="spin-target" data-target="4899" style="--reel-cell:55px;">4,899</span></div>
       <div class="sub">one-time · first year included<br>then ₹1,899/year</div>
       <ul>
-        <li>Inventory management</li>
-        <li>Sales &amp; billing with printing</li>
-        <li>Purchase &amp; supplier tracking</li>
-        <li>Customer records</li>
-        <li>Sales &amp; stock reports</li>
-        <li>1 language</li>
-        <li>24-hour auto backup</li>
-        <li>Mobile browser access</li>
+        <li>Inventory management</li><li>Sales &amp; billing with printing</li><li>Purchase &amp; supplier tracking</li><li>Customer records</li><li>Sales &amp; stock reports</li><li>1 language</li><li>24-hour auto backup</li><li>Mobile browser access</li>
       </ul>
       <a class="btn secondary" href="#contact">GET STARTED →</a>
     </article>
@@ -708,14 +503,7 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
       <div class="amt">₹<span class="spin-target" data-target="6899" style="--reel-cell:55px;">6,899</span><small>+ custom quote</small></div>
       <div class="sub">first year included<br>then ₹1,899–₹4,899/year</div>
       <ul>
-        <li>Everything in Base</li>
-        <li>Custom units &amp; categories</li>
-        <li>Custom bill / invoice design</li>
-        <li>2 languages</li>
-        <li>Custom reports</li>
-        <li>Your branding &amp; logo</li>
-        <li>Credit / udhaar tracking</li>
-        <li>2 revision rounds + 30 days support</li>
+        <li>Everything in Base</li><li>Custom units &amp; categories</li><li>Custom bill / invoice design</li><li>2 languages</li><li>Custom reports</li><li>Your branding &amp; logo</li><li>Credit / udhaar tracking</li><li>2 revision rounds + 30 days support</li>
       </ul>
       <a class="btn primary" href="#contact">GET A QUOTE →</a>
     </article>
@@ -725,14 +513,7 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
       <div class="amt">₹<span class="spin-target" data-target="9899" style="--reel-cell:55px;">9,899</span><small>+ higher quote</small></div>
       <div class="sub">first year included<br>then ₹4,899+/year</div>
       <ul>
-        <li>Everything in Custom</li>
-        <li>AI Agent inbuilt</li>
-        <li>Multiple branches / shops</li>
-        <li>User roles &amp; permissions</li>
-        <li>Advanced dashboards</li>
-        <li>3 languages</li>
-        <li>Priority support</li>
-        <li>Recorded training + custom domain</li>
+        <li>Everything in Custom</li><li>AI Agent inbuilt</li><li>Multiple branches / shops</li><li>User roles &amp; permissions</li><li>Advanced dashboards</li><li>3 languages</li><li>Priority support</li><li>Recorded training + custom domain</li>
       </ul>
       <a class="btn secondary" href="#contact">TALK TO ME →</a>
     </article>
@@ -761,26 +542,20 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
       <p class="copy" style="max-width:500px;margin-top:28px">Tell me what your shop needs. I'll reply within a day — usually much faster.</p>
     </div>
     <div class="contact-side">
-      <a class="contact-item" href="https://wa.me/918637560557" target="_blank" rel="noopener">
-        <b>WhatsApp</b><span>+91 86375 60557 · Fastest reply ↗</span>
-      </a>
-      <a class="contact-item" href="mailto:shopsteward.in@gmail.com">
-        <b>Email</b><span>shopsteward.in@gmail.com</span>
-      </a>
+      <a class="contact-item" href="https://wa.me/918637560557" target="_blank" rel="noopener"><b>WhatsApp</b><span>+91 86375 60557 · Fastest reply ↗</span></a>
+      <a class="contact-item" href="mailto:shopsteward.in@gmail.com"><b>Email</b><span>shopsteward.in@gmail.com</span></a>
       <div class="contact-item"><b>Response Time</b><span>Within 24 hours</span></div>
       <div class="wa-cta">
-  <a class="wa-btn" href="https://wa.me/918637560557?text=Hi%20Samiran%2C%20I%20want%20a%20custom%20shop%20manager.%0A%0AMy%20shop%3A%20%0ABusiness%20type%3A%20%0AWhat%20I%20need%3A%20" target="_blank" rel="noopener">
-    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-    Chat on WhatsApp — Get a Quote
-  </a>
-
-  <a class="mail-btn" href="mailto:shopsteward.in@gmail.com?subject=Custom%20Shop%20Software%20Inquiry&body=Hi%20ShopSteward%2C%0A%0AMy%20shop%20name%3A%20%0ABusiness%20type%3A%20%0AWhat%20I%20need%3A%20%0APlan%20interested%20in%3A%20(Base%20%2F%20Custom%20%2F%20AI%20Advanced)">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-    Send us an Email — shopsteward.in@gmail.com
-  </a>
-
-  <p class="wa-alt">Or reach us directly on WhatsApp: <a href="https://wa.me/918637560557">+91 86375 60557</a></p>
-</div>
+        <a class="wa-btn" href="https://wa.me/918637560557?text=Hi%20Samiran%2C%20I%20want%20a%20custom%20shop%20manager.%0A%0AMy%20shop%3A%20%0ABusiness%20type%3A%20%0AWhat%20I%20need%3A%20" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+          Chat on WhatsApp — Get a Quote
+        </a>
+        <a class="mail-btn" href="mailto:shopsteward.in@gmail.com?subject=Custom%20Shop%20Software%20Inquiry&body=Hi%20ShopSteward%2C%0A%0AMy%20shop%20name%3A%20%0ABusiness%20type%3A%20%0AWhat%20I%20need%3A%20%0APlan%20interested%20in%3A%20(Base%20%2F%20Custom%20%2F%20AI%20Advanced)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          Send us an Email — shopsteward.in@gmail.com
+        </a>
+        <p class="wa-alt">Or reach us directly on WhatsApp: <a href="https://wa.me/918637560557">+91 86375 60557</a></p>
+      </div>
     </div>
   </div>
 </section>
@@ -847,431 +622,73 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
 
 <script>
 document.body.classList.add('js-ready');
-
 const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('on')), { threshold: .08 });
 document.querySelectorAll('.reveal').forEach(x => io.observe(x));
-
-setTimeout(() => {
-  document.querySelectorAll('.reveal:not(.on)').forEach(x => x.classList.add('on'));
-}, 1500);
-
+setTimeout(() => { document.querySelectorAll('.reveal:not(.on)').forEach(x => x.classList.add('on')); }, 1500);
 const light = document.getElementById('cursorLight');
 window.addEventListener('pointermove', e => { light.style.left = e.clientX + 'px'; light.style.top = e.clientY + 'px'; });
-
 document.querySelectorAll('.q button').forEach(b => b.addEventListener('click', () => b.parentElement.classList.toggle('open')));
-
 async function copyText(id, btn) {
   const v = document.getElementById(id).textContent;
-  try {
-    await navigator.clipboard.writeText(v);
-    const old = btn.textContent;
-    btn.textContent = 'COPIED ✓';
-    setTimeout(() => btn.textContent = old, 1200);
-  } catch (e) {}
+  try { await navigator.clipboard.writeText(v); const old = btn.textContent; btn.textContent = 'COPIED ✓'; setTimeout(() => btn.textContent = old, 1200); } catch (e) {}
 }
-
 (function(){
-  const c = document.getElementById('carousel');
-  const dotsEl = document.getElementById('dots');
+  const c = document.getElementById('carousel'); const dotsEl = document.getElementById('dots');
   if (!c || !dotsEl) return;
   const slides = c.querySelectorAll('.slide');
   slides.forEach((_, i) => {
-    const d = document.createElement('span');
-    d.className = 'dot' + (i === 0 ? ' on' : '');
-    d.onclick = () => c.scrollTo({ left: c.clientWidth * i, behavior: 'smooth' });
-    dotsEl.appendChild(d);
+    const d = document.createElement('span'); d.className = 'dot' + (i === 0 ? ' on' : '');
+    d.onclick = () => c.scrollTo({ left: c.clientWidth * i, behavior: 'smooth' }); dotsEl.appendChild(d);
   });
   c.addEventListener('scroll', () => {
     const idx = Math.round(c.scrollLeft / c.clientWidth);
     dotsEl.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('on', i === idx));
   });
 })();
+document.querySelectorAll('#navLinks a').forEach(a => a.addEventListener('click', () => { document.getElementById('navLinks').classList.remove('show'); }));
 
-document.querySelectorAll('#navLinks a').forEach(a => a.addEventListener('click', () => {
-  document.getElementById('navLinks').classList.remove('show');
-}));
-/* --- Spinning Counter Logic --- */
 function initSpinners() {
   const targets = document.querySelectorAll('.spin-target');
   if (!targets.length) return;
-
   targets.forEach(el => {
-    const targetStr = el.dataset.target;
-    if (!targetStr) return;
-
-    // 1. Let the browser calculate the actual height in pixels
-    // This fixes the clamp() issue entirely
-    let cellHeight = el.offsetHeight;
-    if (!cellHeight || cellHeight < 10) cellHeight = 55; // Fallback
-
-    el.style.display = 'inline-flex';
-    el.style.alignItems = 'center';
-    el.style.lineHeight = '1';
-
-    const chars = targetStr.split('');
-    let spinIndex = 0;
-
-    el.innerHTML = '';
-
+    const targetStr = el.dataset.target; if (!targetStr) return;
+    let cellHeight = el.offsetHeight; if (!cellHeight || cellHeight < 10) cellHeight = 55;
+    el.style.display = 'inline-flex'; el.style.alignItems = 'center'; el.style.lineHeight = '1';
+    const chars = targetStr.split(''); let spinIndex = 0; el.innerHTML = '';
     chars.forEach(char => {
       if (char === ',') {
-        const comma = document.createElement('div');
-        comma.className = 't-reel-digit';
-        comma.style.height = `${cellHeight}px`;
-        comma.textContent = ',';
-        el.appendChild(comma);
+        const comma = document.createElement('div'); comma.className = 't-reel-digit'; comma.style.height = `${cellHeight}px`; comma.textContent = ','; el.appendChild(comma);
       } else {
-        const col = document.createElement('div');
-        col.className = 't-reel-col';
-        col.style.height = `${cellHeight}px`;
-
-        const strip = document.createElement('div');
-        strip.className = 't-reel-strip';
-
-        const targetDigit = parseInt(char);
-        const spins = 3;
-        const totalCells = (spins * 10) + targetDigit;
-
+        const col = document.createElement('div'); col.className = 't-reel-col'; col.style.height = `${cellHeight}px`;
+        const strip = document.createElement('div'); strip.className = 't-reel-strip';
+        const targetDigit = parseInt(char); const spins = 3; const totalCells = (spins * 10) + targetDigit;
         for (let i = 0; i <= totalCells; i++) {
-          const digitDiv = document.createElement('div');
-          digitDiv.className = 't-reel-digit';
-          digitDiv.style.height = `${cellHeight}px`;
-          digitDiv.textContent = i % 10;
-          strip.appendChild(digitDiv);
+          const digitDiv = document.createElement('div'); digitDiv.className = 't-reel-digit'; digitDiv.style.height = `${cellHeight}px`; digitDiv.textContent = i % 10; strip.appendChild(digitDiv);
         }
-
-        col.appendChild(strip);
-        el.appendChild(col);
-
-        col.dataset.totalCells = totalCells;
-        col.dataset.staggerIndex = spinIndex;
-        spinIndex++;
+        col.appendChild(strip); el.appendChild(col); col.dataset.totalCells = totalCells; col.dataset.staggerIndex = spinIndex; spinIndex++;
       }
     });
   });
-
-  // 2. Observe the individual spin-targets, NOT the whole section
   const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        animateReel(entry.target);
-        observer.unobserve(entry.target); // Stop observing once animated
-      }
-    });
+    entries.forEach(entry => { if (entry.isIntersecting) { animateReel(entry.target); observer.unobserve(entry.target); } });
   }, { threshold: 0.2 });
-
   targets.forEach(t => observer.observe(t));
 }
-
 function animateReel(reelEl) {
-  if (reelEl.dataset.animated) return;
-  reelEl.dataset.animated = 'true';
-
+  if (reelEl.dataset.animated) return; reelEl.dataset.animated = 'true';
   const cols = reelEl.querySelectorAll('.t-reel-col');
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
   cols.forEach((col) => {
-    const totalCells = parseInt(col.dataset.totalCells);
-    const cellHeight = parseFloat(col.style.height); // Now a real pixel number
-    const strip = col.querySelector('.t-reel-strip');
-    const staggerIndex = parseInt(col.dataset.staggerIndex) || 0;
-    const stagger = staggerIndex * 90;
-
-    if (prefersReducedMotion) {
-      strip.style.transform = `translateY(-${totalCells * cellHeight}px)`;
-      return;
-    }
-
+    const totalCells = parseInt(col.dataset.totalCells); const cellHeight = parseFloat(col.style.height);
+    const strip = col.querySelector('.t-reel-strip'); const staggerIndex = parseInt(col.dataset.staggerIndex) || 0; const stagger = staggerIndex * 90;
+    if (prefersReducedMotion) { strip.style.transform = `translateY(-${totalCells * cellHeight}px)`; return; }
     strip.style.transition = `transform 1400ms cubic-bezier(0.16, 1, 0.3, 1) ${stagger}ms, filter 1400ms cubic-bezier(0.16, 1, 0.3, 1) ${stagger}ms`;
-    strip.style.filter = 'url(#motion-blur)';
-    void strip.offsetHeight; // Force reflow
+    strip.style.filter = 'url(#motion-blur)'; void strip.offsetHeight;
     strip.style.transform = `translateY(-${totalCells * cellHeight}px)`;
-
-    setTimeout(() => {
-      strip.style.filter = 'none';
-    }, 1400 + stagger);
+    setTimeout(() => { strip.style.filter = 'none'; }, 1400 + stagger);
   });
 }
-
-// Initialize when DOM is ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initSpinners);
-} else {
-  initSpinners();
-}
-</script>
-<!-- ============ PRICING v3 — LIMITED OFFER PRICES ============ -->
-<style>
-  #pricing .price { position: relative; }
-  #pricing .price.popular {
-    background: rgba(200,255,61,.05);
-    box-shadow: inset 0 0 0 1px rgba(200,255,61,.25);
-  }
-  #pricing .popular-badge {
-    position: absolute;
-    top: 0;
-    right: 22px;
-    transform: translateY(-50%);
-    background: var(--acid);
-    color: #081007;
-    font-size: 9px;
-    font-weight: 900;
-    letter-spacing: .16em;
-    padding: 7px 12px;
-    border-radius: 100px;
-    box-shadow: 0 6px 20px rgba(200,255,61,.35);
-    z-index: 2;
-  }
-  #pricing .price-meta {
-    margin: 20px 0 8px;
-    padding: 14px 0;
-    border-top: 1px dashed rgba(255,255,255,.08);
-    border-bottom: 1px dashed rgba(255,255,255,.08);
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
-    font-size: 12px;
-  }
-  #pricing .price-meta div {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    align-items: baseline;
-  }
-  #pricing .price-meta span {
-    color: #6f7b76;
-    font-weight: 700;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    font-size: 9px;
-    flex-shrink: 0;
-  }
-  #pricing .price-meta b {
-    color: #dce4df;
-    font-weight: 700;
-    font-size: 12px;
-    text-align: right;
-  }
-  #pricing .price-old {
-    font-family: ui-monospace, monospace;
-    font-size: 14px;
-    font-weight: 700;
-    color: #6f7b76;
-    text-decoration: line-through;
-    text-decoration-color: rgba(255, 80, 80, 0.85);
-    text-decoration-thickness: 2px;
-    margin: 4px 0 6px;
-    letter-spacing: 0.05em;
-    opacity: 0.85;
-  }
-  #pricing .not-label {
-    font-size: 9px;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    color: #5a6560;
-    font-weight: 800;
-    margin: 8px 0 4px;
-  }
-  #pricing .not-list {
-    margin: 0 0 25px !important;
-    padding: 0;
-    list-style: none;
-  }
-  #pricing .not-list li.not {
-    padding: 6px 0;
-    color: #59635e;
-    font-size: 12px;
-    border-bottom: 1px dashed rgba(255,255,255,.04);
-    text-decoration: line-through;
-    text-decoration-color: rgba(255,255,255,.18);
-  }
-  #pricing .not-list li.not:before {
-    content: "×" !important;
-    color: #4d5853 !important;
-    margin-right: 8px;
-    text-decoration: none;
-    display: inline-block;
-  }
-  /* Cyan illuminated feature for Tier 03 */
-  #pricing .feature-illuminated {
-    background: linear-gradient(90deg, rgba(85,230,255,.16), rgba(85,230,255,.02)) !important;
-    border-left: 3px solid var(--cyan) !important;
-    padding: 12px 14px !important;
-    margin: 0 0 14px !important;
-    color: var(--cyan) !important;
-    font-weight: 800 !important;
-    font-size: 12px;
-    letter-spacing: 0.04em;
-    text-shadow: 0 0 14px rgba(85,230,255,.55);
-    border-radius: 3px;
-    border-bottom: 0 !important;
-  }
-  #pricing .feature-illuminated:before {
-    content: "" !important;
-    margin-right: 0 !important;
-    display: none !important;
-  }
-  /* Email outline button */
-  #pricing .btn-mail-outline {
-    display: block;
-    width: 100%;
-    text-align: center;
-    padding: 12px 18px;
-    margin-top: 10px;
-    border: 1.5px solid var(--line);
-    border-radius: 3px;
-    font-family: inherit;
-    font-size: 11px;
-    font-weight: 900;
-    letter-spacing: 0.12em;
-    color: #c9d1cc;
-    text-decoration: none;
-    transition: all 0.25s ease;
-    background: transparent;
-    cursor: pointer;
-    text-transform: uppercase;
-  }
-  #pricing .btn-mail-outline:hover {
-    border-color: var(--acid);
-    color: var(--acid);
-    background: rgba(200,255,61,0.06);
-    transform: translateY(-1px);
-  }
-</style>
-
-<script>
-(function () {
-  var NEW_HTML = `
-    <div class="section-head">
-      <div class="section-no">05 / PRICING</div>
-      <h2>Simple, <em>honest pricing.</em></h2>
-    </div>
-    <p class="copy" style="max-width:720px;margin-bottom:42px">
-      Limited-time offer prices. Pay once for setup + first year — no hidden charges, no surprise bumps.
-      Renew from year 2 at a reduced rate.
-    </p>
-
-    <div class="pricing">
-
-      <!-- TIER 01: BASE -->
-      <article class="price">
-        <div class="section-no">BASE</div>
-        <h3>Essentials, done right.</h3>
-        <div class="price-old">₹4,899</div>
-        <div class="amt">₹<span class="spin-target" data-target="1999" style="--reel-cell:55px;">1,999</span></div>
-        <div class="sub">first year · setup included<br>then <b style="color:#c8ff3d">₹599/year</b> from year 2</div>
-
-        <div class="price-meta">
-          <div><span>Best for</span><b>Small shops · 1 person</b></div>
-          <div><span>Users</span><b>1 user</b></div>
-          <div><span>Setup</span><b>Self-setup</b></div>
-        </div>
-
-        <ul>
-          <li>Basic Billing</li>
-          <li>Basic Inventory Tracking</li>
-          <li>Shop's Name on App</li>
-          <li>24-hour Auto Backup</li>
-          <li>Email Support</li>
-        </ul>
-
-        <div class="not-label">NOT INCLUDED</div>
-        <ul class="not-list">
-          <li class="not">Custom Logo</li>
-          <li class="not">GST Billing</li>
-          <li class="not">Custom Bill Design</li>
-        </ul>
-
-        <a class="btn secondary" href="https://wa.me/918637560557?text=Hi%2C%20I%20want%20the%20BASE%20ShopSteward%20plan%20at%20%E2%82%B91%2C999%20(first%20year)%20with%20%E2%82%B9599%2Fyr%20renewal" target="_blank" rel="noopener">DEPLOY BASE — ₹1,999 →</a>
-        <a class="btn-mail-outline" href="mailto:shopsteward.in@gmail.com?subject=Base%20Plan%20Inquiry%20(%E2%82%B91%2C999)&body=Hi%20ShopSteward%2C%0A%0AI%20am%20interested%20in%20the%20BASE%20plan%20(%E2%82%B91%2C999%20first%20year%2C%20then%20%E2%82%B9599%2Fyr).%20Please%20share%20details.">✉ Email Inquiry</a>
-      </article>
-
-      <!-- TIER 02: CUSTOM (Most Popular) -->
-      <article class="price popular">
-        <div class="popular-badge">MOST POPULAR · DISCOUNT ACTIVE</div>
-        <div class="section-no">CUSTOM</div>
-        <h3>Built around your shop.</h3>
-        <div class="price-old">₹6,899</div>
-        <div class="amt">₹<span class="spin-target" data-target="3599" style="--reel-cell:55px;">3,599</span></div>
-        <div class="sub">first year · setup included<br>then <b style="color:#c8ff3d">₹799/year</b> from year 2</div>
-
-        <div class="price-meta">
-          <div><span>Best for</span><b>Most shops</b></div>
-          <div><span>Users</span><b>2 users</b></div>
-          <div><span>Setup</span><b>Free setup + training</b></div>
-        </div>
-
-        <ul>
-          <li>Everything in Base</li>
-          <li>Custom Logo</li>
-          <li>Custom Bill Design</li>
-          <li>GST Billing</li>
-          <li>Customer Udhaar Tracking</li>
-          <li>Full Inventory (size / color / category)</li>
-          <li>Full Reports (Sales · Stock · P&amp;L)</li>
-          <li>Free Setup + Training</li>
-          <li>WhatsApp Support (10 AM – 6 PM)</li>
-        </ul>
-
-        <a class="btn primary" href="https://wa.me/918637560557?text=Hi%2C%20I%20want%20the%20CUSTOM%20ShopSteward%20plan%20at%20%E2%82%B93%2C599%20(first%20year)%20with%20%E2%82%B9799%2Fyr%20renewal" target="_blank" rel="noopener">GET CUSTOM — ₹3,599 →</a>
-        <a class="btn-mail-outline" href="mailto:shopsteward.in@gmail.com?subject=Custom%20Plan%20Inquiry%20(%E2%82%B93%2C599)&body=Hi%20ShopSteward%2C%0A%0AI%20am%20interested%20in%20the%20CUSTOM%20plan%20(%E2%82%B93%2C599%20first%20year%2C%20then%20%E2%82%B9799%2Fyr).%20Please%20share%20details.">✉ Email Inquiry</a>
-      </article>
-
-      <!-- TIER 03: AI ADVANCED -->
-      <article class="price">
-        <div class="section-no">AI ADVANCED</div>
-        <h3>Full Custom.</h3>
-        <div class="price-old">₹9,899</div>
-        <div class="amt">₹<span class="spin-target" data-target="7999" style="--reel-cell:55px;">7,999</span></div>
-        <div class="sub">first year · setup included<br>then <b style="color:#c8ff3d">₹2,599/year</b> from year 2</div>
-
-        <div class="price-meta">
-          <div><span>Best for</span><b>Multi-branch shops</b></div>
-          <div><span>Users</span><b>Unlimited</b></div>
-          <div><span>Setup</span><b>Priority training</b></div>
-        </div>
-
-        <ul>
-          <li class="feature-illuminated">★ Premium Custom Domain &amp; Fast Cloud Hosting Included</li>
-          <li>Everything in Custom</li>
-          <li>AI Agent Assistant inbuilt</li>
-          <li>Multiple Branch &amp; Counter Sync</li>
-          <li>User Roles &amp; Permissions</li>
-          <li>Advanced Real-Time Dashboards</li>
-          <li>3 Languages Included</li>
-          <li>Priority 24/7 Direct Phone Support</li>
-          <li>Staff Video Training + Custom Domain</li>
-        </ul>
-
-        <a class="btn secondary" href="https://wa.me/918637560557?text=Hi%2C%20I%20want%20the%20AI%20ADVANCED%20ShopSteward%20plan%20at%20%E2%82%B97%2C999%20(first%20year)%20with%20%E2%82%B92%2C599%2Fyr%20renewal" target="_blank" rel="noopener">TALK TO ARCHITECT — ₹7,999 →</a>
-        <a class="btn-mail-outline" href="mailto:shopsteward.in@gmail.com?subject=AI%20Advanced%20Plan%20Inquiry%20(%E2%82%B97%2C999)&body=Hi%20ShopSteward%2C%0A%0AI%20am%20interested%20in%20the%20AI%20ADVANCED%20plan%20(%E2%82%B97%2C999%20first%20year%2C%20then%20%E2%82%B92%2C599%2Fyr).%20Please%20share%20details.">✉ Email Inquiry</a>
-      </article>
-
-    </div>
-  `;
-
-  function inject() {
-    var section = document.getElementById('pricing');
-    if (!section) { setTimeout(inject, 120); return; }
-    if (section.dataset.upgraded === '1') return;
-    section.dataset.upgraded = '1';
-    section.innerHTML = NEW_HTML;
-
-    try {
-      if (typeof window.initSpinners === 'function') {
-        window.initSpinners();
-      }
-    } catch (e) {
-      console.warn('Spinner reinit skipped:', e);
-    }
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', inject);
-  } else {
-    inject();
-  }
-})();
+if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', initSpinners); } else { initSpinners(); }
 </script>
 </body>
 </html>
