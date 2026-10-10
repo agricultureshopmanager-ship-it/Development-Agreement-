@@ -40,21 +40,22 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.035;b
 .menu{display:none;background:none;border:0;color:#fff;font-size:26px;z-index:21;padding:6px;line-height:1}
 
 /* --- FULL SCREEN HERO --- */
-.hero{min-height:calc(100svh - 78px);max-width:var(--max);margin:auto;padding:0;position:relative;display:flex;align-items:center;z-index:1;overflow:hidden}
+/* FIXED: Removed max-width so the hero spans the entire screen */
+.hero{min-height:calc(100svh - 78px);width:100%;margin:0;padding:0;position:relative;display:flex;align-items:center;justify-content:center;z-index:1;overflow:hidden}
 
 /* The Full-Screen Background Container */
 .hero-bg{position:absolute;inset:0;z-index:1}
 
-/* The Background Image - Now with a professional fade mask on ALL edges */
+/* The Background Image */
 .hero-img{
   width:100%;
   height:100%;
   object-fit:cover;
   object-position:right center;
   display:block;
-  /* This creates the professional fade on the top, bottom, and right edges */
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%), linear-gradient(to right, black 60%, transparent 100%);
-  mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%), linear-gradient(to right, black 60%, transparent 100%);
+  /* Fades the top, bottom, and right edges softly */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%), linear-gradient(to right, black 80%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%), linear-gradient(to right, black 80%, transparent 100%);
 }
 
 /* Dark green gradient fading from left to right for text readability */
@@ -65,7 +66,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.035;b
   z-index:2;
 }
 
-/* Hero Text Content - Sits on top of everything */
+/* Hero Text Content - Centered inside the full-width hero */
 .hero-content{
   position:relative;
   z-index:4;
