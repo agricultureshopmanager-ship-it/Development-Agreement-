@@ -41,35 +41,39 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.035;b
 
 /* --- NEW FULL SCREEN HERO --- */
 .hero{min-height:calc(100svh - 78px);max-width:var(--max);margin:auto;padding:0;position:relative;display:flex;align-items:center;z-index:1;overflow:hidden}
-.hero-bg{position:absolute;inset:0;z-index:1;display:flex;justify-content:flex-end;align-items:center}
-.hero-img{width:100%;height:100%;object-fit:cover;object-position:right center;display:block}
-/* Dark green gradient fading from left to right */
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg, #0D1A16 0%, rgba(13,26,22,0.95) 35%, rgba(13,26,22,0.6) 65%, rgba(13,26,22,0.1) 100%);z-index:2}
+.hero-bg{position:absolute;inset:0;z-index:1;display:flex;justify-content:flex-end;align-items:center;pointer-events:none}
 
-/* Precise Iframe Positioning */
+/* The Background Image with Fade */
+.hero-img{
+  width:100%;height:100%;object-fit:cover;object-position:right center;display:block;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 25%, black 85%, transparent 100%), linear-gradient(to bottom, black 70%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 25%, black 85%, transparent 100%), linear-gradient(to bottom, black 70%, transparent 100%);
+}
+
+/* Dark green gradient fading from left to right */
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg, #0D1A16 0%, rgba(13,26,22,0.95) 30%, rgba(13,26,22,0.5) 60%, rgba(13,26,22,0.1) 100%);z-index:2}
+
+/* Static Image on the Monitor */
 .monitor-screen {
   position: absolute;
-  top: 35.1%; left: 21.8%; width: 34.3%; height: 43.5%;
-  transform: perspective(1000px) rotateY(-10deg) rotateX(5deg);
-  transform-origin: center center;
+  top: 30%; left: 38%; width: 28%; height: 40%;
   border-radius: 4px; overflow: hidden;
   box-shadow: 0 15px 35px rgba(0,0,0,0.6), inset 0 0 10px rgba(0,0,0,0.8);
   background: #0a1014; z-index: 3;
 }
-.monitor-screen iframe { width: 100%; height: 100%; border: none; background: #fff; display: block; }
+.monitor-screen img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 .phone-screen {
   position: absolute;
-  top: 42.5%; left: 58.8%; width: 6.7%; height: 23.1%;
-  transform: perspective(800px) rotateY(-15deg) rotateX(10deg) rotateZ(-5deg);
-  transform-origin: center center; border-radius: 8px; overflow: hidden;
+  top: 42%; left: 67%; width: 6%; height: 20%;
+  border-radius: 8px; overflow: hidden;
   background: #070a0d; display: flex; align-items: center; justify-content: center;
   box-shadow: 0 10px 25px rgba(0,0,0,0.7), inset 0 0 5px rgba(0,0,0,0.9); z-index: 3;
 }
 .phone-logo { color: var(--acid); font-weight: 900; font-size: 8px; letter-spacing: -0.05em; text-align: center; line-height: 1.1; text-shadow: 0 0 8px rgba(200,255,61,0.8); }
 .phone-logo span { display: block; font-size: 5px; color: #8e9995; letter-spacing: 0.1em; margin-top: 2px; font-weight: 600; }
 
-.hero-content{position:relative;z-index:4;width:100%;max-width:var(--max);margin:auto;padding:74px 24px 40px;display:flex;flex-direction:column;justify-content:center}
+.hero-content{position:relative;z-index:4;width:100%;max-width:var(--max);margin:auto;padding:74px 24px 40px;display:flex;flex-direction:column;justify-content:center;pointer-events:auto}
 .eyebrow{display:flex;align-items:center;gap:10px;color:var(--acid);font-size:11px;font-weight:900;letter-spacing:.18em;text-transform:uppercase}
 .eyebrow:before{content:"";width:32px;height:1px;background:var(--acid)}
 h1{font-size:clamp(52px,6.4vw,96px);line-height:.86;letter-spacing:-.07em;margin:22px 0 26px;max-width:780px;font-weight:950}
@@ -331,9 +335,9 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
     <img src="images/shop-owner.png" alt="Shop Owner using ShopSteward" class="hero-img" loading="lazy">
     <div class="hero-overlay"></div>
     
-    <!-- The Live Monitor -->
+    <!-- Static Image on the Monitor -->
     <div class="monitor-screen">
-      <iframe src="https://agricultureshopmanager-ship-it.github.io/AI-added-Agri-Web/" title="Live Demo"></iframe>
+      <img src="images/dashboard.png" alt="ShopSteward Dashboard">
     </div>
     
     <!-- The Phone Screen -->
