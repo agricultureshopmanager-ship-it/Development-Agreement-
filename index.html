@@ -8,10 +8,8 @@
 <title>ShopSteward — The Trusted Software That Runs Your Shop</title>
 <meta name="google-site-verification" content="tlctf66Z0sftcKmpTnRzKo-ydNXcTUbIo1P96nw6tyM" />
 
-<!-- Favicon (inline SVG — works instantly) -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230D1A16'/%3E%3Ccircle cx='32' cy='22' r='9' stroke='%23c8ff3d' stroke-width='5' fill='none'/%3E%3Cline x1='32' y1='31' x2='32' y2='52' stroke='%23c8ff3d' stroke-width='5' stroke-linecap='round'/%3E%3Cline x1='32' y1='42' x2='40' y2='42' stroke='%23c8ff3d' stroke-width='5' stroke-linecap='round'/%3E%3Cline x1='32' y1='47' x2='38' y2='47' stroke='%23c8ff3d' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
 
-<!-- Open Graph / social preview -->
 <meta property="og:title" content="ShopSteward — The Trusted Software That Runs Your Shop">
 <meta property="og:description" content="Custom-built inventory, billing and reports. Runs on any phone. Built for your business.">
 <meta property="og:image" content="https://shopsteward.in/images/dashboard.png">
@@ -28,7 +26,6 @@
 body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.035;background-image:linear-gradient(rgba(255,255,255,.8) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.8) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:linear-gradient(to bottom,#000,transparent 85%);mask-image:linear-gradient(to bottom,#000,transparent 85%);z-index:0}
 .topline{height:2px;background:linear-gradient(90deg,var(--acid),var(--cyan),transparent)}
 
-/* NAV with key logo */
 .nav{height:76px;display:flex;align-items:center;justify-content:space-between;max-width:var(--max);margin:auto;padding:0 24px;position:relative;z-index:20}
 .brand{font-weight:900;letter-spacing:-.05em;font-size:18px;z-index:21;display:flex;align-items:center;gap:10px}
 .brand-mark{flex-shrink:0;filter:drop-shadow(0 0 8px rgba(200,255,61,.35));transition:.3s}
@@ -39,46 +36,11 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.035;b
 .navcta:hover{border-color:rgba(200,255,61,.6)}
 .menu{display:none;background:none;border:0;color:#fff;font-size:26px;z-index:21;padding:6px;line-height:1}
 
-/* --- FULL SCREEN HERO --- */
-/* FIXED: Removed max-width so the hero spans the entire screen */
 .hero{min-height:calc(100svh - 78px);width:100%;margin:0;padding:0;position:relative;display:flex;align-items:center;justify-content:center;z-index:1;overflow:hidden}
-
-/* The Full-Screen Background Container */
 .hero-bg{position:absolute;inset:0;z-index:1}
-
-/* The Background Image */
-.hero-img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:right center;
-  display:block;
-  /* Fades the top, bottom, and right edges softly */
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%), linear-gradient(to right, black 80%, transparent 100%);
-  mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%), linear-gradient(to right, black 80%, transparent 100%);
-}
-
-/* Dark green gradient fading from left to right for text readability */
-.hero-overlay{
-  position:absolute;
-  inset:0;
-  background:linear-gradient(90deg, #0D1A16 0%, rgba(13,26,22,0.95) 25%, rgba(13,26,22,0.6) 55%, rgba(13,26,22,0.1) 100%);
-  z-index:2;
-}
-
-/* Hero Text Content - Centered inside the full-width hero */
-.hero-content{
-  position:relative;
-  z-index:4;
-  width:100%;
-  max-width:var(--max);
-  margin:auto;
-  padding:74px 24px 40px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  pointer-events:auto;
-}
+.hero-img{width:100%;height:100%;object-fit:cover;object-position:right center;display:block;-webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 15%,black 85%,transparent 100%),linear-gradient(to right,black 80%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0%,black 15%,black 85%,transparent 100%),linear-gradient(to right,black 80%,transparent 100%)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,#0D1A16 0%,rgba(13,26,22,0.95) 25%,rgba(13,26,22,0.6) 55%,rgba(13,26,22,0.1) 100%);z-index:2}
+.hero-content{position:relative;z-index:4;width:100%;max-width:var(--max);margin:auto;padding:74px 24px 40px;display:flex;flex-direction:column;justify-content:center;pointer-events:auto}
 .eyebrow{display:flex;align-items:center;gap:10px;color:var(--acid);font-size:11px;font-weight:900;letter-spacing:.18em;text-transform:uppercase}
 .eyebrow:before{content:"";width:32px;height:1px;background:var(--acid)}
 h1{font-size:clamp(52px,6.4vw,96px);line-height:.86;letter-spacing:-.07em;margin:22px 0 26px;max-width:780px;font-weight:950}
@@ -136,14 +98,8 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
 .mini{font-size:10px;padding:10px 11px;border:1px solid var(--line);background:transparent;color:#dce4df;border-radius:2px;font-family:inherit;letter-spacing:.06em}
 .mini:hover{border-color:var(--acid)}
 
-.carousel-wrap{display:none;position:relative}
-.carousel{display:flex;gap:14px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:0 0 24px;scrollbar-width:none;touch-action:pan-x;overscroll-behavior-x:contain;scroll-behavior:smooth}
-.carousel::-webkit-scrollbar{display:none}
-.slide{flex:0 0 82%;scroll-snap-align:center;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#0a0e10;aspect-ratio:1080/1920;max-height:520px}
-.slide img{width:100%;height:100%;object-fit:cover;object-position:top}
-.dots{display:flex;justify-content:center;gap:8px;margin-top:4px}
-.dot{width:6px;height:6px;border-radius:50%;background:#3a4441;transition:.3s}
-.dot.on{background:var(--acid);width:22px;border-radius:100px}
+/* Removed carousel CSS, added mobile demo CTA */
+.mobile-demo-cta { display: none; }
 
 .features{border-top:1px solid var(--line)}
 .feature{display:grid;grid-template-columns:90px 1fr 1fr;gap:30px;padding:30px 0;border-bottom:1px solid var(--line);align-items:start}
@@ -226,14 +182,11 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
   .navlinks a:last-child{border-bottom:0}
   .navcta{display:none}
   .menu{display:block}
-  
-  /* Mobile Hero Adjustments - Hide background image entirely */
   .hero{display:block;min-height:auto;padding:50px 18px 20px}
   .hero-bg{display:none} 
   .hero-content{padding:0}
   .hero h1{font-size:clamp(48px,13vw,72px);margin-bottom:22px}
   .lead{font-size:15px}
-  
   .section{padding:70px 18px}
   .section-head{grid-template-columns:1fr;gap:16px;margin-bottom:36px}
   .section h2{font-size:44px}
@@ -245,7 +198,19 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
   .demo-wrap{grid-template-columns:1fr;min-height:auto}
   .demo-info{border-right:0;border-bottom:1px solid var(--line);padding:26px 20px}
   .demo-screen{display:none}
-  .carousel-wrap{display:block;padding:24px 0 6px}
+  
+  /* Mobile Demo CTA */
+  .mobile-demo-cta {
+    display: block;
+    padding: 20px;
+    text-align: center;
+  }
+  .mobile-demo-cta .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 16px;
+  }
+  
   .feature{grid-template-columns:42px 1fr;gap:12px}
   .feature p{grid-column:2}
   .feature .tag{grid-column:2;justify-self:start}
@@ -264,20 +229,17 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
   .section h2{font-size:38px}
   .price .amt{font-size:44px}
   .contact h2{font-size:42px}
-  .slide{flex:0 0 88%}
 }
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .reveal{opacity:1;transform:none;transition:none}
   .wa-float{animation:none}
 }
-/* --- Spinning Counter (t-reel) --- */
 .t-reel{display:inline-flex;align-items:center;font-variant-numeric:tabular-nums;vertical-align:bottom}
 .t-reel-col{position:relative;overflow:hidden;-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 22%,#000 78%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0%,#000 22%,#000 78%,transparent 100%)}
 .t-reel-strip{display:flex;flex-direction:column;will-change:transform,filter}
 .t-reel-digit{display:flex;align-items:center;justify-content:center}
 @media (prefers-reduced-motion: reduce) {.t-reel-strip{transition:none !important;filter:none !important}}
-/* --- DESKTOP OPTIMIZATION (Large Screens) --- */
 @media (min-width: 1440px) {
   :root {--max: 1440px;}
   .hero-content{padding:100px 24px 60px;}
@@ -335,13 +297,10 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
 <main id="top">
 
 <section class="hero">
-  <!-- Full Screen Background -->
   <div class="hero-bg">
     <img src="images/shop-owner.png" alt="Shop Owner using ShopSteward" class="hero-img" loading="lazy">
     <div class="hero-overlay"></div>
   </div>
-
-  <!-- Hero Text Content -->
   <div class="hero-content reveal">
     <div class="eyebrow">CUSTOM SOFTWARE FOR REAL SHOPS</div>
     <h1>Your Shop.<span>Your Rules.</span>Your Steward.</h1>
@@ -441,14 +400,9 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
     <div class="demo-screen">
       <iframe loading="lazy" src="https://agricultureshopmanager-ship-it.github.io/AI-added-Agri-Web/" title="Live demo"></iframe>
     </div>
-    <div class="carousel-wrap">
-      <div class="carousel" id="carousel">
-        <div class="slide"><img src="images/dashboard.png" alt="Dashboard" loading="lazy"></div>
-        <div class="slide"><img src="images/products.png" alt="Products & inventory" loading="lazy"></div>
-        <div class="slide"><img src="images/invoice.png" alt="New invoice" loading="lazy"></div>
-        <div class="slide"><img src="images/reports.png" alt="Reports" loading="lazy"></div>
-      </div>
-      <div class="dots" id="dots"></div>
+    <!-- Mobile-only CTA to open the live demo in a new tab -->
+    <div class="mobile-demo-cta">
+      <a class="btn primary" href="https://agricultureshopmanager-ship-it.github.io/AI-added-Agri-Web/" target="_blank" rel="noopener">OPEN LIVE DEMO ↗</a>
     </div>
   </div>
 </section>
@@ -628,19 +582,6 @@ async function copyText(id, btn) {
   const v = document.getElementById(id).textContent;
   try { await navigator.clipboard.writeText(v); const old = btn.textContent; btn.textContent = 'COPIED ✓'; setTimeout(() => btn.textContent = old, 1200); } catch (e) {}
 }
-(function(){
-  const c = document.getElementById('carousel'); const dotsEl = document.getElementById('dots');
-  if (!c || !dotsEl) return;
-  const slides = c.querySelectorAll('.slide');
-  slides.forEach((_, i) => {
-    const d = document.createElement('span'); d.className = 'dot' + (i === 0 ? ' on' : '');
-    d.onclick = () => c.scrollTo({ left: c.clientWidth * i, behavior: 'smooth' }); dotsEl.appendChild(d);
-  });
-  c.addEventListener('scroll', () => {
-    const idx = Math.round(c.scrollLeft / c.clientWidth);
-    dotsEl.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('on', i === idx));
-  });
-})();
 document.querySelectorAll('#navLinks a').forEach(a => a.addEventListener('click', () => { document.getElementById('navLinks').classList.remove('show'); }));
 
 function initSpinners() {
