@@ -36,10 +36,15 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.035;b
 .navcta:hover{border-color:rgba(200,255,61,.6)}
 .menu{display:none;background:none;border:0;color:#fff;font-size:26px;z-index:21;padding:6px;line-height:1}
 
+/* --- HERO --- */
 .hero{min-height:calc(100svh - 78px);width:100%;margin:0;padding:0;position:relative;display:flex;align-items:center;justify-content:center;z-index:1;overflow:hidden}
 .hero-bg{position:absolute;inset:0;z-index:1}
-.hero-img{width:100%;height:100%;object-fit:cover;object-position:right center;display:block;-webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 15%,black 85%,transparent 100%),linear-gradient(to right,black 80%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0%,black 15%,black 85%,transparent 100%),linear-gradient(to right,black 80%,transparent 100%)}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,#0D1A16 0%,rgba(13,26,22,0.95) 25%,rgba(13,26,22,0.6) 55%,rgba(13,26,22,0.1) 100%);z-index:2}
+.hero-img{
+  width:100%;height:100%;object-fit:cover;object-position:right center;display:block;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%), linear-gradient(to right, black 80%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%), linear-gradient(to right, black 80%, transparent 100%);
+}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg, #0D1A16 0%, rgba(13,26,22,0.95) 25%, rgba(13,26,22,0.6) 55%, rgba(13,26,22,0.1) 100%);z-index:2}
 .hero-content{position:relative;z-index:4;width:100%;max-width:var(--max);margin:auto;padding:74px 24px 40px;display:flex;flex-direction:column;justify-content:center;pointer-events:auto}
 .eyebrow{display:flex;align-items:center;gap:10px;color:var(--acid);font-size:11px;font-weight:900;letter-spacing:.18em;text-transform:uppercase}
 .eyebrow:before{content:"";width:32px;height:1px;background:var(--acid)}
@@ -97,8 +102,6 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
 .demo-actions{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}
 .mini{font-size:10px;padding:10px 11px;border:1px solid var(--line);background:transparent;color:#dce4df;border-radius:2px;font-family:inherit;letter-spacing:.06em}
 .mini:hover{border-color:var(--acid)}
-
-/* Removed carousel CSS, added mobile demo CTA */
 .mobile-demo-cta { display: none; }
 
 .features{border-top:1px solid var(--line)}
@@ -116,10 +119,12 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
 .testi-author b{color:#fff;font-weight:800;font-size:15px;letter-spacing:-.01em}
 .testi-author span{color:#8e9995;font-size:13px}
 
+/* --- PRICING --- */
 .pricing{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.price{padding:36px 28px;border-right:1px solid var(--line);min-height:500px;display:flex;flex-direction:column}
+.price{padding:36px 28px;border-right:1px solid var(--line);min-height:500px;display:flex;flex-direction:column;position:relative}
 .price:last-child{border-right:0}
-.price:nth-child(2){background:rgba(200,255,61,.045)}
+.price.popular{background:rgba(200,255,61,.05);box-shadow:inset 0 0 0 1px rgba(200,255,61,.25)}
+.popular-badge{position:absolute;top:0;right:22px;transform:translateY(-50%);background:var(--acid);color:#081007;font-size:9px;font-weight:900;letter-spacing:.16em;padding:7px 12px;border-radius:100px;box-shadow:0 6px 20px rgba(200,255,61,.35);z-index:2}
 .price h3{font-size:26px;margin:10px 0}
 .price .amt{font-size:50px;font-weight:950;letter-spacing:-.07em;margin:14px 0 6px}
 .price .amt small{font-size:14px;font-weight:600;letter-spacing:0;color:#8e9995;margin-left:4px}
@@ -128,6 +133,20 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
 .price li{padding:8px 0;color:#b0b9b5;font-size:12px;border-bottom:1px dashed rgba(255,255,255,.08)}
 .price li:before{content:"+";color:var(--acid);margin-right:8px}
 .price .btn{margin-top:auto;justify-content:center}
+
+.price-meta{margin:20px 0 8px;padding:14px 0;border-top:1px dashed rgba(255,255,255,.08);border-bottom:1px dashed rgba(255,255,255,.08);display:flex;flex-direction:column;gap:9px;font-size:12px}
+.price-meta div{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.price-meta span{color:#6f7b76;font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:9px;flex-shrink:0}
+.price-meta b{color:#dce4df;font-weight:700;font-size:12px;text-align:right}
+.price-old{font-family:ui-monospace,monospace;font-size:14px;font-weight:700;color:#6f7b76;text-decoration:line-through;text-decoration-color:rgba(255,80,80,.85);text-decoration-thickness:2px;margin:4px 0 6px;letter-spacing:0.05em;opacity:0.85}
+.not-label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#5a6560;font-weight:800;margin:8px 0 4px}
+.not-list{margin:0 0 25px !important;padding:0;list-style:none}
+.not-list li.not{padding:6px 0;color:#59635e;font-size:12px;border-bottom:1px dashed rgba(255,255,255,.04);text-decoration:line-through;text-decoration-color:rgba(255,255,255,.18)}
+.not-list li.not:before{content:"×" !important;color:#4d5853 !important;margin-right:8px;text-decoration:none;display:inline-block}
+.feature-illuminated{background:linear-gradient(90deg, rgba(85,230,255,.16), rgba(85,230,255,.02)) !important;border-left:3px solid var(--cyan) !important;padding:12px 14px !important;margin:0 0 14px !important;color:var(--cyan) !important;font-weight:800 !important;font-size:12px;letter-spacing:0.04em;text-shadow:0 0 14px rgba(85,230,255,.55);border-radius:3px;border-bottom:0 !important}
+.feature-illuminated:before{content:"" !important;margin-right:0 !important;display:none !important}
+.btn-mail-outline{display:block;width:100%;text-align:center;padding:12px 18px;margin-top:10px;border:1.5px solid var(--line);border-radius:3px;font-family:inherit;font-size:11px;font-weight:900;letter-spacing:0.12em;color:#c9d1cc;text-decoration:none;transition:all 0.25s ease;background:transparent;cursor:pointer;text-transform:uppercase}
+.btn-mail-outline:hover{border-color:var(--acid);color:var(--acid);background:rgba(200,255,61,0.06);transform:translateY(-1px)}
 
 .faq{border-top:1px solid var(--line)}
 .q{border-bottom:1px solid var(--line)}
@@ -182,11 +201,13 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
   .navlinks a:last-child{border-bottom:0}
   .navcta{display:none}
   .menu{display:block}
+  
   .hero{display:block;min-height:auto;padding:50px 18px 20px}
   .hero-bg{display:none} 
   .hero-content{padding:0}
   .hero h1{font-size:clamp(48px,13vw,72px);margin-bottom:22px}
   .lead{font-size:15px}
+  
   .section{padding:70px 18px}
   .section-head{grid-template-columns:1fr;gap:16px;margin-bottom:36px}
   .section h2{font-size:44px}
@@ -434,39 +455,111 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
 </section>
 
 <section class="section reveal" id="pricing">
-  <div class="section-head"><div class="section-no">05 / PRICING</div><h2>Simple, <em>honest pricing.</em></h2></div>
-  <p class="copy" style="max-width:700px;margin-bottom:42px">One base price. Customization quoted fairly based on real effort. No hidden charges, no surprise renewals.</p>
+  <div class="section-head">
+    <div class="section-no">05 / PRICING</div>
+    <h2>Simple, <em>honest pricing.</em></h2>
+  </div>
+  <p class="copy" style="max-width:700px;margin-bottom:42px">
+    Limited-time offer prices. Pay once for setup + first year — no hidden charges, no surprise bumps.
+    Renew from year 2 at a reduced rate.
+  </p>
+
   <div class="pricing">
+
+    <!-- TIER 01: BASE -->
     <article class="price">
-      <div class="section-no">BASE</div>
+      <div class="section-no">TIER_01 // LIMITED OFFER</div>
       <h3>Essentials, done right.</h3>
-      <div class="amt">₹<span class="spin-target" data-target="4899" style="--reel-cell:55px;">4,899</span></div>
-      <div class="sub">one-time · first year included<br>then ₹1,899/year</div>
+      <div class="price-old">₹4,899</div>
+      <div class="amt">₹<span class="spin-target" data-target="1999" style="--reel-cell:55px;">1,999</span></div>
+      <div class="sub">first year · setup included<br>then <b style="color:#c8ff3d">₹599/year</b> from year 2</div>
+
+      <div class="price-meta">
+        <div><span>Best for</span><b>Small shops · 1 person</b></div>
+        <div><span>Users</span><b>1 user</b></div>
+        <div><span>Setup</span><b>Self-setup</b></div>
+      </div>
+
       <ul>
-        <li>Inventory management</li><li>Sales &amp; billing with printing</li><li>Purchase &amp; supplier tracking</li><li>Customer records</li><li>Sales &amp; stock reports</li><li>1 language</li><li>24-hour auto backup</li><li>Mobile browser access</li>
+        <li>Basic Billing</li>
+        <li>Basic Inventory Tracking</li>
+        <li>Shop's Name on App</li>
+        <li>24-hour Auto Backup</li>
+        <li>Email Support</li>
       </ul>
-      <a class="btn secondary" href="#contact">GET STARTED →</a>
+
+      <div class="not-label">NOT INCLUDED</div>
+      <ul class="not-list">
+        <li class="not">Custom Logo</li>
+        <li class="not">GST Billing</li>
+        <li class="not">Custom Bill Design</li>
+      </ul>
+
+      <a class="btn secondary" href="https://wa.me/918637560557?text=Hi%2C%20I%20want%20the%20BASE%20ShopSteward%20plan%20at%20%E2%82%B91%2C999%20(first%20year)%20with%20%E2%82%B9599%2Fyr%20renewal" target="_blank" rel="noopener">DEPLOY BASE — ₹1,999 →</a>
+      <a class="btn-mail-outline" href="mailto:shopsteward.in@gmail.com?subject=Base%20Plan%20Inquiry%20(%E2%82%B91%2C999)&body=Hi%20ShopSteward%2C%0A%0AI%20am%20interested%20in%20the%20BASE%20plan%20(%E2%82%B91%2C999%20first%20year%2C%20then%20%E2%82%B9599%2Fyr).%20Please%20share%20details.">✉ Email Inquiry</a>
     </article>
-    <article class="price">
-      <div class="section-no">CUSTOM / MOST POPULAR</div>
+
+    <!-- TIER 02: CUSTOM (Most Popular) -->
+    <article class="price popular">
+      <div class="popular-badge">TIER_02 // MOST POPULAR · DISCOUNT ACTIVE</div>
+      <div class="section-no">CUSTOM</div>
       <h3>Built around your shop.</h3>
-      <div class="amt">₹<span class="spin-target" data-target="6899" style="--reel-cell:55px;">6,899</span><small>+ custom quote</small></div>
-      <div class="sub">first year included<br>then ₹1,899–₹4,899/year</div>
+      <div class="price-old">₹6,899</div>
+      <div class="amt">₹<span class="spin-target" data-target="3599" style="--reel-cell:55px;">3,599</span></div>
+      <div class="sub">first year · setup included<br>then <b style="color:#c8ff3d">₹799/year</b> from year 2</div>
+
+      <div class="price-meta">
+        <div><span>Best for</span><b>Most shops</b></div>
+        <div><span>Users</span><b>2 users</b></div>
+        <div><span>Setup</span><b>Free setup + training</b></div>
+      </div>
+
       <ul>
-        <li>Everything in Base</li><li>Custom units &amp; categories</li><li>Custom bill / invoice design</li><li>2 languages</li><li>Custom reports</li><li>Your branding &amp; logo</li><li>Credit / udhaar tracking</li><li>2 revision rounds + 30 days support</li>
+        <li>Everything in Base</li>
+        <li>Custom Logo</li>
+        <li>Custom Bill Design</li>
+        <li>GST Billing</li>
+        <li>Customer Udhaar Tracking</li>
+        <li>Full Inventory (size / color / category)</li>
+        <li>Full Reports (Sales · Stock · P&amp;L)</li>
+        <li>Free Setup + Training</li>
+        <li>WhatsApp Support (10 AM – 6 PM)</li>
       </ul>
-      <a class="btn primary" href="#contact">GET A QUOTE →</a>
+
+      <a class="btn primary" href="https://wa.me/918637560557?text=Hi%2C%20I%20want%20the%20CUSTOM%20ShopSteward%20plan%20at%20%E2%82%B93%2C599%20(first%20year)%20with%20%E2%82%B9799%2Fyr%20renewal" target="_blank" rel="noopener">GET CUSTOM — ₹3,599 →</a>
+      <a class="btn-mail-outline" href="mailto:shopsteward.in@gmail.com?subject=Custom%20Plan%20Inquiry%20(%E2%82%B93%2C599)&body=Hi%20ShopSteward%2C%0A%0AI%20am%20interested%20in%20the%20CUSTOM%20plan%20(%E2%82%B93%2C599%20first%20year%2C%20then%20%E2%82%B9799%2Fyr).%20Please%20share%20details.">✉ Email Inquiry</a>
     </article>
+
+    <!-- TIER 03: AI ADVANCED -->
     <article class="price">
-      <div class="section-no">AI POWERED</div>
-      <h3>Full Custom</h3>
-      <div class="amt">₹<span class="spin-target" data-target="9899" style="--reel-cell:55px;">9,899</span><small>+ higher quote</small></div>
-      <div class="sub">first year included<br>then ₹4,899+/year</div>
+      <div class="section-no">TIER_03 // AI ADVANCED</div>
+      <h3>Full Custom.</h3>
+      <div class="price-old">₹9,899</div>
+      <div class="amt">₹<span class="spin-target" data-target="7999" style="--reel-cell:55px;">7,999</span></div>
+      <div class="sub">first year · setup included<br>then <b style="color:#c8ff3d">₹2,599/year</b> from year 2</div>
+
+      <div class="price-meta">
+        <div><span>Best for</span><b>Multi-branch shops</b></div>
+        <div><span>Users</span><b>Unlimited</b></div>
+        <div><span>Setup</span><b>Priority training</b></div>
+      </div>
+
       <ul>
-        <li>Everything in Custom</li><li>AI Agent inbuilt</li><li>Multiple branches / shops</li><li>User roles &amp; permissions</li><li>Advanced dashboards</li><li>3 languages</li><li>Priority support</li><li>Recorded training + custom domain</li>
+        <li class="feature-illuminated">★ Premium Custom Domain &amp; Fast Cloud Hosting Included</li>
+        <li>Everything in Custom</li>
+        <li>AI Agent Assistant inbuilt</li>
+        <li>Multiple Branch &amp; Counter Sync</li>
+        <li>User Roles &amp; Permissions</li>
+        <li>Advanced Real-Time Dashboards</li>
+        <li>3 Languages Included</li>
+        <li>Priority 24/7 Direct Phone Support</li>
+        <li>Staff Video Training + Custom Domain</li>
       </ul>
-      <a class="btn secondary" href="#contact">TALK TO ME →</a>
+
+      <a class="btn secondary" href="https://wa.me/918637560557?text=Hi%2C%20I%20want%20the%20AI%20ADVANCED%20ShopSteward%20plan%20at%20%E2%82%B97%2C999%20(first%20year)%20with%20%E2%82%B92%2C599%2Fyr%20renewal" target="_blank" rel="noopener">TALK TO ARCHITECT — ₹7,999 →</a>
+      <a class="btn-mail-outline" href="mailto:shopsteward.in@gmail.com?subject=AI%20Advanced%20Plan%20Inquiry%20(%E2%82%B97%2C999)&body=Hi%20ShopSteward%2C%0A%0AI%20am%20interested%20in%20the%20AI%20ADVANCED%20plan%20(%E2%82%B97%2C999%20first%20year%2C%20then%20%E2%82%B92%2C599%2Fyr).%20Please%20share%20details.">✉ Email Inquiry</a>
     </article>
+
   </div>
 </section>
 
