@@ -925,16 +925,13 @@ if (document.readyState === 'loading') {
   initSpinners();
 }
 </script>
-<!-- ============ UPGRADED PRICING (Starter / Growth / Pro) ============ -->
+<!-- ============ PRICING v3 — LIMITED OFFER PRICES ============ -->
 <style>
-  /* ---- Pricing overrides, scoped to #pricing so nothing else is affected ---- */
   #pricing .price { position: relative; }
-
   #pricing .price.popular {
     background: rgba(200,255,61,.05);
     box-shadow: inset 0 0 0 1px rgba(200,255,61,.25);
   }
-
   #pricing .popular-badge {
     position: absolute;
     top: 0;
@@ -950,7 +947,6 @@ if (document.readyState === 'loading') {
     box-shadow: 0 6px 20px rgba(200,255,61,.35);
     z-index: 2;
   }
-
   #pricing .price-meta {
     margin: 20px 0 8px;
     padding: 14px 0;
@@ -981,7 +977,18 @@ if (document.readyState === 'loading') {
     font-size: 12px;
     text-align: right;
   }
-
+  #pricing .price-old {
+    font-family: ui-monospace, monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: #6f7b76;
+    text-decoration: line-through;
+    text-decoration-color: rgba(255, 80, 80, 0.85);
+    text-decoration-thickness: 2px;
+    margin: 4px 0 6px;
+    letter-spacing: 0.05em;
+    opacity: 0.85;
+  }
   #pricing .not-label {
     font-size: 9px;
     letter-spacing: .18em;
@@ -1010,6 +1017,51 @@ if (document.readyState === 'loading') {
     text-decoration: none;
     display: inline-block;
   }
+  /* Cyan illuminated feature for Tier 03 */
+  #pricing .feature-illuminated {
+    background: linear-gradient(90deg, rgba(85,230,255,.16), rgba(85,230,255,.02)) !important;
+    border-left: 3px solid var(--cyan) !important;
+    padding: 12px 14px !important;
+    margin: 0 0 14px !important;
+    color: var(--cyan) !important;
+    font-weight: 800 !important;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-shadow: 0 0 14px rgba(85,230,255,.55);
+    border-radius: 3px;
+    border-bottom: 0 !important;
+  }
+  #pricing .feature-illuminated:before {
+    content: "" !important;
+    margin-right: 0 !important;
+    display: none !important;
+  }
+  /* Email outline button */
+  #pricing .btn-mail-outline {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 12px 18px;
+    margin-top: 10px;
+    border: 1.5px solid var(--line);
+    border-radius: 3px;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    color: #c9d1cc;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    background: transparent;
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+  #pricing .btn-mail-outline:hover {
+    border-color: var(--acid);
+    color: var(--acid);
+    background: rgba(200,255,61,0.06);
+    transform: translateY(-1px);
+  }
 </style>
 
 <script>
@@ -1020,18 +1072,19 @@ if (document.readyState === 'loading') {
       <h2>Simple, <em>honest pricing.</em></h2>
     </div>
     <p class="copy" style="max-width:720px;margin-bottom:42px">
-      Pay once for the first year — setup is included. Renew from year 2 at a lower price.
-      No hidden charges, no surprise bumps.
+      Limited-time offer prices. Pay once for setup + first year — no hidden charges, no surprise bumps.
+      Renew from year 2 at a reduced rate.
     </p>
 
     <div class="pricing">
 
-      <!-- STARTER -->
+      <!-- TIER 01: BASE -->
       <article class="price">
-        <div class="section-no">STARTER</div>
-        <h3>For shops just getting started.</h3>
+        <div class="section-no">BASE</div>
+        <h3>Essentials, done right.</h3>
+        <div class="price-old">₹4,899</div>
         <div class="amt">₹<span class="spin-target" data-target="1999" style="--reel-cell:55px;">1,999</span></div>
-        <div class="sub">first year · setup included<br>then <b style="color:#dce4df">₹999/year</b> from year 2</div>
+        <div class="sub">first year · setup included<br>then <b style="color:#c8ff3d">₹599/year</b> from year 2</div>
 
         <div class="price-meta">
           <div><span>Best for</span><b>Small shops · 1 person</b></div>
@@ -1051,20 +1104,21 @@ if (document.readyState === 'loading') {
         <ul class="not-list">
           <li class="not">Custom Logo</li>
           <li class="not">GST Billing</li>
-         
           <li class="not">Custom Bill Design</li>
         </ul>
 
-        <a class="btn secondary" href="#contact">START WITH STARTER →</a>
+        <a class="btn secondary" href="https://wa.me/918637560557?text=Hi%2C%20I%20want%20the%20BASE%20ShopSteward%20plan%20at%20%E2%82%B91%2C999%20(first%20year)%20with%20%E2%82%B9599%2Fyr%20renewal" target="_blank" rel="noopener">DEPLOY BASE — ₹1,999 →</a>
+        <a class="btn-mail-outline" href="mailto:shopsteward.in@gmail.com?subject=Base%20Plan%20Inquiry%20(%E2%82%B91%2C999)&body=Hi%20ShopSteward%2C%0A%0AI%20am%20interested%20in%20the%20BASE%20plan%20(%E2%82%B91%2C999%20first%20year%2C%20then%20%E2%82%B9599%2Fyr).%20Please%20share%20details.">✉ Email Inquiry</a>
       </article>
 
-      <!-- GROWTH (highlighted) -->
+      <!-- TIER 02: CUSTOM (Most Popular) -->
       <article class="price popular">
-        <div class="popular-badge">MOST POPULAR</div>
-        <div class="section-no">GROWTH</div>
-        <h3>Everything a growing shop needs.</h3>
-        <div class="amt">₹<span class="spin-target" data-target="3999" style="--reel-cell:55px;">3,999</span></div>
-        <div class="sub">first year · setup included<br>then <b style="color:#dce4df">₹1,899/year</b> from year 2</div>
+        <div class="popular-badge">MOST POPULAR · DISCOUNT ACTIVE</div>
+        <div class="section-no">CUSTOM</div>
+        <h3>Built around your shop.</h3>
+        <div class="price-old">₹6,899</div>
+        <div class="amt">₹<span class="spin-target" data-target="3599" style="--reel-cell:55px;">3,599</span></div>
+        <div class="sub">first year · setup included<br>then <b style="color:#c8ff3d">₹799/year</b> from year 2</div>
 
         <div class="price-meta">
           <div><span>Best for</span><b>Most shops</b></div>
@@ -1073,7 +1127,7 @@ if (document.readyState === 'loading') {
         </div>
 
         <ul>
-          <li>Everything in Starter</li>
+          <li>Everything in Base</li>
           <li>Custom Logo</li>
           <li>Custom Bill Design</li>
           <li>GST Billing</li>
@@ -1084,15 +1138,17 @@ if (document.readyState === 'loading') {
           <li>WhatsApp Support (10 AM – 6 PM)</li>
         </ul>
 
-        <a class="btn primary" href="#contact">GET GROWTH →</a>
+        <a class="btn primary" href="https://wa.me/918637560557?text=Hi%2C%20I%20want%20the%20CUSTOM%20ShopSteward%20plan%20at%20%E2%82%B93%2C599%20(first%20year)%20with%20%E2%82%B9799%2Fyr%20renewal" target="_blank" rel="noopener">GET CUSTOM — ₹3,599 →</a>
+        <a class="btn-mail-outline" href="mailto:shopsteward.in@gmail.com?subject=Custom%20Plan%20Inquiry%20(%E2%82%B93%2C599)&body=Hi%20ShopSteward%2C%0A%0AI%20am%20interested%20in%20the%20CUSTOM%20plan%20(%E2%82%B93%2C599%20first%20year%2C%20then%20%E2%82%B9799%2Fyr).%20Please%20share%20details.">✉ Email Inquiry</a>
       </article>
 
-      <!-- PRO / AI -->
+      <!-- TIER 03: AI ADVANCED -->
       <article class="price">
-        <div class="section-no">PRO / AI</div>
-        <h3>For multi-branch &amp; ambitious shops.</h3>
+        <div class="section-no">AI ADVANCED</div>
+        <h3>Full Custom.</h3>
+        <div class="price-old">₹9,899</div>
         <div class="amt">₹<span class="spin-target" data-target="7999" style="--reel-cell:55px;">7,999</span></div>
-        <div class="sub">first year · setup included<br>then <b style="color:#dce4df">₹3,499/year</b> from year 2</div>
+        <div class="sub">first year · setup included<br>then <b style="color:#c8ff3d">₹2,599/year</b> from year 2</div>
 
         <div class="price-meta">
           <div><span>Best for</span><b>Multi-branch shops</b></div>
@@ -1101,16 +1157,19 @@ if (document.readyState === 'loading') {
         </div>
 
         <ul>
-          <li>Everything in Growth</li>
-          <li>AI Agent</li>
-          <li>Multi-Branch Support</li>
-          <li>Advanced Reports with AI Insights</li>
-          <li>Unlimited Users</li>
-          <li>Priority WhatsApp + Call Support</li>
-          <li>Manual Backup Option</li>
+          <li class="feature-illuminated">★ Premium Custom Domain &amp; Fast Cloud Hosting Included</li>
+          <li>Everything in Custom</li>
+          <li>AI Agent Assistant inbuilt</li>
+          <li>Multiple Branch &amp; Counter Sync</li>
+          <li>User Roles &amp; Permissions</li>
+          <li>Advanced Real-Time Dashboards</li>
+          <li>3 Languages Included</li>
+          <li>Priority 24/7 Direct Phone Support</li>
+          <li>Staff Video Training + Custom Domain</li>
         </ul>
 
-        <a class="btn secondary" href="#contact">GO PRO →</a>
+        <a class="btn secondary" href="https://wa.me/918637560557?text=Hi%2C%20I%20want%20the%20AI%20ADVANCED%20ShopSteward%20plan%20at%20%E2%82%B97%2C999%20(first%20year)%20with%20%E2%82%B92%2C599%2Fyr%20renewal" target="_blank" rel="noopener">TALK TO ARCHITECT — ₹7,999 →</a>
+        <a class="btn-mail-outline" href="mailto:shopsteward.in@gmail.com?subject=AI%20Advanced%20Plan%20Inquiry%20(%E2%82%B97%2C999)&body=Hi%20ShopSteward%2C%0A%0AI%20am%20interested%20in%20the%20AI%20ADVANCED%20plan%20(%E2%82%B97%2C999%20first%20year%2C%20then%20%E2%82%B92%2C599%2Fyr).%20Please%20share%20details.">✉ Email Inquiry</a>
       </article>
 
     </div>
@@ -1120,11 +1179,9 @@ if (document.readyState === 'loading') {
     var section = document.getElementById('pricing');
     if (!section) { setTimeout(inject, 120); return; }
     if (section.dataset.upgraded === '1') return;
-
     section.dataset.upgraded = '1';
     section.innerHTML = NEW_HTML;
 
-    // Re-run the spinning number animation for the new prices
     try {
       if (typeof window.initSpinners === 'function') {
         window.initSpinners();
