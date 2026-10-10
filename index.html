@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#070a0d">
+<meta name="theme-color" content="#0D1A16">
 <meta name="description" content="ShopSteward — custom software that runs your shop's inventory, billing and reports. Built for your business. AI agent included.">
 <title>ShopSteward — The Trusted Software That Runs Your Shop</title>
 <meta name="google-site-verification" content="tlctf66Z0sftcKmpTnRzKo-ydNXcTUbIo1P96nw6tyM" />
 
 <!-- Favicon (inline SVG — works instantly) -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23070a0d'/%3E%3Ccircle cx='32' cy='22' r='9' stroke='%23c8ff3d' stroke-width='5' fill='none'/%3E%3Cline x1='32' y1='31' x2='32' y2='52' stroke='%23c8ff3d' stroke-width='5' stroke-linecap='round'/%3E%3Cline x1='32' y1='42' x2='40' y2='42' stroke='%23c8ff3d' stroke-width='5' stroke-linecap='round'/%3E%3Cline x1='32' y1='47' x2='38' y2='47' stroke='%23c8ff3d' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230D1A16'/%3E%3Ccircle cx='32' cy='22' r='9' stroke='%23c8ff3d' stroke-width='5' fill='none'/%3E%3Cline x1='32' y1='31' x2='32' y2='52' stroke='%23c8ff3d' stroke-width='5' stroke-linecap='round'/%3E%3Cline x1='32' y1='42' x2='40' y2='42' stroke='%23c8ff3d' stroke-width='5' stroke-linecap='round'/%3E%3Cline x1='32' y1='47' x2='38' y2='47' stroke='%23c8ff3d' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
 
 <!-- Open Graph / social preview -->
 <meta property="og:title" content="ShopSteward — The Trusted Software That Runs Your Shop">
@@ -53,20 +53,88 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
 .trust{display:flex;gap:18px;flex-wrap:wrap;margin-top:28px;color:#78827e;font-size:11px}
 .trust b{color:#dce4df;font-weight:700}
 
-.scene{height:520px;position:relative;perspective:1200px;display:grid;place-items:center}
-.scene:before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;border:1px solid rgba(85,230,255,.15);transform:rotateX(68deg);box-shadow:0 0 90px rgba(85,230,255,.08)}
-.orbit{position:absolute;width:520px;height:180px;border:1px solid rgba(200,255,61,.22);border-radius:50%;transform:rotateX(67deg) rotateZ(-18deg);animation:spin 12s linear infinite}
-.orbit.two{width:430px;height:130px;border-color:rgba(255,141,92,.2);transform:rotateX(68deg) rotateZ(42deg);animation-duration:17s;animation-direction:reverse}
-.machine{width:390px;height:300px;position:relative;transform-style:preserve-3d;transform:rotateX(58deg) rotateZ(-28deg) rotateY(-10deg);animation:float 6s ease-in-out infinite}
-.machine .top{position:absolute;inset:0;background:#11181c;border:1px solid #53625d;transform:translateZ(72px);box-shadow:18px 24px 0 rgba(0,0,0,.45)}
-.machine .side{position:absolute;right:0;top:0;width:72px;height:300px;background:#0b1013;border:1px solid #33403c;transform-origin:left;transform:rotateY(90deg) translateX(36px)}
-.machine .front{position:absolute;left:0;bottom:0;width:390px;height:72px;background:#0a0f11;border:1px solid #33403c;transform-origin:top;transform:rotateX(-90deg) translateY(36px)}
-.screen{position:absolute;left:30px;top:28px;width:330px;height:210px;background:#0a1014;border:1px solid #47564f;overflow:hidden}
-.screen img{width:100%;height:100%;object-fit:cover;object-position:top center;filter:brightness(.95) saturate(1.05)}
-.screen:after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 0 42%,rgba(200,255,61,.1) 43% 44%,transparent 45% 100%);z-index:2;pointer-events:none}
-.machine-label{position:absolute;right:-58px;top:-35px;color:#73817c;font-size:9px;letter-spacing:.18em;transform:translateZ(100px) rotateZ(28deg)}
-.machine-label b{color:var(--acid);display:block;font-size:16px;margin-bottom:3px}
-.scene-note{position:absolute;bottom:15px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:.18em;color:#65716c;white-space:nowrap}
+/* --- NEW HERO VISUAL --- */
+.hero-visual {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  /* Fade the edges of the image into the background */
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 45%, transparent 75%);
+  mask-image: radial-gradient(ellipse at center, #000 45%, transparent 75%);
+}
+.hero-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+/* The Live Monitor */
+.monitor-screen {
+  position: absolute;
+  top: 20.5%;
+  left: 17.5%;
+  width: 39%;
+  height: 48%;
+  /* Tilt the screen to match the photo */
+  transform: perspective(1000px) rotateY(-10deg) rotateX(5deg);
+  transform-origin: center center;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.6), inset 0 0 10px rgba(0,0,0,0.8);
+  background: #0a1014;
+  z-index: 2;
+}
+.monitor-screen iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #fff;
+  display: block;
+}
+/* The Phone Screen (Static) */
+.phone-screen {
+  position: absolute;
+  top: 42%;
+  left: 59.5%;
+  width: 9.5%;
+  height: 24%;
+  /* Tilt to match the phone in his hand */
+  transform: perspective(800px) rotateY(-15deg) rotateX(10deg) rotateZ(-5deg);
+  transform-origin: center center;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #070a0d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.7), inset 0 0 5px rgba(0,0,0,0.9);
+  z-index: 2;
+}
+.phone-logo {
+  color: var(--acid);
+  font-weight: 900;
+  font-size: 8px;
+  letter-spacing: -0.05em;
+  text-align: center;
+  line-height: 1.1;
+  text-shadow: 0 0 8px rgba(200,255,61,0.8);
+}
+.phone-logo span {
+  display: block;
+  font-size: 5px;
+  color: #8e9995;
+  letter-spacing: 0.1em;
+  margin-top: 2px;
+  font-weight: 600;
+}
 
 .nipe-strip{max-width:var(--max);margin:auto;padding:20px 24px 80px;position:relative;z-index:1}
 .niche-label{font-size:10px;letter-spacing:.22em;color:#65716c;text-transform:uppercase;text-align:center;margin-bottom:20px}
@@ -220,9 +288,6 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
 .no-js .reveal,body:not(.js-ready) .reveal{opacity:1 !important;transform:none !important}
 .cursor-light{position:fixed;width:280px;height:280px;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(200,255,61,.07),transparent 68%);transform:translate(-50%,-50%);z-index:0}
 
-@keyframes float{0%,100%{transform:rotateX(58deg) rotateZ(-28deg) rotateY(-10deg) translateY(0)}50%{transform:rotateX(58deg) rotateZ(-28deg) rotateY(-10deg) translateY(-16px)}}
-@keyframes spin{to{transform:rotateX(67deg) rotateZ(342deg)}}
-
 @media(max-width:900px){
   .nav{height:68px;padding:0 18px}
   .navlinks{display:none;position:absolute;top:68px;left:0;right:0;background:#0a0e10;border-bottom:1px solid var(--line);flex-direction:column;gap:0;padding:8px 0;transform:translateY(-12px);opacity:0;pointer-events:none;transition:.25s ease}
@@ -234,7 +299,15 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
   .hero{grid-template-columns:1fr;padding:50px 18px 20px;min-height:auto;gap:20px}
   .hero h1{font-size:clamp(48px,13vw,72px);margin-bottom:22px}
   .lead{font-size:15px}
-  .scene{height:340px;transform:scale(.75);margin:-30px -40px}
+  
+  /* Mobile Hero Visual Adjustments */
+  .monitor-screen, .phone-screen { display: none; }
+  .image-wrapper { 
+    -webkit-mask-image: linear-gradient(to bottom, #000 75%, transparent 100%); 
+    mask-image: linear-gradient(to bottom, #000 75%, transparent 100%); 
+  }
+  .hero-visual { max-width: 100%; margin-top: 20px; }
+  
   .section{padding:70px 18px}
   .section-head{grid-template-columns:1fr;gap:16px;margin-bottom:36px}
   .section h2{font-size:44px}
@@ -262,7 +335,6 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
 }
 @media(max-width:430px){
   .hero h1{font-size:clamp(42px,11.5vw,56px)}
-  .scene{height:290px;transform:scale(.6);margin:-50px -80px}
   .section h2{font-size:38px}
   .price .amt{font-size:44px}
   .contact h2{font-size:42px}
@@ -271,7 +343,7 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .reveal{opacity:1;transform:none;transition:none}
-  .machine,.orbit,.wa-float{animation:none}
+  .wa-float{animation:none}
 }
 /* --- Spinning Counter (t-reel) --- */
 .t-reel {
@@ -320,49 +392,18 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
     font-size: 20px;
     max-width: 650px;
   }
-
-  /* Scale up the 3D Scene so it matches the larger monitor */
-  .scene {
-    height: 600px;
+  
+  /* Scale up the new Hero Visual for large monitors */
+  .hero-visual {
+    max-width: 1000px; /* Makes the image larger on big screens */
   }
-  .scene:before {
-    width: 520px;
-    height: 520px;
+  
+  .monitor-screen {
+    /* The percentages will scale automatically with the image, 
+       but you can adjust the shadow intensity here if needed */
+    box-shadow: 0 25px 50px rgba(0,0,0,0.7), inset 0 0 15px rgba(0,0,0,0.9);
   }
-  .orbit {
-    width: 640px;
-    height: 220px;
-  }
-  .orbit.two {
-    width: 530px;
-    height: 160px;
-  }
-  .machine {
-    width: 480px;
-    height: 370px;
-  }
-  .machine .side {
-    width: 80px;
-    height: 370px;
-    transform: rotateY(90deg) translateX(40px);
-  }
-  .machine .front {
-    width: 480px;
-    height: 80px;
-    transform: rotateX(-90deg) translateY(40px);
-  }
-  .machine .top {
-    transform: translateZ(80px);
-  }
-  .screen {
-    width: 410px;
-    height: 260px;
-  }
-  .machine-label {
-    right: -70px;
-    top: -40px;
-  }
-
+ 
   /* Section Spacing and Typography */
   .section {
     padding: 160px 24px; /* More vertical breathing room */
@@ -430,9 +471,6 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
   .section h2 {
     font-size: 120px;
   }
-  .scene {
-    transform: scale(1.15); /* Slightly scale the 3D machine for 4K */
-  }
 }
 </style>
 </head>
@@ -488,20 +526,24 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
 </div>
   </div>
 
-  <div class="scene reveal" aria-label="Live dashboard preview">
-    <div class="orbit"></div>
-    <div class="orbit two"></div>
-    <div class="machine">
-      <div class="top">
-        <div class="screen">
-          <img src="images/dashboard.png" alt="ShopSteward live dashboard" loading="lazy">
+  <div class="hero-visual reveal">
+    <div class="image-wrapper">
+      <!-- The Static Image -->
+      <img src="images/shop-owner.png" alt="Shop Owner using ShopSteward" class="hero-img" loading="lazy">
+      
+      <!-- The Live Monitor -->
+      <div class="monitor-screen">
+        <iframe src="https://agricultureshopmanager-ship-it.github.io/AI-added-Agri-Web/" title="Live Demo"></iframe>
+      </div>
+      
+      <!-- The Phone Screen -->
+      <div class="phone-screen">
+        <div class="phone-logo">
+          Shop<br>Steward
+          <span>LIVE</span>
         </div>
       </div>
-      <div class="side"></div>
-      <div class="front"></div>
-      <div class="machine-label"><b>01</b>LIVE / SALES / STOCK</div>
     </div>
-    <div class="scene-note">REAL PRODUCT / LIVE DASHBOARD</div>
   </div>
 </section>
 
@@ -787,7 +829,7 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
   <h3>7. Children</h3><p>The service is intended for businesses and is not directed at children.</p>
   <h3>8. Data Security</h3><p>Reasonable technical and organisational measures are used.</p>
   <h3>9. Changes to This Policy</h3><p>This policy may be updated when necessary.</p>
-  <h3>10. Contact</h3><p>Email: <a href="mailto:shopsteward.in@gmail.com">shopsteward <.in@gmail.com</a></p>
+  <h3>10. Contact</h3><p>Email: <a href="mailto:shopsteward.in@gmail.com">shopsteward.in@gmail.com</a></p>
 </div></section>
 
 <section id="refund" class="legal"><div class="legal-inner">
@@ -797,7 +839,7 @@ h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238
   <h3>2. Annual Subscription</h3><p>Annual service terms and renewal pricing are shown on the pricing section.</p>
   <h3>3. Customization Work</h3><p>Additional work outside the agreed scope is quoted separately.</p>
   <h3>4. Before Development Begins</h3><p>Questions about a payment should be raised before work begins whenever possible.</p>
-h3>5. After Delivery</h3><p>Issues with agreed deliverables should be reported so they can be reviewed.</p>
+  <h3>5. After Delivery</h3><p>Issues with agreed deliverables should be reported so they can be reviewed.</p>
   <h3>6. Bugs and Defects</h3><p>Reasonable bug fixes for agreed functionality are handled as part of support terms.</p>
   <h3>7. Disputes</h3><p>We will work in good faith to resolve concerns.</p>
   <h3>8. Contact</h3><p>For any concern about a payment or service provided, contact us within 7 days at <a href="mailto:shopsteward.in@gmail.com">shopsteward.in@gmail.com</a>.</p>
