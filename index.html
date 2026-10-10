@@ -1,1145 +1,766 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#070a0d">
-<meta name="description" content="ShopSteward — custom software that runs your shop's inventory, billing and reports. Built for your business. AI agent included.">
-<title>ShopSteward — The Trusted Software That Runs Your Shop</title>
-<meta name="google-site-verification" content="tlctf66Z0sftcKmpTnRzKo-ydNXcTUbIo1P96nw6tyM" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#05080b">
+  <title>ShopSteward 3D — Cyber Spatial HUD & Shop Operating System</title>
+  <meta name="description" content="ShopSteward 3D — Custom-built inventory, fast billing, and AI shop intelligence running on any phone. Built for real Indian shops.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
-<!-- Favicon (inline SVG — works instantly) -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23070a0d'/%3E%3Ccircle cx='32' cy='22' r='9' stroke='%23c8ff3d' stroke-width='5' fill='none'/%3E%3Cline x1='32' y1='31' x2='32' y2='52' stroke='%23c8ff3d' stroke-width='5' stroke-linecap='round'/%3E%3Cline x1='32' y1='42' x2='40' y2='42' stroke='%23c8ff3d' stroke-width='5' stroke-linecap='round'/%3E%3Cline x1='32' y1='47' x2='38' y2='47' stroke='%23c8ff3d' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&family=JetBrains+Mono:wght@500;700;800;900&display=swap" rel="stylesheet">
 
-<!-- Open Graph / social preview -->
-<meta property="og:title" content="ShopSteward — The Trusted Software That Runs Your Shop">
-<meta property="og:description" content="Custom-built inventory, billing and reports. Runs on any phone. Built for your business.">
-<meta property="og:image" content="https://shopsteward.in/images/dashboard.png">
-<meta property="og:url" content="https://shopsteward.in">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="ShopSteward — The Trusted Software That Runs Your Shop">
-<meta name="twitter:description" content="Custom-built inventory, billing and reports. Runs on any phone.">
-<meta name="twitter:image" content="https://shopsteward.in/images/dashboard.png">
-
-<style>
-:root{--bg:#070a0d;--ink:#eef4ee;--muted:#8e9995;--acid:#c8ff3d;--cyan:#55e6ff;--orange:#ff8d5c;--line:rgba(238,244,238,.12);--max:1240px}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit}button{cursor:pointer}::selection{background:var(--acid);color:#071006}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.035;background-image:linear-gradient(rgba(255,255,255,.8) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.8) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:linear-gradient(to bottom,#000,transparent 85%);mask-image:linear-gradient(to bottom,#000,transparent 85%);z-index:0}
-.topline{height:2px;background:linear-gradient(90deg,var(--acid),var(--cyan),transparent)}
-
-/* NAV with key logo */
-.nav{height:76px;display:flex;align-items:center;justify-content:space-between;max-width:var(--max);margin:auto;padding:0 24px;position:relative;z-index:20}
-.brand{font-weight:900;letter-spacing:-.05em;font-size:18px;z-index:21;display:flex;align-items:center;gap:10px}
-.brand-mark{flex-shrink:0;filter:drop-shadow(0 0 8px rgba(200,255,61,.35));transition:.3s}
-.brand:hover .brand-mark{transform:rotate(-8deg);filter:drop-shadow(0 0 12px rgba(200,255,61,.55))}
-.navlinks{display:flex;gap:28px;color:#9fa8a4;font-size:13px;transition:.3s}
-.navlinks a:hover{color:#fff}
-.navcta{border:1px solid var(--line);padding:11px 16px;border-radius:4px;font-weight:800;font-size:12px;transition:.2s}
-.navcta:hover{border-color:rgba(200,255,61,.6)}
-.menu{display:none;background:none;border:0;color:#fff;font-size:26px;z-index:21;padding:6px;line-height:1}
-
-.hero{min-height:calc(100svh - 78px);max-width:var(--max);margin:auto;padding:74px 24px 40px;position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(420px,.9fr);gap:40px;align-items:center;z-index:1}
-.eyebrow{display:flex;align-items:center;gap:10px;color:var(--acid);font-size:11px;font-weight:900;letter-spacing:.18em;text-transform:uppercase}
-.eyebrow:before{content:"";width:32px;height:1px;background:var(--acid)}
-h1{font-size:clamp(52px,6.4vw,96px);line-height:.86;letter-spacing:-.07em;margin:22px 0 26px;max-width:780px;font-weight:950}
-h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(238,244,238,.72)}
-.lead{max-width:590px;color:#a8b1ad;font-size:18px;line-height:1.65;margin:0}
-.actions{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap}
-.btn{padding:15px 20px;border:1px solid var(--line);font-weight:900;font-size:12px;letter-spacing:.04em;border-radius:3px;display:inline-flex;align-items:center;gap:10px;transition:.2s;background:transparent;color:#eef4ee}
-.btn.primary{background:var(--acid);color:#081007;border-color:var(--acid)}
-.btn.primary:hover{box-shadow:0 12px 40px rgba(200,255,61,.25);transform:translateY(-1px)}
-.btn.secondary:hover{border-color:rgba(200,255,61,.6)}
-.trust{display:flex;gap:18px;flex-wrap:wrap;margin-top:28px;color:#78827e;font-size:11px}
-.trust b{color:#dce4df;font-weight:700}
-
-.scene{height:520px;position:relative;perspective:1200px;display:grid;place-items:center}
-.scene:before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;border:1px solid rgba(85,230,255,.15);transform:rotateX(68deg);box-shadow:0 0 90px rgba(85,230,255,.08)}
-.orbit{position:absolute;width:520px;height:180px;border:1px solid rgba(200,255,61,.22);border-radius:50%;transform:rotateX(67deg) rotateZ(-18deg);animation:spin 12s linear infinite}
-.orbit.two{width:430px;height:130px;border-color:rgba(255,141,92,.2);transform:rotateX(68deg) rotateZ(42deg);animation-duration:17s;animation-direction:reverse}
-.machine{width:390px;height:300px;position:relative;transform-style:preserve-3d;transform:rotateX(58deg) rotateZ(-28deg) rotateY(-10deg);animation:float 6s ease-in-out infinite}
-.machine .top{position:absolute;inset:0;background:#11181c;border:1px solid #53625d;transform:translateZ(72px);box-shadow:18px 24px 0 rgba(0,0,0,.45)}
-.machine .side{position:absolute;right:0;top:0;width:72px;height:300px;background:#0b1013;border:1px solid #33403c;transform-origin:left;transform:rotateY(90deg) translateX(36px)}
-.machine .front{position:absolute;left:0;bottom:0;width:390px;height:72px;background:#0a0f11;border:1px solid #33403c;transform-origin:top;transform:rotateX(-90deg) translateY(36px)}
-.screen{position:absolute;left:30px;top:28px;width:330px;height:210px;background:#0a1014;border:1px solid #47564f;overflow:hidden}
-.screen img{width:100%;height:100%;object-fit:cover;object-position:top center;filter:brightness(.95) saturate(1.05)}
-.screen:after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 0 42%,rgba(200,255,61,.1) 43% 44%,transparent 45% 100%);z-index:2;pointer-events:none}
-.machine-label{position:absolute;right:-58px;top:-35px;color:#73817c;font-size:9px;letter-spacing:.18em;transform:translateZ(100px) rotateZ(28deg)}
-.machine-label b{color:var(--acid);display:block;font-size:16px;margin-bottom:3px}
-.scene-note{position:absolute;bottom:15px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:.18em;color:#65716c;white-space:nowrap}
-
-.nipe-strip{max-width:var(--max);margin:auto;padding:20px 24px 80px;position:relative;z-index:1}
-.niche-label{font-size:10px;letter-spacing:.22em;color:#65716c;text-transform:uppercase;text-align:center;margin-bottom:20px}
-.niche-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
-.niche-chip{padding:10px 18px;border:1px solid var(--line);border-radius:100px;font-size:11px;letter-spacing:.06em;color:#c9d1cc;font-weight:600;transition:.2s}
-.niche-chip:hover{border-color:rgba(200,255,61,.5);color:#fff}
-
-.section{max-width:var(--max);margin:auto;padding:120px 24px;position:relative;z-index:1}
-.section-head{display:grid;grid-template-columns:.55fr 1.45fr;gap:30px;margin-bottom:65px}
-.section-no{font-size:12px;color:var(--acid);letter-spacing:.18em;font-weight:900}
-.section h2{font-size:clamp(44px,6vw,82px);line-height:.9;letter-spacing:-.065em;margin:0}
-.section h2 em{font-style:normal;color:#66716d}
-
-.steward-block{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:60px 0;display:grid;grid-template-columns:.55fr 1.45fr;gap:30px}
-.steward-lead{font-size:clamp(20px,2.4vw,28px);line-height:1.45;color:#c9d1cc;margin:0;font-weight:500}
-.steward-lead b{color:var(--acid);font-weight:700}
-.steward-lead em{font-style:italic;color:#8e9995}
-
-.problem{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.problem article{padding:35px 28px 42px;border-right:1px solid var(--line)}
-.problem article:last-child{border-right:0}
-.bigno{font-size:52px;font-weight:950;letter-spacing:-.08em;color:#26302d}
-.problem h3{font-size:22px;margin:18px 0 10px}
-.problem p,.feature p,.copy{color:#8f9a95;line-height:1.7}
-
-.how{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.how-step{padding:38px 30px 44px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:14px}
-.how-step:last-child{border-right:0}
-.how-step .num{font-family:ui-monospace,monospace;font-size:11px;color:var(--acid);letter-spacing:.15em;font-weight:800}
-.how-step h3{font-size:22px;margin:0;letter-spacing:-.03em}
-.how-step p{color:#8f9a95;line-height:1.7;margin:0;font-size:14px}
-
-.demo-wrap{display:grid;grid-template-columns:280px 1fr;min-height:620px;border:1px solid var(--line);background:#0a0e10}
-.demo-info{padding:30px;border-right:1px solid var(--line);display:flex;flex-direction:column}
-.demo-info h3{font-size:24px;margin:10px 0}
-.demo-url{font-size:10px;color:#77837e;word-break:break-all}
-.credentials{margin-top:auto;border-top:1px solid var(--line);padding-top:22px}
-.credentials small{display:block;color:#6f7b76;font-size:9px;letter-spacing:.15em;margin-bottom:6px}
-.cred{font-family:ui-monospace,monospace;font-size:13px;color:var(--acid);margin-bottom:14px}
-.demo-screen{position:relative;overflow:hidden;background:#050708}
-.demo-screen iframe{width:100%;height:100%;min-height:620px;border:0;background:#fff;display:block}
-.demo-actions{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}
-.mini{font-size:10px;padding:10px 11px;border:1px solid var(--line);background:transparent;color:#dce4df;border-radius:2px;font-family:inherit;letter-spacing:.06em}
-.mini:hover{border-color:var(--acid)}
-
-.carousel-wrap{display:none;position:relative}
-.carousel{display:flex;gap:14px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:0 0 24px;scrollbar-width:none;touch-action:pan-x;overscroll-behavior-x:contain;scroll-behavior:smooth}
-.carousel::-webkit-scrollbar{display:none}
-.slide{flex:0 0 82%;scroll-snap-align:center;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#0a0e10;aspect-ratio:1080/1920;max-height:520px}
-.slide img{width:100%;height:100%;object-fit:cover;object-position:top}
-.dots{display:flex;justify-content:center;gap:8px;margin-top:4px}
-.dot{width:6px;height:6px;border-radius:50%;background:#3a4441;transition:.3s}
-.dot.on{background:var(--acid);width:22px;border-radius:100px}
-
-.features{border-top:1px solid var(--line)}
-.feature{display:grid;grid-template-columns:90px 1fr 1fr;gap:30px;padding:30px 0;border-bottom:1px solid var(--line);align-items:start}
-.feature-num{font-size:11px;color:var(--acid);font-weight:900}
-.feature h3{font-size:25px;margin:0;letter-spacing:-.03em}
-.feature p{margin:0}
-.feature .tag{justify-self:end;font-size:9px;border:1px solid rgba(200,255,61,.35);color:var(--acid);padding:7px 9px;letter-spacing:.12em}
-
-.testimonial{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:70px 0;display:grid;grid-template-columns:.4fr 1.6fr;gap:40px;align-items:start}
-.testi-quote{font-size:clamp(22px,2.6vw,32px);line-height:1.5;color:#d8e0db;margin:0 0 30px;font-weight:500;letter-spacing:-.015em;position:relative;padding-left:34px}
-.testi-quote:before{content:"\201C";position:absolute;left:0;top:-10px;font-size:80px;color:var(--acid);line-height:1;font-family:Georgia,serif}
-.testi-quote:after{content:"\201D";color:var(--acid);margin-left:4px;font-family:Georgia,serif}
-.testi-author{display:flex;flex-direction:column;gap:4px;padding-left:34px}
-.testi-author b{color:#fff;font-weight:800;font-size:15px;letter-spacing:-.01em}
-.testi-author span{color:#8e9995;font-size:13px}
-
-.pricing{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.price{padding:36px 28px;border-right:1px solid var(--line);min-height:500px;display:flex;flex-direction:column}
-.price:last-child{border-right:0}
-.price:nth-child(2){background:rgba(200,255,61,.045)}
-.price h3{font-size:26px;margin:10px 0}
-.price .amt{font-size:50px;font-weight:950;letter-spacing:-.07em;margin:14px 0 6px}
-.price .amt small{font-size:14px;font-weight:600;letter-spacing:0;color:#8e9995;margin-left:4px}
-.price .sub{color:#7f8a85;font-size:11px;line-height:1.6}
-.price ul{list-style:none;padding:0;margin:28px 0 25px}
-.price li{padding:8px 0;color:#b0b9b5;font-size:12px;border-bottom:1px dashed rgba(255,255,255,.08)}
-.price li:before{content:"+";color:var(--acid);margin-right:8px}
-.price .btn{margin-top:auto;justify-content:center}
-
-.faq{border-top:1px solid var(--line)}
-.q{border-bottom:1px solid var(--line)}
-.q button{width:100%;background:none;border:0;color:#eef4ee;text-align:left;padding:23px 0;font-weight:800;font-size:16px;display:flex;justify-content:space-between;align-items:center;font-family:inherit}
-.q button:after{content:"+";color:var(--acid);font-size:22px;transition:.3s}
-.q.open button:after{content:"−"}
-.answer{display:none;padding:0 60px 25px 0;color:#8f9a95;line-height:1.7;font-size:14px}
-.q.open .answer{display:block}
-
-.contact{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start}
-.contact h2{font-size:clamp(48px,7vw,92px);margin:0;line-height:.86;letter-spacing:-.07em}
-.contact h2 span{color:var(--acid)}
-.contact-side{border-top:1px solid var(--line)}
-.contact-item{display:flex;justify-content:space-between;gap:20px;padding:18px 0;border-bottom:1px solid var(--line);font-size:13px}
-.contact-item span{color:#7f8a85;text-align:right}
-.wa-cta{display:flex;flex-direction:column;gap:12px;margin-top:36px}
-.wa-btn{display:flex;align-items:center;justify-content:center;gap:12px;padding:22px 24px;background:var(--acid);color:#081007;font-weight:900;font-size:15px;letter-spacing:.02em;border-radius:4px;border:0;transition:.2s;text-align:center}
-.wa-btn:hover{transform:translateY(-1px);box-shadow:0 12px 40px rgba(200,255,61,.25)}
-.wa-btn svg{width:22px;height:22px;fill:#081007;flex-shrink:0}
-.wa-alt{font-size:12px;color:#7f8a85;text-align:center;margin-top:4px}
-.wa-alt a{color:#dce4df;border-bottom:1px solid rgba(255,255,255,.2)}
-
-.wa-float{position:fixed;right:22px;bottom:22px;width:60px;height:60px;border-radius:50%;background:var(--acid);display:grid;place-items:center;z-index:99;box-shadow:0 12px 40px rgba(200,255,61,.35),0 0 0 0 rgba(200,255,61,.4);transition:.3s;animation:waPulse 2.4s infinite}
-.wa-float:hover{transform:scale(1.08)}
-.wa-float svg{width:30px;height:30px;fill:#081007}
-@keyframes waPulse{0%{box-shadow:0 12px 40px rgba(200,255,61,.35),0 0 0 0 rgba(200,255,61,.5)}70%{box-shadow:0 12px 40px rgba(200,255,61,.35),0 0 0 18px rgba(200,255,61,0)}100%{box-shadow:0 12px 40px rgba(200,255,61,.35),0 0 0 0 rgba(200,255,61,0)}}
-
-.footer{border-top:1px solid var(--line);padding:30px 24px;display:flex;justify-content:space-between;max-width:var(--max);margin:auto;color:#68736e;font-size:11px;flex-wrap:wrap;gap:15px}
-.footer-links{display:flex;gap:18px;flex-wrap:wrap}
-.footer-links a:hover{color:#eef4ee}
-
-.legal{display:none}
-.legal:target{display:block;position:fixed;inset:0;background:#070a0d;z-index:100;padding:40px 24px;overflow:auto}
-.legal-inner{max-width:850px;margin:auto}
-.legal-close{display:inline-block;margin-bottom:30px;color:var(--acid);font-weight:800;font-size:12px;letter-spacing:.1em}
-.legal h2{font-size:44px;letter-spacing:-.06em;margin-bottom:30px}
-.legal h3{margin-top:30px;font-size:16px}
-.legal p,.legal li{color:#9ba5a1;line-height:1.75;font-size:14px}
-.legal ul{padding-left:20px}
-
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
-.reveal.on{opacity:1;transform:none}
-.no-js .reveal,body:not(.js-ready) .reveal{opacity:1 !important;transform:none !important}
-.cursor-light{position:fixed;width:280px;height:280px;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(200,255,61,.07),transparent 68%);transform:translate(-50%,-50%);z-index:0}
-
-@keyframes float{0%,100%{transform:rotateX(58deg) rotateZ(-28deg) rotateY(-10deg) translateY(0)}50%{transform:rotateX(58deg) rotateZ(-28deg) rotateY(-10deg) translateY(-16px)}}
-@keyframes spin{to{transform:rotateX(67deg) rotateZ(342deg)}}
-
-@media(max-width:900px){
-  .nav{height:68px;padding:0 18px}
-  .navlinks{display:none;position:absolute;top:68px;left:0;right:0;background:#0a0e10;border-bottom:1px solid var(--line);flex-direction:column;gap:0;padding:8px 0;transform:translateY(-12px);opacity:0;pointer-events:none;transition:.25s ease}
-  .navlinks.show{display:flex;transform:translateY(0);opacity:1;pointer-events:auto}
-  .navlinks a{padding:16px 24px;font-size:14px;border-bottom:1px solid var(--line)}
-  .navlinks a:last-child{border-bottom:0}
-  .navcta{display:none}
-  .menu{display:block}
-  .hero{grid-template-columns:1fr;padding:50px 18px 20px;min-height:auto;gap:20px}
-  .hero h1{font-size:clamp(48px,13vw,72px);margin-bottom:22px}
-  .lead{font-size:15px}
-  .scene{height:340px;transform:scale(.75);margin:-30px -40px}
-  .section{padding:70px 18px}
-  .section-head{grid-template-columns:1fr;gap:16px;margin-bottom:36px}
-  .section h2{font-size:44px}
-  .steward-block{grid-template-columns:1fr;gap:14px;padding:40px 0}
-  .steward-lead{font-size:20px}
-  .problem,.pricing,.how{grid-template-columns:1fr}
-  .problem article,.price,.how-step{border-right:0;border-bottom:1px solid var(--line)}
-  .price{min-height:auto;padding:32px 22px}
-  .demo-wrap{grid-template-columns:1fr;min-height:auto}
-  .demo-info{border-right:0;border-bottom:1px solid var(--line);padding:26px 20px}
-  .demo-screen{display:none}
-  .carousel-wrap{display:block;padding:24px 0 6px}
-  .feature{grid-template-columns:42px 1fr;gap:12px}
-  .feature p{grid-column:2}
-  .feature .tag{grid-column:2;justify-self:start}
-  .testimonial{grid-template-columns:1fr;gap:20px;padding:50px 0}
-  .testi-quote{font-size:22px;padding-left:28px}
-  .testi-quote:before{font-size:56px}
-  .contact{grid-template-columns:1fr;gap:40px}
-  .contact h2{font-size:48px}
-  .footer{flex-direction:column;padding:25px 18px}
-  .cursor-light{display:none}
-  .wa-float{width:54px;height:54px;right:16px;bottom:16px}
-  .wa-float svg{width:26px;height:26px}
-}
-@media(max-width:430px){
-  .hero h1{font-size:clamp(42px,11.5vw,56px)}
-  .scene{height:290px;transform:scale(.6);margin:-50px -80px}
-  .section h2{font-size:38px}
-  .price .amt{font-size:44px}
-  .contact h2{font-size:42px}
-  .slide{flex:0 0 88%}
-}
-@media(prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  .reveal{opacity:1;transform:none;transition:none}
-  .machine,.orbit,.wa-float{animation:none}
-}
-/* --- Spinning Counter (t-reel) --- */
-.t-reel {
-  display: inline-flex;
-  align-items: center;
-  font-variant-numeric: tabular-nums;
-  vertical-align: bottom;
-}
-.t-reel-col {
-  position: relative;
-  overflow: hidden;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 22%, #000 78%, transparent 100%);
-  mask-image: linear-gradient(to bottom, transparent 0%, #000 22%, #000 78%, transparent 100%);
-}
-.t-reel-strip {
-  display: flex;
-  flex-direction: column;
-  will-change: transform, filter;
-}
-.t-reel-digit {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-@media (prefers-reduced-motion: reduce) {
-  .t-reel-strip { transition: none !important; filter: none !important; }
-}
-/* --- DESKTOP OPTIMIZATION (Large Screens) --- */
-@media (min-width: 1440px) {
-  :root {
-    --max: 1440px; /* Widen the container to fit better on large monitors */
-  }
-
-  /* Hero Section Adjustments */
-  .hero {
-    grid-template-columns: 1.1fr 0.9fr; /* Give text a bit more room */
-    gap: 60px;
-    padding: 100px 24px 60px;
-  }
-
-  .hero h1 {
-    font-size: clamp(80px, 6.5vw, 110px); /* Scale up hero text */
-  }
-
-  .lead {
-    font-size: 20px;
-    max-width: 650px;
-  }
-
-  /* Scale up the 3D Scene so it matches the larger monitor */
-  .scene {
-    height: 600px;
-  }
-  .scene:before {
-    width: 520px;
-    height: 520px;
-  }
-  .orbit {
-    width: 640px;
-    height: 220px;
-  }
-  .orbit.two {
-    width: 530px;
-    height: 160px;
-  }
-  .machine {
-    width: 480px;
-    height: 370px;
-  }
-  .machine .side {
-    width: 80px;
-    height: 370px;
-    transform: rotateY(90deg) translateX(40px);
-  }
-  .machine .front {
-    width: 480px;
-    height: 80px;
-    transform: rotateX(-90deg) translateY(40px);
-  }
-  .machine .top {
-    transform: translateZ(80px);
-  }
-  .screen {
-    width: 410px;
-    height: 260px;
-  }
-  .machine-label {
-    right: -70px;
-    top: -40px;
-  }
-
-  /* Section Spacing and Typography */
-  .section {
-    padding: 160px 24px; /* More vertical breathing room */
-  }
-
-  .section-head {
-    grid-template-columns: 0.4fr 1.6fr; /* Adjust column ratio */
-    gap: 60px;
-    margin-bottom: 80px;
-  }
-
-  .section h2 {
-    font-size: clamp(70px, 6.5vw, 110px); /* Larger section headings */
-  }
-
-  /* Features Grid */
-  .feature {
-    grid-template-columns: 120px 1fr 1fr;
-    gap: 50px;
-    padding: 40px 0;
-  }
-
-  /* Testimonial */
-  .testi-quote {
-    font-size: clamp(28px, 3vw, 42px);
-  }
-
-  /* Pricing */
-  .price {
-    padding: 50px 40px;
-  }
-  .price .amt {
-    font-size: 60px;
-  }
-
-  /* Demo */
-  .demo-wrap {
-    grid-template-columns: 340px 1fr; /* Wider sidebar for demo */
-    min-height: 750px;
-  }
-  .demo-info {
-    padding: 40px;
-  }
-  .demo-screen iframe {
-    min-height: 750px;
-  }
-
-  /* Contact */
-  .contact {
-    gap: 100px;
-  }
-  .contact h2 {
-    font-size: clamp(80px, 7.5vw, 120px);
-  }
-}
-
-/* --- ULTRA-WIDE MONITORS (2K/4K) --- */
-@media (min-width: 1920px) {
-  :root {
-    --max: 1600px; /* Widen even more for 4K screens */
-  }
-  .hero h1 {
-    font-size: 120px; 
-  }
-  .section h2 {
-    font-size: 120px;
-  }
-  .scene {
-    transform: scale(1.15); /* Slightly scale the 3D machine for 4K */
-  }
-}
-</style>
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Three.js 3D WebGL Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
-<svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
-  <defs>
-    <filter id="motion-blur">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="0 4" />
-    </filter>
-  </defs>
-</svg>
 
-<div class="topline"></div>
-<div class="cursor-light" id="cursorLight"></div>
+  <!-- FIXED FULL-SCREEN 3D SPATIAL WEBGL VIEWPORT -->
+  <div id="webgl-canvas-container"></div>
 
-<header class="nav">
-  <a class="brand" href="#top">
-    <svg class="brand-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="26" height="26" aria-hidden="true">
-      <circle cx="32" cy="22" r="9" stroke="#c8ff3d" stroke-width="5" fill="none"/>
-      <line x1="32" y1="31" x2="32" y2="52" stroke="#c8ff3d" stroke-width="5" stroke-linecap="round"/>
-      <line x1="32" y1="42" x2="40" y2="42" stroke="#c8ff3d" stroke-width="5" stroke-linecap="round"/>
-      <line x1="32" y1="47" x2="38" y2="47" stroke="#c8ff3d" stroke-width="5" stroke-linecap="round"/>
-    </svg>
-    ShopSteward
-  </a>
-  <nav class="navlinks" id="navLinks">
-    <a href="#demo">Live Demo</a>
-    <a href="#features">Features</a>
-    <a href="#pricing">Pricing</a>
-    <a href="#faq">FAQ</a>
-    <a href="#contact">Contact</a>
-  </nav>
-  <a class="navcta" href="#contact">Talk to Me</a>
-  <button class="menu" onclick="document.getElementById('navLinks').classList.toggle('show')" aria-label="Menu">☰</button>
-</header>
+  <!-- TOP LASER STATUS BAR & HUD NAVIGATION -->
+  <header class="hud-topbar">
+    <div class="top-laser-beam"></div>
+    <div class="hud-nav">
+      <a href="#" class="brand-wrap">
+        <!-- Exact ShopSteward Key SVG Logo -->
+        <svg class="brand-steward-key" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+          <circle cx="32" cy="22" r="9" stroke="#c8ff3d" stroke-width="4.5" stroke-linecap="round"/>
+          <line x1="32" y1="31" x2="32" y2="52" stroke="#c8ff3d" stroke-width="4.5" stroke-linecap="round"/>
+          <line x1="32" y1="42" x2="41" y2="42" stroke="#c8ff3d" stroke-width="4.5" stroke-linecap="round"/>
+          <line x1="32" y1="47" x2="39" y2="47" stroke="#c8ff3d" stroke-width="4.5" stroke-linecap="round"/>
+        </svg>
+        <span>ShopSteward</span>
+        <span class="sys-telemetry-pill">v2.6 OS</span>
+      </a>
 
-<main id="top">
+      <ul class="nav-links">
+        <li class="nav-item"><a href="#demo">Live Demo</a></li>
+        <li class="nav-item"><a href="#features">System</a></li>
+        <li class="nav-item"><a href="#pricing">Pricing</a></li>
+        <li class="nav-item"><a href="#faq">FAQ</a></li>
+        <li class="nav-item"><a href="#contact">Contact</a></li>
+      </ul>
 
-<section class="hero">
-  <div class="reveal">
-    <div class="eyebrow">CUSTOM SOFTWARE FOR REAL SHOPS</div>
-    <h1>Your Shop.<span>Your Rules.</span>Your Steward.</h1>
-    <p class="lead">Custom-built inventory, billing and reports — running on your phone, in your language, priced for your business. Trusted like a steward, who never forgets a bill or loses a customer's dues.</p>
-    <div class="actions">
-      <a class="btn primary" href="#demo">SEE LIVE DEMO ↗</a>
-      <a class="btn secondary" href="#contact">TALK TO ME →</a>
+      <div class="nav-controls">
+        <button class="audio-toggle-btn" id="audio-toggle" title="Toggle Synthesizer Sound Effects">⚡ SFX: OFF</button>
+        <a href="#demo" class="btn-cyber btn-hologram" style="padding: 10px 18px; font-size: 11px;">Test Live ↗</a>
+        <a href="https://wa.me/918637560557?text=Hi%20ShopSteward,%20I%20want%20to%20know%20more%20about%20software%20for%20my%20shop" target="_blank" rel="noopener" class="btn-cyber btn-acid" style="padding: 10px 18px; font-size: 11px;">Talk to Me →</a>
+        <button class="mobile-menu-trigger" id="hud-mobile-toggle" aria-label="Open HUD Menu">☰</button>
+      </div>
     </div>
-    <div class="trust">
-  <span>◉ <b>30+ shops</b> already using</span>
-  <span>◉ <b>Works on any device</b></span>
-  <span>◉ <b>Multi-language</b></span>
-  <span>◉ <b>AI built-in</b></span>
-</div>
+  </header>
+
+  <!-- MOBILE HUD DRAWER -->
+  <div class="mobile-hud-drawer" id="hud-mobile-drawer">
+    <div class="drawer-top">
+      <div class="brand-wrap">
+        <svg class="brand-steward-key" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+          <circle cx="32" cy="22" r="9" stroke="#c8ff3d" stroke-width="4.5" stroke-linecap="round"/>
+          <line x1="32" y1="31" x2="32" y2="52" stroke="#c8ff3d" stroke-width="4.5" stroke-linecap="round"/>
+          <line x1="32" y1="42" x2="41" y2="42" stroke="#c8ff3d" stroke-width="4.5" stroke-linecap="round"/>
+          <line x1="32" y1="47" x2="39" y2="47" stroke="#c8ff3d" stroke-width="4.5" stroke-linecap="round"/>
+        </svg>
+        <span>ShopSteward</span>
+      </div>
+      <button style="color:#fff; font-size:32px; background:none; border:none; cursor:pointer;" id="hud-drawer-close">✕</button>
+    </div>
+    <div class="drawer-links-stack">
+      <a href="#demo" class="drawer-link-item">// 01 Live Demo</a>
+      <a href="#why" class="drawer-link-item">// 02 Philosophy</a>
+      <a href="#features" class="drawer-link-item">// 03 System Matrix</a>
+      <a href="#pricing" class="drawer-link-item">// 04 Pricing</a>
+      <a href="#faq" class="drawer-link-item">// 05 FAQ</a>
+      <a href="#contact" class="drawer-link-item">// 06 Contact</a>
+    </div>
+    <div style="margin-top: auto; padding-top: 30px;">
+      <a href="https://wa.me/918637560557" class="btn-cyber btn-acid" style="width: 100%;">WhatsApp +91 86375 60557</a>
+    </div>
   </div>
 
-  <div class="scene reveal" aria-label="Live dashboard preview">
-    <div class="orbit"></div>
-    <div class="orbit two"></div>
-    <div class="machine">
-      <div class="top">
-        <div class="screen">
-          <img src="images/dashboard.png" alt="ShopSteward live dashboard" loading="lazy">
+  <!-- HERO SECTION WITH SCROLL-DRIVEN 3D SPATIAL TRANSFORMATION -->
+  <section class="hero-stage">
+    <div class="hero-telemetry-cluster">
+      <div class="hero-telemetry-badge">
+        <span class="hud-pulse"></span>
+        <span>RADAR ACTIVE // CUSTOM SOFTWARE FOR REAL SHOPS</span>
+      </div>
+
+      <h1 class="hero-brutalist-title">
+        YOUR SHOP.
+        <span class="stroke-text">YOUR RULES.</span>
+        YOUR STEWARD.
+      </h1>
+
+      <p class="hero-manifesto-lead">
+        Custom-built inventory, instant billing, and daily telemetry — running straight on your phone, in your local language, priced for your business. <b>Never forgets a bill. Never loses a customer's dues.</b>
+      </p>
+
+      <div class="hero-cta-cluster">
+        <a href="#demo" class="btn-cyber btn-acid">Launch 3D Demo ↗</a>
+        <a href="https://wa.me/918637560557" target="_blank" rel="noopener" class="btn-cyber btn-hologram">Direct WhatsApp →</a>
+      </div>
+
+      <div class="telemetry-strip">
+        <div class="telemetry-cell">
+          <span class="telemetry-val">37<span class="unit">+</span></span>
+          <span class="telemetry-label">Live Shops</span>
+        </div>
+        <div class="telemetry-cell">
+          <span class="telemetry-val">100<span class="unit">%</span></span>
+          <span class="telemetry-label">Phone Browser</span>
+        </div>
+        <div class="telemetry-cell">
+          <span class="telemetry-val">24<span class="unit">H</span></span>
+          <span class="telemetry-label">Auto-Backup</span>
+        </div>
+        <div class="telemetry-cell">
+          <span class="telemetry-val">AI<span class="unit">⚡</span></span>
+          <span class="telemetry-label">Agent Engine</span>
         </div>
       </div>
-      <div class="side"></div>
-      <div class="front"></div>
-      <div class="machine-label"><b>01</b>LIVE / SALES / STOCK</div>
     </div>
-    <div class="scene-note">REAL PRODUCT / LIVE DASHBOARD</div>
-  </div>
-</section>
 
-<div class="nipe-strip reveal">
-  <div class="niche-label">BUILT FOR SHOPS LIKE YOURS</div>
-  <div class="niche-row">
-    <span class="niche-chip">Agriculture / Agro</span>
-    <span class="niche-chip">Grocery / Kirana</span>
-    <span class="niche-chip">Hardware</span>
-    <span class="niche-chip">Wholesale &amp; Distribution</span>
-    <span class="niche-chip">Clothing / Textile</span>
-    <span class="niche-chip">Electronics</span>
-  </div>
-</div>
-
-<section class="section reveal">
-  <div class="steward-block">
-    <div class="section-no">WHY "STEWARD"</div>
-    <p class="steward-lead">
-      A <b>steward</b> is the person a shop owner trusts to run everything when he isn't looking. He keeps the books. Tracks the stock. Remembers who owes what. Never sleeps, never forgets, never steals. <em>He doesn't own the shop — he makes sure it runs.</em><br><br>
-      That's exactly what this software is.
-    </p>
-  </div>
-</section>
-
-<section class="section reveal">
-  <div class="section-head"><div class="section-no">01 / WHY</div><h2>Generic software doesn't fit <em>your shop.</em></h2></div>
-  <div class="problem">
-    <article><div class="bigno">01</div><h3>Wrong units, wrong categories</h3><p>Your shop has its own products, measurements and workflow. Your software should understand them — not force you into someone else's template.</p></article>
-    <article><div class="bigno">02</div><h3>Paying for what you don't use</h3><p>Get the functions your business actually needs instead of a giant feature list designed for somebody else.</p></article>
-    <article><div class="bigno">03</div><h3>No one to talk to</h3><p>Talk directly to the person who builds your software — not a ticket maze.</p></article>
-  </div>
-</section>
-
-<section class="section reveal">
-  <div class="section-head"><div class="section-no">02 / PROCESS</div><h2>Three steps. <em>No jargon.</em></h2></div>
-  <div class="how">
-    <div class="how-step">
-      <div class="num">STEP 01</div>
-      <h3>Tell me about your shop</h3>
-      <p>A 15-minute call. What you sell, what units you use, what language, what reports you need. I listen — you don't fill out forms.</p>
+    <!-- 3D Viewport Interaction Overlay -->
+    <div class="hero-interaction-panel">
+      <div class="spatial-orbit-callout">
+        <span>✦ SCROLL TO EXPLODE 3D SPATIAL PANELS ✦</span>
+      </div>
     </div>
-    <div class="how-step">
-      <div class="num">STEP 02</div>
-      <h3>I build a live demo for you</h3>
-      <p>You get a working link within days. Test it on your own products. Ask for changes. We refine until it fits like it was made for you — because it is.</p>
-    </div>
-    <div class="how-step">
-      <div class="num">STEP 03</div>
-      <h3>You run your shop</h3>
-      <p>Daily auto-backup, printing, reports, and an AI agent that answers your questions. If something breaks, message me directly — not a ticket queue.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="section reveal">
-  <div style="border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:70px 0;text-align:center;">
-    <div class="section-no" style="margin-bottom:24px">TRUSTED ACROSS INDIA</div>
-    <div style="font-size:clamp(72px,12vw,140px);font-weight:950;letter-spacing:-.07em;line-height:.9;color:var(--acid);margin-bottom:20px;--reel-cell:clamp(65px,11vw,126px);">
-  <span class="spin-target" data-target="37" style="--reel-cell:clamp(65px,11vw,126px);">37</span>
-</div>
-    <div style="font-size:clamp(18px,2.4vw,26px);color:#c9d1cc;font-weight:600;letter-spacing:-.02em;margin-bottom:32px;">shop owners run their business on ShopSteward</div>
-    <div class="niche-row" style="justify-content:center;">
-      <span class="niche-chip">Agriculture</span>
-      <span class="niche-chip">Grocery</span>
-      <span class="niche-chip">Hardware</span>
-      <span class="niche-chip">Wholesale</span>
-      <span class="niche-chip">Textile</span>
-      <span class="niche-chip">Electronics</span>
+  <!-- NICHE INDUSTRY HUD -->
+  <section class="content-section" style="padding-top: 40px; padding-bottom: 60px;">
+    <div class="niche-hud-container">
+      <div style="font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.2em; color: var(--muted); margin-bottom: 16px; font-weight: 800;">
+        // TARGET ARCHITECTURE: SELECT YOUR NICHE
+      </div>
+      <div class="niche-selector-strip">
+        <button class="niche-hud-chip active" data-cat="agro">Agriculture / Agro</button>
+        <button class="niche-hud-chip" data-cat="grocery">Grocery / Kirana</button>
+        <button class="niche-hud-chip" data-cat="hardware">Hardware & Tools</button>
+        <button class="niche-hud-chip" data-cat="wholesale">Wholesale & FMCG</button>
+        <button class="niche-hud-chip" data-cat="textile">Clothing & Textiles</button>
+        <button class="niche-hud-chip" data-cat="electronics">Electronics & Mobile</button>
+      </div>
+
+      <div class="niche-display-panel spatial-card">
+        <div class="niche-title-tag" id="niche-active-tag">AGRICULTURE // AGRO CHEMICALS & SEEDS</div>
+        <p class="niche-body-text" id="niche-active-desc">
+          Custom units: Quintals, 50kg Bags, Litres, Bottles. Batch number and expiration alerts for pesticides, seeds subsidy billing, and farmer credit (Khaata) logging.
+        </p>
+      </div>
     </div>
-  </div>
-</section>
-<section class="section reveal" id="demo">
-  <div class="section-head"><div class="section-no">03 / LIVE SYSTEM</div><h2>Don't take my word for it. <em>Open it.</em></h2></div>
-  <div class="demo-wrap">
-    <aside class="demo-info">
+  </section>
+
+  <!-- WHY "STEWARD" & BRUTALIST PHILOSOPHY -->
+  <section class="content-section" id="why">
+    <div class="steward-theorem-banner spatial-card">
+      <div style="text-align: center;">
+        <svg class="theorem-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+          <circle cx="32" cy="22" r="10" stroke="#c8ff3d" stroke-width="4.5" stroke-linecap="round"/>
+          <line x1="32" y1="32" x2="32" y2="52" stroke="#c8ff3d" stroke-width="4.5" stroke-linecap="round"/>
+          <line x1="32" y1="42" x2="42" y2="42" stroke="#c8ff3d" stroke-width="4.5" stroke-linecap="round"/>
+          <line x1="32" y1="48" x2="40" y2="48" stroke="#c8ff3d" stroke-width="4.5" stroke-linecap="round"/>
+        </svg>
+        <div style="font-family: var(--font-mono); font-size: 11.5px; color: var(--acid); letter-spacing: 0.16em; margin-top: 10px; font-weight: 800;">THE STEWARD THEOREM</div>
+      </div>
       <div>
-        <div class="eyebrow">LIVE DEMO</div>
-        <h3>Try the actual app.</h3>
-        <p class="copy">Use the demo to see inventory, billing, purchases, reports and the shop workflow in action.</p>
-        <span class="demo-url">agricultureshopmanager-ship-it.github.io/Agriculture-Shop-Manager</span>
+        <p class="theorem-quote">
+          "A <b>steward</b> is the person a shop owner trusts to run everything when he isn't looking. He keeps the books. Tracks the stock. Remembers who owes what. <b>Never sleeps, never forgets, never steals.</b>"
+        </p>
+        <p style="margin-top: 16px; color: var(--ink-secondary); font-size: 16px; line-height: 1.65;">
+          He doesn't own the shop — he makes sure it runs. That is why ShopSteward is tailored around your business logic instead of bloated corporate software.
+        </p>
       </div>
-      <div class="credentials">
-        <small>DEMO LOGIN</small>
-        <div class="cred">EMAIL<br><code id="demoEmail">test@gmail.com</code></div>
-        <div class="cred">PASSWORD<br><code id="demoPassword">123456</code></div>
-        <div class="demo-actions">
-          <button class="mini" onclick="copyText('demoEmail', this)">COPY EMAIL</button>
-          <button class="mini" onclick="copyText('demoPassword', this)">COPY PASSWORD</button>
-          <a class="mini" href="https://agricultureshopmanager-ship-it.github.io/Agriculture-Shop-Manager/" target="_blank" rel="noopener">OPEN ↗</a>
+    </div>
+
+    <div class="section-hud-header">
+      <span class="hud-code">THE CHALLENGE</span>
+      <h2 class="hud-title">Generic software doesn't fit <em>your shop.</em></h2>
+    </div>
+
+    <div class="tactical-process-grid">
+      <div class="tactical-step-card spatial-card">
+        <span class="step-indexer">CHALLENGE 01</span>
+        <h3>Wrong units, wrong categories</h3>
+        <p>Your shop measures in quintals, grams, bags, or rolls. Generic ERPs force you into rigid boxes that don't match how your customers buy.</p>
+      </div>
+
+      <div class="tactical-step-card spatial-card">
+        <span class="step-indexer">CHALLENGE 02</span>
+        <h3>Paying for what you never use</h3>
+        <p>You need fast billing and accurate stock. Instead, corporate software charges you for 500 menu options designed for massive enterprises.</p>
+      </div>
+
+      <div class="tactical-step-card spatial-card">
+        <span class="step-indexer">CHALLENGE 03</span>
+        <h3>Zero accountability</h3>
+        <p>When billing freezes on Diwali morning, ticket support puts you in a 3-day queue. With ShopSteward, you WhatsApp the developer directly.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3-STEP PROCESS -->
+  <section class="content-section">
+    <div class="section-hud-header">
+      <span class="hud-code">SIMPLE PROCESS</span>
+      <h2 class="hud-title">Three steps. <em>No complex jargon.</em></h2>
+    </div>
+
+    <div class="tactical-process-grid">
+      <div class="tactical-step-card spatial-card">
+        <span class="step-indexer">STEP 01 · 15-MIN CALL</span>
+        <h3>Tell me about your shop</h3>
+        <p>A quick 15-minute voice call. What products you carry, your unit measurements, local language, and required invoice layout. No forms.</p>
+      </div>
+
+      <div class="tactical-step-card spatial-card">
+        <span class="step-indexer">STEP 02 · 72-HOUR BUILD</span>
+        <h3>I build your live system</h3>
+        <p>You receive an active working URL within 72 hours. Test it with your real stock. We refine the buttons until it fits like custom-tailored armor.</p>
+      </div>
+
+      <div class="tactical-step-card spatial-card">
+        <span class="step-indexer">STEP 03 · RUN YOUR SHOP</span>
+        <h3>You command your shop</h3>
+        <p>Daily automatic Excel backups, instant thermal receipt printing, and an AI agent answering ledger queries. Direct WhatsApp dev support.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIVE SPATIAL SANDBOX & SPOOLING THERMAL RECEIPT -->
+  <section class="content-section" id="demo">
+    <div class="section-hud-header">
+      <span class="hud-code">INTERACTIVE PREVIEW</span>
+      <h2 class="hud-title">Don't take my word for it. <em>Test it live.</em></h2>
+    </div>
+
+    <div class="spatial-sandbox">
+      <div class="sandbox-nav-column">
+        <div>
+          <h3 style="font-size: 22px; font-weight: 900; margin-bottom: 8px; color: #fff;">Interactive Console</h3>
+          <p style="color: var(--ink-secondary); font-size: 14px; line-height: 1.5;">Simulate live POS billing with thermal printing or test the AI assistant.</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <button class="sandbox-tab-btn active" data-target="panel-pos">⚡ Fast POS & Thermal Tape</button>
+          <button class="sandbox-tab-btn" data-target="panel-ai">🤖 AI Steward Assistant</button>
+          <button class="sandbox-tab-btn" data-target="panel-stock">📦 Live Stock Ledger</button>
+        </div>
+
+        <div class="sandbox-auth-card">
+          <div class="auth-header">Production Live Demo Link</div>
+          <div class="auth-row">
+            <span>USER:</span>
+            <span class="auth-highlight">test@gmail.com</span>
+            <button class="copy-badge-btn" data-copy="test@gmail.com">COPY</button>
+          </div>
+          <div class="auth-row">
+            <span>PASS:</span>
+            <span class="auth-highlight">123456</span>
+            <button class="copy-badge-btn" data-copy="123456">COPY</button>
+          </div>
+          <a href="https://agricultureshopmanager-ship-it.github.io/Agriculture-Shop-Manager/" target="_blank" rel="noopener" class="btn-cyber btn-acid" style="width: 100%; margin-top: 14px; font-size: 11px;">
+            Open Live Application ↗
+          </a>
         </div>
       </div>
-    </aside>
-    <div class="demo-screen">
-      <iframe loading="lazy" src="https://agricultureshopmanager-ship-it.github.io/Agriculture-Shop-Manager/" title="Live demo"></iframe>
-    </div>
-    <div class="carousel-wrap">
-      <div class="carousel" id="carousel">
-        <div class="slide"><img src="images/dashboard.png" alt="Dashboard" loading="lazy"></div>
-        <div class="slide"><img src="images/products.png" alt="Products & inventory" loading="lazy"></div>
-        <div class="slide"><img src="images/invoice.png" alt="New invoice" loading="lazy"></div>
-        <div class="slide"><img src="images/reports.png" alt="Reports" loading="lazy"></div>
+
+      <div class="sandbox-workspace">
+        <!-- TAB 1: POS TERMINAL & SPOOLING THERMAL TAPE -->
+        <div class="sandbox-panel active" id="panel-pos">
+          <div class="pos-terminal-layout">
+            <div class="pos-form-column">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-family: var(--font-mono); font-size: 12px; color: var(--acid); font-weight: 800;">[POS_BILLING_INTERFACE]</span>
+                <span class="sys-telemetry-pill">THERMAL PRINTER READY</span>
+              </div>
+
+              <div class="pos-input-group">
+                <label>Item Name / Barcode</label>
+                <select id="pos-item-select">
+                  <option value="450">IFFCO Urea 45kg (Bag) - ₹450</option>
+                  <option value="1350">DAP 18:46:00 (Bag) - ₹1,350</option>
+                  <option value="820">Zinc Sulphate 5kg - ₹820</option>
+                  <option value="260">Hybrid Wheat Seeds 10kg - ₹260</option>
+                </select>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+                <div class="pos-input-group">
+                  <label>Quantity</label>
+                  <input type="number" id="pos-qty-input" value="4" min="1">
+                </div>
+                <div class="pos-input-group">
+                  <label>Payment Mode</label>
+                  <select id="pos-payment-mode">
+                    <option>Cash / UPI</option>
+                    <option>Udhaar (Khaata)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div style="margin-top: 8px;">
+                <button class="btn-cyber btn-acid" id="pos-print-trigger" style="width: 100%;">
+                  ⚡ Spool & Print Thermal Receipt
+                </button>
+              </div>
+            </div>
+
+            <!-- SPOOLING PAPER THERMAL RECEIPT -->
+            <div>
+              <div class="thermal-receipt-tape" id="thermal-receipt-tape">
+                <div class="receipt-head">
+                  <div class="receipt-title">KRISHI AGRO MART</div>
+                  <div class="receipt-meta">Station Road, Bazar Branch</div>
+                  <div class="receipt-meta" id="receipt-timestamp">06/10/2026, 08:50 AM</div>
+                </div>
+
+                <div class="receipt-row">
+                  <span id="receipt-item-name">IFFCO Urea 45kg</span>
+                  <span id="receipt-item-qty">4x</span>
+                  <span id="receipt-item-rate">₹450</span>
+                </div>
+
+                <div class="receipt-row" style="color: #4b5850;">
+                  <span>Subtotal:</span>
+                  <span id="receipt-subtotal">₹1,800</span>
+                </div>
+
+                <div class="receipt-row receipt-total">
+                  <span>GRAND TOTAL:</span>
+                  <span id="receipt-grand-total">₹1,800.00</span>
+                </div>
+
+                <div style="text-align: center; font-size: 10px; color: #4b5850; font-weight: 700;">
+                  * POWERED BY SHOPSTEWARD OS *<br>
+                  THANK YOU FOR SHOPPING!
+                </div>
+
+                <div class="receipt-barcode"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2: AI STEWARD ASSISTANT -->
+        <div class="sandbox-panel" id="panel-ai">
+          <div class="ai-console-wrap">
+            <div>
+              <div style="font-family: var(--font-mono); font-size: 13px; color: var(--acid); margin-bottom: 6px; font-weight: 800;">[NEURAL_LEDGER_AI // CONVERSATIONAL QUERY]</div>
+              <p style="color: var(--ink-secondary); font-size: 14px;">Ask your shop ledger in plain human language. Click any preset:</p>
+            </div>
+
+            <div class="ai-preset-queries">
+              <button class="ai-preset-btn" data-ask="Top selling item this week">Top selling item this week</button>
+              <button class="ai-preset-btn" data-ask="DAP fertilizer stock level">DAP fertilizer stock level</button>
+              <button class="ai-preset-btn" data-ask="Pending udhaar list">Pending udhaar list</button>
+              <button class="ai-preset-btn" data-ask="Today's total profit">Today's total profit</button>
+            </div>
+
+            <div class="ai-command-line">
+              <input type="text" id="ai-query-input" placeholder="Type a question e.g. 'How much cash collected today?'">
+              <button class="btn-cyber btn-acid" id="ai-query-submit">Query Ledger</button>
+            </div>
+
+            <div class="ai-stream-output" id="ai-output-stream">
+              <div style="color: var(--muted);">Click any sample question above to see real-time AI extraction from shop data.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 3: LIVE STOCK LEDGER -->
+        <div class="sandbox-panel" id="panel-stock">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 18px;">
+            <span style="font-family: var(--font-mono); font-size: 13px; color: var(--cyan); font-weight: 800;">[INVENTORY_MATRIX_VIEW]</span>
+            <span class="sys-telemetry-pill">AUTO-SYNC: 24H ACTIVE</span>
+          </div>
+
+          <table style="width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 13px; text-align: left;">
+            <thead>
+              <tr style="border-bottom: 1.5px solid var(--line); color: var(--muted);">
+                <th style="padding: 12px 0;">ITEM NAME</th>
+                <th>IN STOCK</th>
+                <th>THRESHOLD</th>
+                <th>STATUS</th>
+                <th>EST. VALUE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1.5px dashed var(--line);">
+                <td style="padding: 14px 0;"><b>IFFCO Urea 45kg</b></td>
+                <td>142 Bags</td>
+                <td>30 Bags</td>
+                <td><span style="color: var(--acid); font-weight: 800;">● OPTIMAL</span></td>
+                <td>₹63,900</td>
+              </tr>
+              <tr style="border-bottom: 1.5px dashed var(--line);">
+                <td style="padding: 14px 0;"><b>DAP 18:46:00</b></td>
+                <td>14 Bags</td>
+                <td>50 Bags</td>
+                <td><span style="color: var(--orange); font-weight: 800;">▲ LOW STOCK</span></td>
+                <td>₹18,900</td>
+              </tr>
+              <tr>
+                <td style="padding: 14px 0;"><b>Zinc Sulphate 5kg</b></td>
+                <td>85 Pkts</td>
+                <td>20 Pkts</td>
+                <td><span style="color: var(--acid); font-weight: 800;">● OPTIMAL</span></td>
+                <td>₹69,700</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-      <div class="dots" id="dots"></div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section reveal" id="features">
-  <div class="section-head"><div class="section-no">04 / SYSTEM</div><h2>Everything in <em>one place.</em></h2></div>
-  <div class="features">
-    <div class="feature"><div class="feature-num">01</div><h3>Inventory Management</h3><p>Add, edit, track stock in real time. Low-stock alerts before you run out — not after a customer asks.</p></div>
-    <div class="feature"><div class="feature-num">02</div><h3>Sales &amp; Billing</h3><p>Create a bill in seconds. Save it, print it, share it. Thermal or A4 — whatever printer you already own.</p></div>
-    <div class="feature"><div class="feature-num">03</div><h3>Purchase Tracking</h3><p>Record every supplier purchase. Know your real cost per item and your true margin at any moment.</p></div>
-    <div class="feature"><div class="feature-num">04</div><h3>Customer &amp; Supplier Records</h3><p>Full contact history, purchase patterns, outstanding balance. Never lose track of who owes what.</p></div>
-    <div class="feature"><div class="feature-num">05</div><h3>Reports That Matter</h3><p>Daily sales, monthly summary, stock valuation, profit margins. Numbers you can act on, not 40-page exports.</p></div>
-    <div class="feature"><div class="feature-num">06</div><h3>Multi-Language</h3><p>Run the whole app in your language. Your staff shouldn't need English to do their job.</p></div>
-    <div class="feature"><div class="feature-num">07</div><h3>Auto Backup Every 24 Hours</h3><p>Your data exports automatically to Excel/JSON. Manual backup button too. Your business data, in your hands.</p></div>
-    <div class="feature"><div class="feature-num">08</div><h3>Works on Any Phone</h3><p>No app store. No install. Open it in Chrome or Safari on your phone and it just works.</p></div>
-    <div class="feature"><div class="feature-num">09</div><h3>Custom Units &amp; Categories</h3><p>Quintals, dozens, litres, bags, boxes. Your units, your categories, your business logic.</p></div>
-    <div class="feature"><div class="feature-num">10</div><h3>AI Agent</h3><p>Ask questions in plain language. "What sold most this week?" "Which items are about to expire?" The AI  answers from your own shop data.</p><div class="tag">NEW</div></div>
-  </div>
-</section>
+  <!-- 10 CORE FEATURES MATRIX -->
+  <section class="content-section" id="features">
+    <div class="section-hud-header">
+      <span class="hud-code">CORE CAPABILITIES</span>
+      <h2 class="hud-title">Everything in <em>one command center.</em></h2>
+    </div>
 
-<section class="section reveal">
-  <div class="testimonial">
-  <div class="section-no">30+ HAPPY OWNERS</div>
-    <div>
-      <p class="testi-quote">Pehle stock count karke register karne mein pura din nikal jaata tha. Ab ShopSteward ke saath stock har waqt mere table pe rehta hai — kaunsa product low hai, kya order karna hai, profit mein hoon ya ghate mein — sab kuch pata chalta hai. Mujhe motivation milti hai.</p>
-      <div class="testi-author">
-        <b>Gourgopal Das</b>
-        <span>Krishi Bandhu</span>
+    <div class="hud-features-grid">
+      <div class="hud-feature-card spatial-card">
+        <div class="feature-telemetry-tag">
+          <span class="feature-serial">// 001</span>
+          <span class="feature-tag-chip">CORE</span>
+        </div>
+        <h3>Inventory Management</h3>
+        <p>Real-time stock ledger. Automatic low-stock warnings notify you before shelves empty out — not after a customer asks.</p>
+      </div>
+
+      <div class="hud-feature-card spatial-card">
+        <div class="feature-telemetry-tag">
+          <span class="feature-serial">// 002</span>
+          <span class="feature-tag-chip">PRINTING</span>
+        </div>
+        <h3>Sales & Instant Billing</h3>
+        <p>Create bills in seconds. Save, print or share digitally. Full plug-and-play support for standard thermal and A4 printers.</p>
+      </div>
+
+      <div class="hud-feature-card spatial-card">
+        <div class="feature-telemetry-tag">
+          <span class="feature-serial">// 003</span>
+          <span class="feature-tag-chip">FINANCE</span>
+        </div>
+        <h3>Purchase Tracking</h3>
+        <p>Log every supplier purchase. Know your real landing cost per item and true gross margin across changing market rates.</p>
+      </div>
+
+      <div class="hud-feature-card spatial-card">
+        <div class="feature-telemetry-tag">
+          <span class="feature-serial">// 004</span>
+          <span class="feature-tag-chip">KHAATA</span>
+        </div>
+        <h3>Customer & Supplier Records</h3>
+        <p>Contact records, transaction timeline, and outstanding udhaar balance. One-click polite WhatsApp payment reminders.</p>
+      </div>
+
+      <div class="hud-feature-card spatial-card">
+        <div class="feature-telemetry-tag">
+          <span class="feature-serial">// 005</span>
+          <span class="feature-tag-chip">INSIGHTS</span>
+        </div>
+        <h3>Reports That Matter</h3>
+        <p>Daily turnover, monthly summaries, stock valuation, and profit margins. Numbers you can immediately act upon.</p>
+      </div>
+
+      <div class="hud-feature-card spatial-card">
+        <div class="feature-telemetry-tag">
+          <span class="feature-serial">// 006</span>
+          <span class="feature-tag-chip">REGIONAL</span>
+        </div>
+        <h3>Multi-Language UI</h3>
+        <p>Run the entire software in your local language. Staff should never need English fluency to handle billing or stock counts.</p>
+      </div>
+
+      <div class="hud-feature-card spatial-card">
+        <div class="feature-telemetry-tag">
+          <span class="feature-serial">// 007</span>
+          <span class="feature-tag-chip">BACKUP</span>
+        </div>
+        <h3>24-Hour Auto Backup</h3>
+        <p>Your business records automatically export to Excel and JSON every 24 hours. Your data remains strictly in your hands.</p>
+      </div>
+
+      <div class="hud-feature-card spatial-card">
+        <div class="feature-telemetry-tag">
+          <span class="feature-serial">// 008</span>
+          <span class="feature-tag-chip">MOBILE</span>
+        </div>
+        <h3>Zero App Install</h3>
+        <p>No app store downloads, no memory hogging. Open your private link in Chrome or Safari on any phone and start working.</p>
+      </div>
+
+      <div class="hud-feature-card spatial-card">
+        <div class="feature-telemetry-tag">
+          <span class="feature-serial">// 009</span>
+          <span class="feature-tag-chip">CUSTOM</span>
+        </div>
+        <h3>Custom Units & Workflow</h3>
+        <p>Quintals, dozens, litres, bags, boxes, meters, or rolls. Customized precisely to your specific trade and business logic.</p>
+      </div>
+
+      <div class="hud-feature-card spatial-card" style="border-color: rgba(200, 255, 61, 0.55); background: linear-gradient(135deg, rgba(200, 255, 61, 0.1), rgba(12, 18, 24, 0.98));">
+        <div class="feature-telemetry-tag">
+          <span class="feature-serial">// 010</span>
+          <span class="feature-tag-chip" style="color: var(--cyan); border-color: var(--cyan);">NEW ENGINE</span>
+        </div>
+        <h3 style="color: var(--acid);">AI Agent Assistant</h3>
+        <p>Query your ledger in natural human language: "Which item sold best this week?" The AI responds with precision from your shop records.</p>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section reveal" id="pricing">
-  <div class="section-head"><div class="section-no">05 / PRICING</div><h2>Simple, <em>honest pricing.</em></h2></div>
-  <p class="copy" style="max-width:700px;margin-bottom:42px">One base price. Customization quoted fairly based on real effort. No hidden charges, no surprise renewals.</p>
-  <div class="pricing">
-    <article class="price">
-      <div class="section-no">BASE</div>
-      <h3>Essentials, done right.</h3>
-      <div class="amt">₹<span class="spin-target" data-target="4899" style="--reel-cell:55px;">4,899</span></div>
-      <div class="sub">one-time · first year included<br>then ₹1,899/year</div>
-      <ul>
-        <li>Inventory management</li>
-        <li>Sales &amp; billing with printing</li>
-        <li>Purchase &amp; supplier tracking</li>
-        <li>Customer records</li>
-        <li>Sales &amp; stock reports</li>
-        <li>1 language</li>
-        <li>24-hour auto backup</li>
-        <li>Mobile browser access</li>
-      </ul>
-      <a class="btn secondary" href="#contact">GET STARTED →</a>
-    </article>
-    <article class="price">
-      <div class="section-no">CUSTOM / MOST POPULAR</div>
-      <h3>Built around your shop.</h3>
-      <div class="amt">₹<span class="spin-target" data-target="6899" style="--reel-cell:55px;">6,899</span><small>+ custom quote</small></div>
-      <div class="sub">first year included<br>then ₹1,899–₹4,899/year</div>
-      <ul>
-        <li>Everything in Base</li>
-        <li>Custom units &amp; categories</li>
-        <li>Custom bill / invoice design</li>
-        <li>2 languages</li>
-        <li>Custom reports</li>
-        <li>Your branding &amp; logo</li>
-        <li>Credit / udhaar tracking</li>
-        <li>2 revision rounds + 30 days support</li>
-      </ul>
-      <a class="btn primary" href="#contact">GET A QUOTE →</a>
-    </article>
-    <article class="price">
-      <div class="section-no">AI POWERED</div>
-      <h3>Full Custom</h3>
-      <div class="amt">₹<span class="spin-target" data-target="9899" style="--reel-cell:55px;">9,899</span><small>+ higher quote</small></div>
-      <div class="sub">first year included<br>then ₹4,899+/year</div>
-      <ul>
-        <li>Everything in Custom</li>
-        <li>AI Agent inbuilt</li>
-        <li>Multiple branches / shops</li>
-        <li>User roles &amp; permissions</li>
-        <li>Advanced dashboards</li>
-        <li>3 languages</li>
-        <li>Priority support</li>
-        <li>Recorded training + custom domain</li>
-      </ul>
-      <a class="btn secondary" href="#contact">TALK TO ME →</a>
-    </article>
-  </div>
-</section>
-
-<section class="section reveal" id="faq">
-  <div class="section-head"><div class="section-no">06 / FAQ</div><h2>Questions shop owners <em>ask me.</em></h2></div>
-  <div class="faq">
-    <div class="q"><button>Do I need to buy new hardware or a printer?</button><div class="answer">No. It runs in the browser on the computer or phone you already own. It prints on standard thermal and A4 printers — the same ones your shop already uses.</div></div>
-    <div class="q"><button>Can I use it on my mobile phone?</button><div class="answer">Yes. Open the link in Chrome or Safari. Same data, same features, responsive layout. No app store, no installation, no phone storage used.</div></div>
-    <div class="q"><button>What is the AI Agent and how does it help me?</button><div class="answer">It's a built-in assistant that understands plain language. Ask it "Which item sold most last month?" or "What stock is running low?" and it answers using your own shop data. Included in the Full Custom package.</div></div>
-    <div class="q"><button>What happens to my data if I stop paying?</button><div class="answer">Your data is yours. You can export everything to Excel or JSON at any time, from inside the app. I never hold your business data hostage.</div></div>
-    <div class="q"><button>Can I get changes after it's delivered?</button><div class="answer">Yes — but changes outside the original scope are quoted separately. I discuss the price with you first and only start after you approve it.</div></div>
-    <div class="q"><button>How long does it take to build?</button><div class="answer"><b>Base app: within 72 hours.</b> Every ShopSteward is built from scratch — we don't hand you a generic template and call it done. That's why the base takes up to 3 days, not 3 minutes.<br><br><b>Customizations:</b> the timeline depends entirely on what you ask for. Simple changes (custom units, extra fields, a report format) add a day or two. Complex ones (multi-branch, AI agent, custom dashboards) take longer. After our first call, I'll give you a clear timeline — and I stick to it.</div></div>
-    <div class="q"><button>Why should I choose this over Vyapar or Tally?</button><div class="answer">Those are good products — for millions of shops with average needs. If your shop is average, use them. If your units, categories, language or workflow don't fit their template, I build around you instead.</div></div>
-    <div class="q"><button>Who do I contact if something breaks?</button><div class="answer">Me. Directly. WhatsApp or call. Not a ticket system, not a chatbot. You talk to the person who built your software.</div></div>
-  </div>
-</section>
-
-<section class="section reveal" id="contact">
-  <div class="contact">
-    <div>
-      <div class="section-no">07 / CONTACT</div>
-      <h2>Let's build<br><span>your</span> steward.</h2>
-      <p class="copy" style="max-width:500px;margin-top:28px">Tell me what your shop needs. I'll reply within a day — usually much faster.</p>
+  <!-- VERIFIED TESTIMONIAL -->
+  <section class="content-section">
+    <div class="tactical-testimonial spatial-card">
+      <div class="testi-credentials">
+        <div class="testi-name-stamp">Gourgopal Das</div>
+        <div class="testi-business">Krishi Bandhu</div>
+        <div class="testi-verified">● VERIFIED SHOP OWNER</div>
+      </div>
+      <div>
+        <p class="testi-body-quote">
+          "Pehle stock count karke register karne mein pura din nikal jaata tha. Ab ShopSteward ke saath stock har waqt mere table pe rehta hai — kaunsa product low hai, kya order karna hai, profit mein hoon ya ghate mein — sab kuch pata chalta hai. Mujhe motivation milti hai."
+        </p>
+      </div>
     </div>
-    <div class="contact-side">
-      <a class="contact-item" href="https://wa.me/918637560557" target="_blank" rel="noopener">
-        <b>WhatsApp</b><span>+91 86375 60557 · Fastest reply ↗</span>
-      </a>
-      <a class="contact-item" href="mailto:shopsteward.in@gmail.com">
-        <b>Email</b><span>shopsteward.in@gmail.com</span>
-      </a>
-      <div class="contact-item"><b>Response Time</b><span>Within 24 hours</span></div>
-      <div class="wa-cta">
-        <a class="wa-btn" href="https://wa.me/918637560557?text=Hi%20Samiran%2C%20I%20want%20a%20custom%20shop%20manager.%0A%0AMy%20shop%3A%20%0ABusiness%20type%3A%20%0AWhat%20I%20need%3A%20" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-          Chat on WhatsApp — Get a Quote
+  </section>
+
+  <!-- PRICING TIERS -->
+  <section class="content-section" id="pricing">
+    <div class="pricing-header-center">
+      <span class="hud-code">TRANSPARENT PRICING</span>
+      <h2>Simple, honest pricing.</h2>
+      <p>One base price. Customizations quoted fairly on real effort. Zero hidden fees or surprise renewals.</p>
+    </div>
+
+    <div class="pricing-tactical-grid">
+      <!-- BASE -->
+      <div class="pricing-hud-card spatial-card">
+        <span class="hud-code">TIER 01 // LIMITED OFFER</span>
+        <h3>BASE</h3>
+        <div class="price-quantum" style="display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px;">
+          <span style="text-decoration: line-through; color: var(--muted); font-size: 24px; opacity: 0.65; font-family: var(--font-mono);">₹4,899</span>
+          <span><span class="curr">₹</span>1,999</span>
+        </div>
+        <div class="price-tenure">one-time setup · 1st year included · then <span style="text-decoration: line-through; opacity: 0.65;">₹1,899</span> <strong style="color: var(--acid);">₹599/yr</strong></div>
+
+        <ul class="tier-checklist">
+          <li>Complete inventory management</li>
+          <li>Fast sales & billing (Thermal & A4)</li>
+          <li>Purchase & supplier tracking</li>
+          <li>Customer records & Khaata</li>
+          <li>Sales & stock valuation reports</li>
+          <li>1 local language</li>
+          <li>24-hour auto backup to Excel</li>
+          <li>Mobile browser access on any phone</li>
+        </ul>
+
+        <a href="https://wa.me/918637560557?text=Hi,%20I%20want%20the%20Base%20ShopSteward%20plan%20at%20%E2%82%B91,999" class="btn-cyber btn-hologram" style="width: 100%;">
+          Deploy Base →
         </a>
-        <p class="wa-alt">Or email <a href="mailto:shopsteward.in@gmail.com">shopsteward.in@gmail.com</a></p>
+      </div>
+
+      <!-- CUSTOM -->
+      <div class="pricing-hud-card recommended spatial-card">
+        <span class="hud-code" style="color: var(--acid);">TIER 02 // MOST POPULAR · DISCOUNT ACTIVE</span>
+        <h3>CUSTOM</h3>
+        <div class="price-quantum" style="display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px;">
+          <span style="text-decoration: line-through; color: var(--muted); font-size: 24px; opacity: 0.65; font-family: var(--font-mono);">₹6,899</span>
+          <span><span class="curr">₹</span>3,599</span>
+        </div>
+        <div class="price-tenure">+ custom quote · 1st year included · then <span style="text-decoration: line-through; opacity: 0.65;">₹1,899–₹4,899</span> <strong style="color: var(--acid);">₹799/yr</strong></div>
+
+        <ul class="tier-checklist">
+          <li><strong>Everything in Base</strong></li>
+          <li>Custom units & item categories</li>
+          <li>Custom bill layout with your shop logo</li>
+          <li>2 languages included</li>
+          <li>Custom profit & turnover reports</li>
+          <li>Detailed credit / udhaar tracking</li>
+          <li>2 revision rounds + 30 days direct support</li>
+        </ul>
+
+        <a href="https://wa.me/918637560557?text=Hi,%20I%20want%20the%20Custom%20ShopSteward%20plan%20at%20%E2%82%B93,599" class="btn-cyber btn-acid" style="width: 100%;">
+          Get Custom Quote →
+        </a>
+      </div>
+
+      <!-- FULL CUSTOM AI -->
+      <div class="pricing-hud-card spatial-card">
+        <span class="hud-code" style="color: var(--cyan);">TIER 03 // FULL AI POWERED</span>
+        <h3>AI ADVANCED</h3>
+        <div class="price-quantum" style="display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px;">
+          <span style="text-decoration: line-through; color: var(--muted); font-size: 24px; opacity: 0.65; font-family: var(--font-mono);">₹9,899</span>
+          <span><span class="curr">₹</span>7,999</span>
+        </div>
+        <div class="price-tenure">+ custom quote · 1st year included · then <span style="text-decoration: line-through; opacity: 0.65;">₹4,899+</span> <strong style="color: var(--cyan);">₹2,599/yr</strong></div>
+
+        <ul class="tier-checklist">
+          <li style="background: rgba(85, 230, 255, 0.08); border: 1px solid rgba(85, 230, 255, 0.35); border-radius: 6px; padding: 8px 12px; margin-bottom: 8px; color: #ffffff;"><strong style="color: var(--cyan); display: flex; align-items: center; gap: 6px;">★ Premium Custom Domain & Fast Cloud Hosting Included</strong></li>
+          <li><strong>Everything in Custom</strong></li>
+          <li>AI Agent Assistant inbuilt</li>
+          <li>Multiple branch & counter synchronization</li>
+          <li>User roles & permissions (Staff vs Admin)</li>
+          <li>Advanced real-time analytics dashboards</li>
+          <li>3 languages included</li>
+          <li>Priority 24/7 direct phone support</li>
+          <li>Staff video training</li>
+        </ul>
+
+        <a href="https://wa.me/918637560557?text=Hi,%20I%20want%20the%20AI%20Powered%20ShopSteward%20package%20at%20%E2%82%B97,999" class="btn-cyber btn-hologram" style="width: 100%;">
+          Talk to Architect →
+        </a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-</main>
-
-<a class="wa-float" href="https://wa.me/918637560557?text=Hi%2C%20I%20want%20a%20custom%20shop%20manager%20for%20my%20business." target="_blank" rel="noopener" aria-label="WhatsApp">
-  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-</a>
-
-<footer class="footer">
-  <div>© 2026 ShopSteward</div>
-  <div class="footer-links">
-    <a href="#terms">Terms</a>
-    <a href="#privacy">Privacy</a>
-    <a href="#refund">Refund</a>
-    <a href="mailto:shopsteward.in@gmail.com">Email</a>
-  </div>
-</footer>
-
-<section id="terms" class="legal"><div class="legal-inner">
-  <a class="legal-close" href="#">← CLOSE</a>
-  <h2>Terms &amp; Conditions</h2>
-  <h3>1. About Us</h3><p>ShopSteward provides custom software development and related services for shops and businesses.</p>
-  <h3>2. Use of the Website</h3><p>Information on this website explains the services, demo and pricing. Specific client work is governed by the agreed scope.</p>
-  <h3>3. Demo Access</h3><p>Demo credentials are provided for evaluation. Do not enter real business data into the demo.</p>
-  <h3>4. Intellectual Property</h3><p>Custom work and ownership terms are defined in the client agreement.</p>
-  <h3>5. No Warranty</h3><p>Services are provided according to the agreed scope and reasonable effort.</p>
-  <h3>6. Limitation of Liability</h3><p>Liability is limited to the extent permitted by applicable law and the agreed client terms.</p>
-  <h3>7. Third-Party Services</h3><p>Some features may use third-party hosting or services.</p>
-  <h3>8. Client Agreements</h3><p>Specific project terms, deliverables and payment schedules are confirmed before development begins.</p>
-  <h3>9. Changes to These Terms</h3><p>Terms may be updated when necessary.</p>
-  <h3>10. Governing Law</h3><p>Applicable Indian law governs these terms unless otherwise agreed.</p>
-  <h3>11. Contact</h3><p>Email: <a href="mailto:shopsteward.in@gmail.com">shopsteward.in@gmail.com</a><br>WhatsApp: <a href="https://wa.me/918637560557">+91 86375 60557</a></p>
-</div></section>
-
-<section id="privacy" class="legal"><div class="legal-inner">
-  <a class="legal-close" href="#">← CLOSE</a>
-  <h2>Privacy Policy</h2>
-  <h3>1. What We Collect</h3><p>Information you submit through contact forms, such as your name, shop name, phone number, business type and message.</p>
-  <h3>2. How We Use It</h3><p>To respond to enquiries, discuss projects and provide requested services.</p>
-  <h3>3. How We Store It</h3><p>We take reasonable measures to protect submitted information.</p>
-  <h3>4. Third-Party Services</h3><p>Links and services such as WhatsApp, email and hosting may process information under their own policies.</p>
-  <h3>5. Cookies</h3><p>The site may use essential browser storage or similar technologies for functionality.</p>
-  <h3>6. Your Rights</h3><p>You can contact us to ask about or correct information you have submitted.</p>
-  <h3>7. Children</h3><p>The service is intended for businesses and is not directed at children.</p>
-  <h3>8. Data Security</h3><p>Reasonable technical and organisational measures are used.</p>
-  <h3>9. Changes to This Policy</h3><p>This policy may be updated when necessary.</p>
-  <h3>10. Contact</h3><p>Email: <a href="mailto:shopsteward.in@gmail.com">shopsteward <.in@gmail.com</a></p>
-</div></section>
-
-<section id="refund" class="legal"><div class="legal-inner">
-  <a class="legal-close" href="#">← CLOSE</a>
-  <h2>Refund Policy</h2>
-  <h3>1. One-Time Development Fee</h3><p>Development begins after the agreed scope and payment terms are confirmed.</p>
-  <h3>2. Annual Subscription</h3><p>Annual service terms and renewal pricing are shown on the pricing section.</p>
-  <h3>3. Customization Work</h3><p>Additional work outside the agreed scope is quoted separately.</p>
-  <h3>4. Before Development Begins</h3><p>Questions about a payment should be raised before work begins whenever possible.</p>
-h3>5. After Delivery</h3><p>Issues with agreed deliverables should be reported so they can be reviewed.</p>
-  <h3>6. Bugs and Defects</h3><p>Reasonable bug fixes for agreed functionality are handled as part of support terms.</p>
-  <h3>7. Disputes</h3><p>We will work in good faith to resolve concerns.</p>
-  <h3>8. Contact</h3><p>For any concern about a payment or service provided, contact us within 7 days at <a href="mailto:shopsteward.in@gmail.com">shopsteward.in@gmail.com</a>.</p>
-</div></section>
-
-<script>
-document.body.classList.add('js-ready');
-
-const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('on')), { threshold: .08 });
-document.querySelectorAll('.reveal').forEach(x => io.observe(x));
-
-setTimeout(() => {
-  document.querySelectorAll('.reveal:not(.on)').forEach(x => x.classList.add('on'));
-}, 1500);
-
-const light = document.getElementById('cursorLight');
-window.addEventListener('pointermove', e => { light.style.left = e.clientX + 'px'; light.style.top = e.clientY + 'px'; });
-
-document.querySelectorAll('.q button').forEach(b => b.addEventListener('click', () => b.parentElement.classList.toggle('open')));
-
-async function copyText(id, btn) {
-  const v = document.getElementById(id).textContent;
-  try {
-    await navigator.clipboard.writeText(v);
-    const old = btn.textContent;
-    btn.textContent = 'COPIED ✓';
-    setTimeout(() => btn.textContent = old, 1200);
-  } catch (e) {}
-}
-
-(function(){
-  const c = document.getElementById('carousel');
-  const dotsEl = document.getElementById('dots');
-  if (!c || !dotsEl) return;
-  const slides = c.querySelectorAll('.slide');
-  slides.forEach((_, i) => {
-    const d = document.createElement('span');
-    d.className = 'dot' + (i === 0 ? ' on' : '');
-    d.onclick = () => c.scrollTo({ left: c.clientWidth * i, behavior: 'smooth' });
-    dotsEl.appendChild(d);
-  });
-  c.addEventListener('scroll', () => {
-    const idx = Math.round(c.scrollLeft / c.clientWidth);
-    dotsEl.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('on', i === idx));
-  });
-})();
-
-document.querySelectorAll('#navLinks a').forEach(a => a.addEventListener('click', () => {
-  document.getElementById('navLinks').classList.remove('show');
-}));
-/* --- Spinning Counter Logic --- */
-function initSpinners() {
-  const targets = document.querySelectorAll('.spin-target');
-  if (!targets.length) return;
-
-  targets.forEach(el => {
-    const targetStr = el.dataset.target;
-    if (!targetStr) return;
-
-    // 1. Let the browser calculate the actual height in pixels
-    // This fixes the clamp() issue entirely
-    let cellHeight = el.offsetHeight;
-    if (!cellHeight || cellHeight < 10) cellHeight = 55; // Fallback
-
-    el.style.display = 'inline-flex';
-    el.style.alignItems = 'center';
-    el.style.lineHeight = '1';
-
-    const chars = targetStr.split('');
-    let spinIndex = 0;
-
-    el.innerHTML = '';
-
-    chars.forEach(char => {
-      if (char === ',') {
-        const comma = document.createElement('div');
-        comma.className = 't-reel-digit';
-        comma.style.height = `${cellHeight}px`;
-        comma.textContent = ',';
-        el.appendChild(comma);
-      } else {
-        const col = document.createElement('div');
-        col.className = 't-reel-col';
-        col.style.height = `${cellHeight}px`;
-
-        const strip = document.createElement('div');
-        strip.className = 't-reel-strip';
-
-        const targetDigit = parseInt(char);
-        const spins = 3;
-        const totalCells = (spins * 10) + targetDigit;
-
-        for (let i = 0; i <= totalCells; i++) {
-          const digitDiv = document.createElement('div');
-          digitDiv.className = 't-reel-digit';
-          digitDiv.style.height = `${cellHeight}px`;
-          digitDiv.textContent = i % 10;
-          strip.appendChild(digitDiv);
-        }
-
-        col.appendChild(strip);
-        el.appendChild(col);
-
-        col.dataset.totalCells = totalCells;
-        col.dataset.staggerIndex = spinIndex;
-        spinIndex++;
-      }
-    });
-  });
-
-  // 2. Observe the individual spin-targets, NOT the whole section
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        animateReel(entry.target);
-        observer.unobserve(entry.target); // Stop observing once animated
-      }
-    });
-  }, { threshold: 0.2 });
-
-  targets.forEach(t => observer.observe(t));
-}
-
-function animateReel(reelEl) {
-  if (reelEl.dataset.animated) return;
-  reelEl.dataset.animated = 'true';
-
-  const cols = reelEl.querySelectorAll('.t-reel-col');
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  cols.forEach((col) => {
-    const totalCells = parseInt(col.dataset.totalCells);
-    const cellHeight = parseFloat(col.style.height); // Now a real pixel number
-    const strip = col.querySelector('.t-reel-strip');
-    const staggerIndex = parseInt(col.dataset.staggerIndex) || 0;
-    const stagger = staggerIndex * 90;
-
-    if (prefersReducedMotion) {
-      strip.style.transform = `translateY(-${totalCells * cellHeight}px)`;
-      return;
-    }
-
-    strip.style.transition = `transform 1400ms cubic-bezier(0.16, 1, 0.3, 1) ${stagger}ms, filter 1400ms cubic-bezier(0.16, 1, 0.3, 1) ${stagger}ms`;
-    strip.style.filter = 'url(#motion-blur)';
-    void strip.offsetHeight; // Force reflow
-    strip.style.transform = `translateY(-${totalCells * cellHeight}px)`;
-
-    setTimeout(() => {
-      strip.style.filter = 'none';
-    }, 1400 + stagger);
-  });
-}
-
-// Initialize when DOM is ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initSpinners);
-} else {
-  initSpinners();
-}
-</script>
-<!-- ============ UPGRADED PRICING (Starter / Growth / Pro) ============ -->
-<style>
-  /* ---- Pricing overrides, scoped to #pricing so nothing else is affected ---- */
-  #pricing .price { position: relative; }
-
-  #pricing .price.popular {
-    background: rgba(200,255,61,.05);
-    box-shadow: inset 0 0 0 1px rgba(200,255,61,.25);
-  }
-
-  #pricing .popular-badge {
-    position: absolute;
-    top: 0;
-    right: 22px;
-    transform: translateY(-50%);
-    background: var(--acid);
-    color: #081007;
-    font-size: 9px;
-    font-weight: 900;
-    letter-spacing: .16em;
-    padding: 7px 12px;
-    border-radius: 100px;
-    box-shadow: 0 6px 20px rgba(200,255,61,.35);
-    z-index: 2;
-  }
-
-  #pricing .price-meta {
-    margin: 20px 0 8px;
-    padding: 14px 0;
-    border-top: 1px dashed rgba(255,255,255,.08);
-    border-bottom: 1px dashed rgba(255,255,255,.08);
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
-    font-size: 12px;
-  }
-  #pricing .price-meta div {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    align-items: baseline;
-  }
-  #pricing .price-meta span {
-    color: #6f7b76;
-    font-weight: 700;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    font-size: 9px;
-    flex-shrink: 0;
-  }
-  #pricing .price-meta b {
-    color: #dce4df;
-    font-weight: 700;
-    font-size: 12px;
-    text-align: right;
-  }
-
-  #pricing .not-label {
-    font-size: 9px;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    color: #5a6560;
-    font-weight: 800;
-    margin: 8px 0 4px;
-  }
-  #pricing .not-list {
-    margin: 0 0 25px !important;
-    padding: 0;
-    list-style: none;
-  }
-  #pricing .not-list li.not {
-    padding: 6px 0;
-    color: #59635e;
-    font-size: 12px;
-    border-bottom: 1px dashed rgba(255,255,255,.04);
-    text-decoration: line-through;
-    text-decoration-color: rgba(255,255,255,.18);
-  }
-  #pricing .not-list li.not:before {
-    content: "×" !important;
-    color: #4d5853 !important;
-    margin-right: 8px;
-    text-decoration: none;
-    display: inline-block;
-  }
-</style>
-
-<script>
-(function () {
-  var NEW_HTML = `
-    <div class="section-head">
-      <div class="section-no">05 / PRICING</div>
-      <h2>Simple, <em>honest pricing.</em></h2>
+  <!-- FAQ -->
+  <section class="content-section" id="faq">
+    <div class="section-hud-header">
+      <span class="hud-code">FREQUENTLY ASKED QUESTIONS</span>
+      <h2 class="hud-title">Questions shop owners <em>ask me.</em></h2>
     </div>
-    <p class="copy" style="max-width:720px;margin-bottom:42px">
-      Pay once for the first year — setup is included. Renew from year 2 at a lower price.
-      No hidden charges, no surprise bumps.
-    </p>
 
-    <div class="pricing">
-
-      <!-- STARTER -->
-      <article class="price">
-        <div class="section-no">STARTER</div>
-        <h3>For shops just getting started.</h3>
-        <div class="amt">₹<span class="spin-target" data-target="1999" style="--reel-cell:55px;">1,999</span></div>
-        <div class="sub">first year · setup included<br>then <b style="color:#dce4df">₹999/year</b> from year 2</div>
-
-        <div class="price-meta">
-          <div><span>Best for</span><b>Small shops · 1 person</b></div>
-          <div><span>Users</span><b>1 user</b></div>
-          <div><span>Setup</span><b>Self-setup</b></div>
+    <div class="faq-hud-wrapper">
+      <div class="faq-row">
+        <button class="faq-button">
+          <span>Do I need to buy new hardware or a specialized printer?</span>
+          <span class="faq-indicator">+</span>
+        </button>
+        <div class="faq-collapse">
+          No. ShopSteward runs directly in any modern web browser on the computer or phone you already own. It connects seamlessly to standard thermal receipt printers (2-inch or 3-inch) as well as regular office A4 desktop printers.
         </div>
+      </div>
 
-        <ul>
-          <li>Basic Billing</li>
-          <li>Basic Inventory Tracking</li>
-          <li>Shop's Name on App</li>
-          <li>24-hour Auto Backup</li>
-          <li>Email Support</li>
-        </ul>
-
-        <div class="not-label">NOT INCLUDED</div>
-        <ul class="not-list">
-          <li class="not">Custom Logo</li>
-          <li class="not">GST Billing</li>
-         
-          <li class="not">Custom Bill Design</li>
-        </ul>
-
-        <a class="btn secondary" href="#contact">START WITH STARTER →</a>
-      </article>
-
-      <!-- GROWTH (highlighted) -->
-      <article class="price popular">
-        <div class="popular-badge">MOST POPULAR</div>
-        <div class="section-no">GROWTH</div>
-        <h3>Everything a growing shop needs.</h3>
-        <div class="amt">₹<span class="spin-target" data-target="3999" style="--reel-cell:55px;">3,999</span></div>
-        <div class="sub">first year · setup included<br>then <b style="color:#dce4df">₹1,899/year</b> from year 2</div>
-
-        <div class="price-meta">
-          <div><span>Best for</span><b>Most shops</b></div>
-          <div><span>Users</span><b>2 users</b></div>
-          <div><span>Setup</span><b>Free setup + training</b></div>
+      <div class="faq-row">
+        <button class="faq-button">
+          <span>Can I run everything from my mobile phone?</span>
+          <span class="faq-indicator">+</span>
+        </button>
+        <div class="faq-collapse">
+          Yes! Open your private shop link in Chrome or Safari. All features — billing, inventory checks, udhaar records, and reports — are 100% mobile-optimized without wasting phone memory or installing app store updates.
         </div>
+      </div>
 
-        <ul>
-          <li>Everything in Starter</li>
-          <li>Custom Logo</li>
-          <li>Custom Bill Design</li>
-          <li>GST Billing</li>
-          <li>Customer Udhaar Tracking</li>
-          <li>Full Inventory (size / color / category)</li>
-          <li>Full Reports (Sales · Stock · P&amp;L)</li>
-          <li>Free Setup + Training</li>
-          <li>WhatsApp Support (10 AM – 6 PM)</li>
-        </ul>
-
-        <a class="btn primary" href="#contact">GET GROWTH →</a>
-      </article>
-
-      <!-- PRO / AI -->
-      <article class="price">
-        <div class="section-no">PRO / AI</div>
-        <h3>For multi-branch &amp; ambitious shops.</h3>
-        <div class="amt">₹<span class="spin-target" data-target="7999" style="--reel-cell:55px;">7,999</span></div>
-        <div class="sub">first year · setup included<br>then <b style="color:#dce4df">₹3,499/year</b> from year 2</div>
-
-        <div class="price-meta">
-          <div><span>Best for</span><b>Multi-branch shops</b></div>
-          <div><span>Users</span><b>Unlimited</b></div>
-          <div><span>Setup</span><b>Priority training</b></div>
+      <div class="faq-row">
+        <button class="faq-button">
+          <span>What is the AI Agent and how does it help me?</span>
+          <span class="faq-indicator">+</span>
+        </button>
+        <div class="faq-collapse">
+          It is an intelligent shop assistant that understands plain language. You can simply ask: "Which item sold most this week?" or "Which customers have overdue payments?", and it answers immediately from your live records.
         </div>
+      </div>
 
-        <ul>
-          <li>Everything in Growth</li>
-          <li>AI Agent</li>
-          <li>Multi-Branch Support</li>
-          <li>Advanced Reports with AI Insights</li>
-          <li>Unlimited Users</li>
-          <li>Priority WhatsApp + Call Support</li>
-          <li>Manual Backup Option</li>
-        </ul>
+      <div class="faq-row">
+        <button class="faq-button">
+          <span>What happens to my data if I stop paying or want to switch?</span>
+          <span class="faq-indicator">+</span>
+        </button>
+        <div class="faq-collapse">
+          Your data is strictly yours. You can export your full records to Excel or JSON format at any time with a single click. We will never hold your business records hostage.
+        </div>
+      </div>
 
-        <a class="btn secondary" href="#contact">GO PRO →</a>
-      </article>
+      <div class="faq-row">
+        <button class="faq-button">
+          <span>How fast is the delivery?</span>
+          <span class="faq-indicator">+</span>
+        </button>
+        <div class="faq-collapse">
+          Base app is ready within 72 hours. Every ShopSteward is tailored for you — we don't hand you a generic template. Custom features (such as specialized units, multi-branch, or AI setup) add a few days with clear commitments.
+        </div>
+      </div>
 
+      <div class="faq-row">
+        <button class="faq-button">
+          <span>Why choose ShopSteward over Vyapar or Tally?</span>
+          <span class="faq-indicator">+</span>
+        </button>
+        <div class="faq-collapse">
+          Those are generic tools designed for average requirements. If your shop uses specific units (quintals, bags, rolls), custom discount logic, regional languages, or unique workflows, ShopSteward is hand-crafted around your specific way of doing business.
+        </div>
+      </div>
+
+      <div class="faq-row">
+        <button class="faq-button">
+          <span>Who do I contact if I have a doubt or something breaks?</span>
+          <span class="faq-indicator">+</span>
+        </button>
+        <div class="faq-collapse">
+          You talk directly with me (the software creator) via WhatsApp or call. No support tickets, no outsourced call centers, and no AI bot loops.
+        </div>
+      </div>
     </div>
-  `;
+  </section>
 
-  function inject() {
-    var section = document.getElementById('pricing');
-    if (!section) { setTimeout(inject, 120); return; }
-    if (section.dataset.upgraded === '1') return;
+  <!-- CONTACT & DIRECT WHATSAPP -->
+  <section class="content-section" id="contact">
+    <div class="contact-tactical-grid">
+      <div class="contact-manifesto">
+        <span class="hud-code">DIRECT CONTACT</span>
+        <h2>Let's build <span>your steward.</span></h2>
+        <p style="color: var(--ink-secondary); font-size: 17px; margin-bottom: 30px;">
+          Tell me what your shop needs. I reply personally within a few hours.
+        </p>
 
-    section.dataset.upgraded = '1';
-    section.innerHTML = NEW_HTML;
+        <a href="https://wa.me/918637560557?text=Hi%20ShopSteward,%20I'd%20like%20to%20discuss%20custom%20software%20for%20my%20shop" target="_blank" rel="noopener" class="btn-cyber btn-acid" style="padding: 18px 32px; font-size: 14px;">
+          Chat on WhatsApp — +91 86375 60557
+        </a>
+      </div>
 
-    // Re-run the spinning number animation for the new prices
-    try {
-      if (typeof window.initSpinners === 'function') {
-        window.initSpinners();
-      }
-    } catch (e) {
-      console.warn('Spinner reinit skipped:', e);
-    }
-  }
+      <div class="contact-hud-box spatial-card">
+        <div class="contact-spec-row">
+          <span class="spec-key">WHATSAPP & CALL</span>
+          <span class="spec-val">+91 86375 60557</span>
+        </div>
+        <div class="contact-spec-row">
+          <span class="spec-key">DIRECT EMAIL</span>
+          <span class="spec-val">shopsteward.in@gmail.com</span>
+        </div>
+        <div class="contact-spec-row">
+          <span class="spec-key">RESPONSE TIME</span>
+          <span class="spec-val" style="color: var(--acid); font-weight: 900;">< 2 Hours</span>
+        </div>
+        <div class="contact-spec-row">
+          <span class="spec-key">SUPPORT MODEL</span>
+          <span class="spec-val">Direct Developer Access</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', inject);
-  } else {
-    inject();
-  }
-})();
-</script>
+  <!-- FOOTER -->
+  <footer class="hud-footer">
+    <div>
+      © 2026 ShopSteward. All rights reserved.
+    </div>
+    <div class="footer-nav">
+      <a href="https://agricultureshopmanager-ship-it.github.io/Agriculture-Shop-Manager/" target="_blank" rel="noopener">Live Demo</a>
+      <a href="mailto:shopsteward.in@gmail.com">shopsteward.in@gmail.com</a>
+      <a href="https://wa.me/918637560557" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </footer>
+
+  <!-- FLOATING QUICK BEACON -->
+  <a href="https://wa.me/918637560557?text=Hi%20ShopSteward,%20I'm%20interested%20in%20custom%20software%20for%20my%20shop" target="_blank" rel="noopener" class="wa-float-beacon" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.699c.969.54 1.777.784 2.791.784 3.181 0 5.767-2.586 5.768-5.766 0-3.18-2.587-5.77-5.768-5.77zm0 10.455c-.911 0-1.636-.25-2.422-.722l-.173-.102-1.795.471.479-1.75-.113-.179c-.521-.828-.797-1.503-.796-2.373.001-2.518 2.05-4.567 4.57-4.567 2.519 0 4.567 2.049 4.568 4.567-.001 2.519-2.05 4.568-4.571 4.568zm2.51-3.443c-.137-.069-.813-.401-.939-.447-.126-.046-.217-.069-.309.069-.091.137-.355.447-.435.539-.08.092-.16.103-.297.035s-.58-.214-1.105-.682c-.408-.364-.684-.814-.764-.951-.08-.137-.009-.211.06-.279.062-.062.137-.16.206-.24.069-.08.091-.137.137-.229.046-.091.023-.172-.011-.24-.035-.069-.309-.745-.423-1.02-.112-.269-.226-.232-.309-.237l-.264-.005c-.092 0-.24.035-.366.172-.126.137-.48.469-.48 1.144s.492 1.327.561 1.419c.069.091.968 1.478 2.345 2.072.328.141.584.226.784.289.33.105.63.09.868.055.265-.04 813-.332.928-.652.115-.32.115-.595.08-.652-.034-.058-.126-.092-.263-.16z"/></svg>
+  </a>
+
+  <!-- Application & 3D Scripts -->
+  <script src="three-scene.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
